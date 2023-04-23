@@ -25,3 +25,8 @@
 
     # Bash utils
     ${XDG_CONFIG_HOME}/utils: utils
+
+    # MacOS-Only
+    ~/.Brewfile:
+      if: '[ `uname` = Darwin ]'
+      path: scripts/installs/Brewfile

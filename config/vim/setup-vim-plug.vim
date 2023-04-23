@@ -28,10 +28,6 @@ if empty(vim_plug_plugins_dir)
   call mkdir(vim_plug_plugins_dir, 'p')
 endif
 
-echom "Install smyck theme"
-execute '!curl -o ' . vim_plug_plugins_dir . '/smyck.vim' .
-\ ' https://raw.githubusercontent.com/hukl/Smyck-Color-Scheme/master/smyck.vim'
-
 " Initialize Vim Plugged
 call plug#begin(vim_plug_plugins_dir)
   " Light-weight status line
@@ -62,4 +58,10 @@ call plug#begin(vim_plug_plugins_dir)
   Plug 'triglav/vim-visual-increment'
   " Wraper for running tests
   Plug 'janko/vim-test'
+  " Smyck theme
+  Plug 'https://github.com/hukl/Smyck-Color-Scheme'
 call plug#end()
+
+"echom "Install smyck theme"
+"execute '!curl -o ' . vim_plug_plugins_dir . '/smyck.vim' .
+"\ ' https://raw.githubusercontent.com/hukl/Smyck-Color-Scheme/master/smyck.vim'

@@ -209,7 +209,6 @@ cask 'onyx'            # System maintenance tool
 cask 'rectangle'       # Window management
 # cask 'signal'         # Link to encrypted mobile messenger
 cask 'standard-notes' # Encrypted synced notes
-cask 'stats'          # System monitor
 cask 'sublime-text'   # Text editor
 # cask 'tresorit'       # Encrypted file backup (proprietary)
 # cask 'vorta'          # GUI for BorgBackup
@@ -231,7 +230,7 @@ cask 'font-hack'
 # cask 'font-inconsolata'
 cask 'font-meslo-lg-nerd-font'
 
-# Mac OS Quick-Look Plugins
+# # Mac OS Quick-Look Plugins
 cask 'qlcolorcode'    # QL for code with highlighting
 cask 'qlimagesize'    # QL for size info for images
 cask 'qlmarkdown'     # QL for markdown files

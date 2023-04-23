@@ -40,5 +40,5 @@ export ZLIB="${ZDOTDIR}/lib"
 
 # Encodings, languges and misc settings
 export LANG='en_US.UTF-8';
-export LC_ALL='en_US';
+export LC_ALL='en_US.UTF-8';
 export PYTHONIOENCODING='UTF-8';
