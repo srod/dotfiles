@@ -24,19 +24,14 @@ if [ "$(uname -s)" = "Darwin" ]; then
     export PATH=/opt/homebrew/bin:$PATH
   fi
 
-  # If using iTerm, import the shell integration if availible
-  if [[ -f "${XDG_CONFIG_HOME}/zsh/.iterm2_shell_integration.zsh" ]]; then
-    source "${XDG_CONFIG_HOME}/zsh/.iterm2_shell_integration.zsh"
-  fi
-
   # Append the Android SDK locations to path
-  if [[ -d "${HOME}/Library/Android/" ]]; then
-    export PATH="${HOME}/Library/Android/sdk/emulator:${PATH}"
-    export ANDROID_HOME="${HOME}/Library/Android/sdk"
-    export ANDROID_SDK_ROOT="${HOME}/Library/Android/sdk"
-    export ANDROID_AVD_HOME="${ANDROID_SDK_ROOT}/tools/emulator"
-    export NODE_BINARY="/usr/local/bin/node"
-  fi
+  # if [[ -d "${HOME}/Library/Android/" ]]; then
+  #   export PATH="${HOME}/Library/Android/sdk/emulator:${PATH}"
+  #   export ANDROID_HOME="${HOME}/Library/Android/sdk"
+  #   export ANDROID_SDK_ROOT="${HOME}/Library/Android/sdk"
+  #   export ANDROID_AVD_HOME="${ANDROID_SDK_ROOT}/tools/emulator"
+  #   export NODE_BINARY="/usr/local/bin/node"
+  # fi
 fi
 
 # Source all ZSH config files (if present)
@@ -45,7 +40,7 @@ if [[ -d $zsh_dir ]]; then
   source ${zsh_dir}/aliases/general.zsh
   source ${zsh_dir}/aliases/git.zsh
   source ${zsh_dir}/aliases/node-js.zsh
-  source ${zsh_dir}/aliases/alias-tips.zsh
+  # source ${zsh_dir}/aliases/alias-tips.zsh
 
   # Setup Antigen, and import plugins
   source ${zsh_dir}/helpers/setup-antigen.zsh
@@ -84,26 +79,12 @@ if [ "$(uname -s)" = "Darwin" ]; then
   if [[ -d /opt/homebrew/bin ]]; then
     export PATH=/opt/homebrew/bin:$PATH
   fi
-
-  # If using iTerm, import the shell integration if availible
-  if [[ -f "${XDG_CONFIG_HOME}/zsh/.iterm2_shell_integration.zsh" ]]; then
-    source "${XDG_CONFIG_HOME}/zsh/.iterm2_shell_integration.zsh"
-  fi
-
-  # Append the Android SDK locations to path
-  if [[ -d "${HOME}/Library/Android/" ]]; then
-    export PATH="${HOME}/Library/Android/sdk/emulator:${PATH}"
-    export ANDROID_HOME="${HOME}/Library/Android/sdk"
-    export ANDROID_SDK_ROOT="${HOME}/Library/Android/sdk"
-    export ANDROID_AVD_HOME="${ANDROID_SDK_ROOT}/tools/emulator"
-    export NODE_BINARY="/usr/local/bin/node"
-  fi
 fi
 
 # Add Zoxide (for cd, quick jump) to shell
-if hash zoxide 2> /dev/null; then
-    eval "$(zoxide init zsh)"
-fi
+# if hash zoxide 2> /dev/null; then
+#     eval "$(zoxide init zsh)"
+# fi
 
 # If not running in nested shell, then show welcome message :)
 if [[ "${SHLVL}" -lt 2 ]] && [[ -z "$SKIP_WELCOME" ]]; then

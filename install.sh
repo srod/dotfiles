@@ -272,14 +272,7 @@ function apply_preferences () {
       echo -e "\n${PURPLE}Applying MacOS system preferences,\
       ensure you've understood before proceeding${RESET}\n"
       macos_settings_dir="$DOTFILES_DIR/scripts/macos-setup"
-      echo "-----------------"
-      echo -e ${DOTFILES_DIR}
-      echo "-----------------"
-      echo -e $macos_settings_dir
-      echo "-----------------"
-      # cd "${DOTFILES_DIR}"
       for macScript in "macos-security.sh" "macos-preferences.sh" "macos-apps.sh"; do
-        echo $macos_settings_dir/$macScript
         chmod +x $macos_settings_dir/$macScript && \
         $macos_settings_dir/$macScript --quick-exit --yes-to-all
       done
@@ -309,22 +302,12 @@ function intall_macos_packages () {
     echo -e "\n${PURPLE}Updating homebrew and packages...${RESET}"
     brew update # Update Brew to latest version
     brew upgrade # Upgrade all installed casks
-    brew bundle --global --file $HOME/.Brewfile # Install all listed Brew apps
+    brew bundle --global --file $DOTFILES_DIR/scripts/installs/Brewfile # Install all listed Brew apps
     brew cleanup # Remove stale lock files and outdated downloads
     killall Finder # Restart finder (required for some apps)
   else
     echo -e "${PURPLE}Skipping Homebrew as requirements not met${RESET}"
   fi
-  # Restore launchpad structure with lporg
-  # launchpad_layout="${DOTFILES_DIR}/config/macos/launchpad.yml"
-  # if command_exists lporg && [ -f $launchpad_layout ]; then
-  #   echo -e "\n${CYAN_B}Would you like to restore launchpad layout? (y/N)${RESET}"
-  #   read -t $PROMPT_TIMEOUT -n 1 -r ans_restorelayout
-  #   if [[ $ans_restorelayout =~ ^[Yy]$ ]] || [[ $AUTO_YES = true ]] ; then
-  #     echo -e "${PURPLE}Restoring Launchpad Layout...${RESET}"
-  #     yes "" | lporg load $launchpad_layout
-  #   fi
-  # fi
   # Check for MacOS software updates, and ask user if they'd like to install
   echo -e "\n${CYAN_B}Would you like to check for OX X system updates? (y/N)${RESET}"
   read -t $PROMPT_TIMEOUT -n 1 -r ans_macoscheck
@@ -332,7 +315,7 @@ function intall_macos_packages () {
     echo -e "${PURPLE}Checking for software updates...${RESET}"
     pending_updates=$(softwareupdate -l 2>&1)
     if [[ ! $pending_updates == *"No new software available."* ]]; then
-      echo -e "${PURPLE}A new version of Mac OS is availbile${RESET}"
+      echo -e "${PURPLE}A new version of Mac OS is available${RESET}"
       echo -e "${CYAN_B}Would you like to update to the latest version of MacOS? (y/N)${RESET}"
       read -t $PROMPT_TIMEOUT -n 1 -r ans_macosupdate
       if [[ $ans_macosupdate =~ ^[Yy]$ ]] || [[ $AUTO_YES = true ]]; then

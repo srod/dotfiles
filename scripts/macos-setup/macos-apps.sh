@@ -339,13 +339,6 @@ defaults write com.apple.terminal StringEncodings -array 4
 log_msg "Enable secure entry for Terminal"
 defaults write com.apple.terminal SecureKeyboardEntry -bool true
 
-log_msg "Apply custom Terminal theme"
-theme=$(<config/macos/rodolphe-term.terminal)
-plutil -replace Window\ Settings.Rodolphe-Term -xml "$theme" ~/Library/Preferences/com.apple.Terminal.plist
-defaults write com.apple.terminal 'Default Window Settings' -string Rodolphe-Term
-defaults write com.apple.terminal 'Startup Window Settings' -string Rodolphe-Term
-echo 'tell application "Terminal" to set current settings of first window to settings set "Rodolphe-Term"' | osascript
-
 ###############################################################################
 # Time Machine                                                                #
 ###############################################################################

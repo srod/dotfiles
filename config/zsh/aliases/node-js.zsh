@@ -8,27 +8,27 @@
 ######################################################################
 
 # Yarn - Project commands
-alias ys='yarn start'
-alias yt='yarn test'
-alias yb='yarn build'
-alias yl='yarn lint'
-alias yd='yarn dev'
-alias yp='yarn publish'
-alias yr='yarn run'
+# alias ys='yarn start'
+# alias yt='yarn test'
+# alias yb='yarn build'
+# alias yl='yarn lint'
+# alias yd='yarn dev'
+# alias yp='yarn publish'
+# alias yr='yarn run'
 
-# Yarn - Package management
-alias ya='yarn add'
-alias ye='yarn remove'
-alias yi='yarn install'
-alias yg='yarn upgrade'
-alias yu='yarn update'
-alias yf='yarn info'
+# # Yarn - Package management
+# alias ya='yarn add'
+# alias ye='yarn remove'
+# alias yi='yarn install'
+# alias yg='yarn upgrade'
+# alias yu='yarn update'
+# alias yf='yarn info'
 
-# Yarn - Misc
-alias yz='yarn audit'
-alias yc='yarn autoclean'
-alias yk='yarn check'
-alias yh='yarn help'
+# # Yarn - Misc
+# alias yz='yarn audit'
+# alias yc='yarn autoclean'
+# alias yk='yarn check'
+# alias yh='yarn help'
 
 # Nuke - Remove node_modules and the lock file, then reinstall
 reinstall_modules () {
@@ -46,8 +46,11 @@ reinstall_modules () {
     check-and-remove 'node_modules'
     check-and-remove 'yarn.lock'
     check-and-remove 'package-lock.json'
-    # Reinstall with yarn (or NPM)
-    if hash 'yarn' 2> /dev/null; then
+    # Reinstall with PNPM (or yarn or NPM)
+    if hash 'pnpm' 2> /dev/null; then
+      echo -e "\e[35mReinstalling with pnpm...\e[0m"
+      pnpm install
+    elif hash 'yarn' 2> /dev/null; then
       echo -e "\e[35mReinstalling with yarn...\e[0m"
       yarn
       echo -e "\e[35mCleaning Up...\e[0m"
@@ -56,7 +59,7 @@ reinstall_modules () {
       echo -e "\e[35mReinstalling with NPM...\e[0m"
       npm install
     else
-      echo -e "🚫\033[0;91m Unable to proceed, yarn/ npm not installed\e[0m"
+      echo -e "🚫\033[0;91m Unable to proceed, pnpm/ yarn/ npm not installed\e[0m"
     fi
   else
     # Cancelled by user
@@ -64,7 +67,7 @@ reinstall_modules () {
   fi
 }
 
-alias yarn-nuke='reinstall_modules'
+alias node-nuke='reinstall_modules'
 
 # Prints out versions of core Node.js packages
 print_node_versions () {
@@ -97,29 +100,29 @@ print_node_versions () {
   echo -e $versions
 }
 
-alias yv='print_node_versions'
+alias node-versions='print_node_versions'
 
 # Legacy support for NPM
-alias npmi='npm install'
-alias npmu='npm uninstall'
-alias npmr='npm run'
-alias npms='npm start'
-alias npmt='npm test'
-alias npml='npm run lint'
-alias npmd='npm run dev'
-alias npmp='npm publish'
+# alias npmi='npm install'
+# alias npmu='npm uninstall'
+# alias npmr='npm run'
+# alias npms='npm start'
+# alias npmt='npm test'
+# alias npml='npm run lint'
+# alias npmd='npm run dev'
+# alias npmp='npm publish'
 
 # Location of NVM, will inherit from .zshenv if set
 NVM_DIR=${NVM_DIR:-$XDG_DATA_HOME/nvm}
 
 # On first time using Node command, import NVM if present and not yet sourced
-function source_nvm node npm yarn $NVM_LAZY_CMD {
+function source_nvm node npm pnpm yarn $NVM_LAZY_CMD {
   if [ -f "$NVM_DIR/nvm.sh" ] && ! which nvm &> /dev/null; then
     echo -e "\033[1;93mInitialising NVM...\033[0m"
     source "${NVM_DIR}/nvm.sh"
     nvm use default
   fi
-  unfunction node npm yarn source_nvm $NVM_LAZY_CMD
+  unfunction node npm pnpm yarn source_nvm $NVM_LAZY_CMD
   hash "$0" 2> /dev/null && command "$0" "$@"
 }
 
@@ -132,7 +135,7 @@ install_nvm () {
     if read -q "choice?Install NVM now? (y/N)"; then
       echo -e "\nInstalling..."
       git clone $nvm_repo $NVM_DIR
-      cd $NVM_DIR && git checkout v0.39.1
+      cd $NVM_DIR && git checkout v0.39.3
     else
       echo -e "\nAborting..."
       return
@@ -140,58 +143,58 @@ install_nvm () {
   fi
   # All done, import / re-import NVM script
   source "${NVM_DIR}/nvm.sh"
-  # Then install Node LTS
-  nvm install v16.16.0
+  # Then install Node
+  nvm install v18
 }
 
 # NVM commands
-alias nvmi='nvm install'
-alias nvmu='nvm use'
-alias nvml='nvm ls'
-alias nvmr='nvm run'
-alias nvme='nvm exec'
-alias nvmw='nvm which'
-alias nvmlr='nvm ls-remote'
-alias nvmlts='nvm install --lts && nvm use --lts'
-alias nvmlatest='nvm install node --latest-npm && nvm use node'
+# alias nvmi='nvm install'
+# alias nvmu='nvm use'
+# alias nvml='nvm ls'
+# alias nvmr='nvm run'
+# alias nvme='nvm exec'
+# alias nvmw='nvm which'
+# alias nvmlr='nvm ls-remote'
+# alias nvmlts='nvm install --lts && nvm use --lts'
+# alias nvmlatest='nvm install node --latest-npm && nvm use node'
 alias nvmsetup='install_nvm'
 
 # Helper function that gets supported open method for system
-launch-url() {
-  if hash open 2> /dev/null; then
-    open_command=open
-  elif hash xdg-open 2> /dev/null; then
-    open_command=xdg-open
-  elif hash lynx 2> /dev/null; then
-    open_command=lynx
-  else
-    echo -e "\033[0;33mUnable to launch browser, open manually instead"
-    echo -e "\033[1;96m🌐 URL: \033[0;96m\e[4m$1\e[0m"
-    return;
-  fi
-  echo $open_command $1
-}
+# launch-url() {
+#   if hash open 2> /dev/null; then
+#     open_command=open
+#   elif hash xdg-open 2> /dev/null; then
+#     open_command=xdg-open
+#   elif hash lynx 2> /dev/null; then
+#     open_command=lynx
+#   else
+#     echo -e "\033[0;33mUnable to launch browser, open manually instead"
+#     echo -e "\033[1;96m🌐 URL: \033[0;96m\e[4m$1\e[0m"
+#     return;
+#   fi
+#   echo $open_command $1
+# }
 
-# Open Node.js docs, either specific page or show all
-function node-docs {
-  local section=${1:-all}
-  $(launch-url "https://nodejs.org/docs/$(node --version)/api/$section.html")
-}
+# # Open Node.js docs, either specific page or show all
+# function node-docs {
+#   local section=${1:-all}
+#   $(launch-url "https://nodejs.org/docs/$(node --version)/api/$section.html")
+# }
 
 # Launches npmjs.com on the page of a specific module
-open-npm () {
-  npm_base_url=https://www.npmjs.com
-  if [ $# -ne 0 ]; then
-    # Get NPM module name from user input
-    npm_url=$npm_base_url/package/$@
-  else
-    # Unable to get NPM module name, default to homepage
-    npm_url=$npm_base_url
-  fi
-  # Print messages
-  echo -e "\033[1;96m📦 Opening in browser: \033[0;96m\e[4m$npm_url\e[0m"
-  # And launch!
-  $(launch-url $npm_url)
-}
+# open-npm () {
+#   npm_base_url=https://www.npmjs.com
+#   if [ $# -ne 0 ]; then
+#     # Get NPM module name from user input
+#     npm_url=$npm_base_url/package/$@
+#   else
+#     # Unable to get NPM module name, default to homepage
+#     npm_url=$npm_base_url
+#   fi
+#   # Print messages
+#   echo -e "\033[1;96m📦 Opening in browser: \033[0;96m\e[4m$npm_url\e[0m"
+#   # And launch!
+#   $(launch-url $npm_url)
+# }
 
-alias npmo='open-npm'
+# alias npmo='open-npm'

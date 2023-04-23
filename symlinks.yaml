@@ -1,5 +1,6 @@
 - defaults:
     link:
+      force: true
       create: true
       relink: true
 
@@ -19,25 +20,8 @@
     # Utility config files
     ${XDG_CONFIG_HOME}/bash/.bashrc: config/general/.bashrc
     ${XDG_CONFIG_HOME}/git/.gitconfig: config/general/.gitconfig
-    ${XDG_CONFIG_HOME}/.gitignore_global: config/general/.gitignore_global
+    ${XDG_CONFIG_HOME}/.gitignore: config/general/.gitignore
     ${XDG_CONFIG_HOME}/wget/.wgetrc: config/general/.wgetrc
 
     # Bash utils
     ${XDG_CONFIG_HOME}/utils: utils
-
-    # MacOS-Only
-    ~/.Brewfile:
-      if: '[ `uname` = Darwin ]'
-      path: scripts/installs/Brewfile
-    ~/Library/Application\ Support/iTerm2/DynamicProfiles:
-      if: '[ `uname` = Darwin ]'
-      path: config/macos/iterm.json
-    ${XDG_CONFIG_HOME}/zsh/.iterm2_shell_integration.zsh:
-      if: '[ `uname` = Darwin ]'
-      path: config/macos/iterm-shell-integration.zsh
-
-# If not already present, create home directories
-- create:
-    - ~/Downloads
-    - ~/Documents
-    - ~/Applications

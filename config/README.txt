@@ -24,7 +24,7 @@ config/
 ├── general/                  # All other config files for *nix-based systems
 │  ├── .bashrc
 │  ├── .gemrc
-│  ├── .gitignore_global
+│  ├── .gitignore
 │  ├── .gpg.conf
 │  ├── .curlrc
 │  ├── .gitconfig

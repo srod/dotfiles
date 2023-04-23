@@ -28,6 +28,10 @@ if empty(vim_plug_plugins_dir)
   call mkdir(vim_plug_plugins_dir, 'p')
 endif
 
+echom "Install smyck theme"
+execute '!curl -o ' . vim_plug_plugins_dir . '/smyck.vim' .
+\ ' https://raw.githubusercontent.com/hukl/Smyck-Color-Scheme/master/smyck.vim'
+
 " Initialize Vim Plugged
 call plug#begin(vim_plug_plugins_dir)
   " Light-weight status line

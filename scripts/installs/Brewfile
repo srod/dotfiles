@@ -103,8 +103,8 @@ brew 'speedtest-cli'# Command line speed test utility
 
 # CLI Fun
 # brew 'cowsay'       # Have an ASCII cow say your message
-# brew 'figlet'       # Output text as big ASCII art text
-# brew 'lolcat'       # Make console output rainbow colored
+brew 'figlet'       # Output text as big ASCII art text
+brew 'lolcat'       # Make console output rainbow colored
 brew 'neofetch'     # Show system data and ditstro info
 # brew 'pipes-sh'     # Cool terminal pipe screen saver
 # brew 'pv'           # Pipe viewer, with animation options
@@ -233,7 +233,7 @@ cask 'webpquicklook',  args: { require_sha: false } # QL for WebP image files
 # cask 'espanso'        # Live text expander (cross-platform)
 # cask 'finicky'        # Website-specific default browser
 # cask 'hiddenbar'      # Hide / show annoying menubar icons
-# brew 'iproute2mac'    # MacOS port of netstat and ifconfig
+brew 'iproute2mac'    # MacOS port of netstat and ifconfig
 # brew 'lporg'          # Backup and restore launchpad layout
 # brew 'm-cli'          # All in one MacOS management CLI app
 # cask 'mjolnir'        # Util for loading Lua automations

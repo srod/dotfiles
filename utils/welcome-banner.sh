@@ -29,7 +29,7 @@ function welcome_greeting () {
   else
     greeting="Hello"
   fi
-  WELCOME_MSG="$greeting $USER!"
+  WELCOME_MSG="$greeting $USER"
   if hash lolcat 2>/dev/null && hash figlet 2>/dev/null; then
     echo "${WELCOME_MSG}" | figlet | lolcat
   else

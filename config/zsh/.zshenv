@@ -10,10 +10,10 @@ export XDG_LIB_HOME="${HOME}/.local/lib"
 export XDG_CACHE_HOME="${HOME}/.cache"
 
 # Set default applications
-export EDITOR="vim"
-export TERMINAL="konsole"
-export BROWSER="firefox"
-export PAGER="less"
+export EDITOR="code"
+# export TERMINAL="konsole"
+# export BROWSER="firefox"
+# export PAGER="less"
 
 ## Respect XDG directories
 export ADOTDIR="${XDG_CACHE_HOME}/zsh/antigen"
