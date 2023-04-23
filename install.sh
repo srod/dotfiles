@@ -302,7 +302,8 @@ function intall_macos_packages () {
     echo -e "\n${PURPLE}Updating homebrew and packages...${RESET}"
     brew update # Update Brew to latest version
     brew upgrade # Upgrade all installed casks
-    brew bundle --global --file $DOTFILES_DIR/scripts/installs/Brewfile # Install all listed Brew apps
+    # brew bundle --global --file $DOTFILES_DIR/scripts/installs/Brewfile # Install all listed Brew apps
+    "${DOTFILES_DIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${DOTFILES_DIR}" --plugin-dir dotbot-brewfile -c "${DOTFILES_DIR}/scripts/installs/Brewfile" "${@}"
     brew cleanup # Remove stale lock files and outdated downloads
     killall Finder # Restart finder (required for some apps)
   else
