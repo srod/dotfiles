@@ -68,6 +68,7 @@ if [[ -d $utils_dir ]]; then
   source ${utils_dir}/am-i-online.sh
   source ${utils_dir}/welcome-banner.sh
   source ${utils_dir}/color-map.sh
+  source ${utils_dir}/dot.sh
 fi
 
 # Import P10k config for command prompt, run `p10k configure` or edit

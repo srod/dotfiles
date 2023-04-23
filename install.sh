@@ -357,6 +357,12 @@ function install_packages () {
     chmod +x $flatpak_script
     $flatpak_script $PARAMS
   fi
+
+  # Install global NPM packages
+  pnpm install -g $(cat ${DOTFILES_DIR}/scripts/installs/npmfile)
+
+  # Setup SSH key
+  source "${DOTFILES_DIR}/scripts/installs/set_ssh_key.sh"
 }
 
 # Updates current session, and outputs summary

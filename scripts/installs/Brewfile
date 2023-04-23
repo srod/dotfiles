@@ -15,7 +15,7 @@
 cask_args appdir: '~/Applications', require_sha: true
 
 # Taps
-# tap 'homebrew/bundle'
+tap 'homebrew/bundle'
 # tap 'homebrew/core'
 # tap 'homebrew/services'
 # tap 'blacktop/tap'
@@ -24,6 +24,7 @@ cask_args appdir: '~/Applications', require_sha: true
 # tap 'jesseduffield/lazygit'
 # tap 'koekeishiya/formulae'
 # tap 'kdash-rs/kdash'
+tap "teamookla/speedtest"
 
 #############################################################
 # Command Line                                              #
@@ -34,33 +35,41 @@ brew 'git'          # Version controll
 # brew 'neovim'       # Text editor
 # brew 'ranger'       # Directory browser
 # brew 'tmux'         # Term multiplexer
+brew 'vim'            # Text editor
 
 # CLI Basics
 # brew 'aria2'        # Resuming download util (better wget)
 # brew 'bat'          # Output highlighting (better cat)
 # brew 'broot'        # Interactive directory navigation
+brew 'coreutils'      # GNU core utilities (better ls)
 # brew 'ctags'        # Indexing of file info + headers
 # brew 'diff-so-fancy'# Readable file compares (better diff)
 # brew 'duf'          # Get info on mounted disks (better df)
 # brew 'entr'         # Run command whenever file changes
 # brew 'exa'          # Listing files with info (better ls)
 # brew 'exiftool'     # Read, write and modify exif data
+brew 'findutils'      # GNU find, locate, updatedb, and xargs
 # brew 'fzf'          # Fuzzy file finder and filtering
 # brew 'hyperfine'    # Benchmarking for arbitrary commands
 # brew 'jdupes'       # Duplicate file finder
 # brew 'just'         # Powerful command runner (better make)
 # brew 'jq'           # JSON parser, output and query files
 # brew 'most'         # Multi-window scroll pager (better less)
+brew 'nano'           # Text editor
+brew 'prettyping'     # Ping with a progress bar
 # brew 'procs'        # Advanced process viewer (better ps)
-# brew 'ripgrep'      # Searching within files (better grep)
+brew 'ripgrep'      # Searching within files (better grep)
 # brew 'rsync'        # Fast incremental file transfer
 # brew 'sd'           # RegEx find and replace (better sed)
+brew 'ssh-copy-id'    # Copy SSH keys to remote server
 # brew 'thefuck'      # Auto-correct miss-typed commands
 # brew 'tldr'         # Community-maintained docs (better man)
 # brew 'tokei'        # Count lines of code (better cloc)
 # brew 'tree'         # Directory listings as tree structure
 # brew 'trash-cli'    # Record and restore removed files
+brew 'unar'
 # brew 'watch'        # Run commands periorically
+brew 'wget'
 # brew 'xsel'         # Copy paste access to the X clipboard
 # brew 'zoxide'       # Auto-learning navigation (better cd)
 
@@ -68,12 +77,12 @@ brew 'git'          # Version controll
 # brew 'bmon'         # Bandwidth utilization monitor
 # brew 'ctop'         # Container metrics and monitoring
 # brew 'dog'          # DNS lookup client (better dig)
-# brew 'bpytop'       # Resource monitoring (like htop)
+brew 'bpytop'       # Resource monitoring (like htop)
 # brew 'dua-cli'      # Disk usage analyzer and monitor (better du)
 # brew 'glances'      # Resource monitor + web and API
 # brew 'goaccess'     # Web log analyzer and viewer
 # brew 'gping'        # Interactive ping tool, with graph
-brew 'speedtest-cli'# Command line speed test utility
+brew 'speedtest'      # Command line speed test utility
 
 # CLI Productivity Apps
 # brew 'aspell'       # Spell check
@@ -114,22 +123,24 @@ brew 'neofetch'     # Show system data and ditstro info
 #############################################################
 
 # Development Apps
-# cask 'android-studio' # IDE for Android development
-# cask 'boop'           # Text transformation tool
-# brew 'gradle'         # Build automation for Java
-cask 'iterm2'         # Better terminal emulator
-# cask 'postman'        # HTTP API testing app
-# cask 'sourcetree'     # Git visual client
+# cask 'android-studio'   # IDE for Android development
+# cask 'boop'             # Text transformation tool
+# brew 'gradle'           # Build automation for Java
+cask 'imageoptim'         # Image compression tool
+cask 'iterm2'             # Better terminal emulator
+# cask 'postman'          # HTTP API testing app
+# cask 'sourcetree'       # Git visual client
 cask 'visual-studio-code' # Code editor
 
 # Development Langs, Compilers, Package Managers and SDKs
 # brew 'gcc'            # GNU C++ compilers
 # brew 'go'             # Compiler for Go Lang
+brew 'java'             # Java runtime
 # brew 'lua'            # Lua interpreter
 # brew 'luarocks'       # Package manager for Lua
 # brew 'node'           # Node.js
-# brew 'nvm'            # Switching node versions
-brew 'openjdk'        # Java development kit
+brew 'nvm'            # Switching node versions
+# brew 'openjdk'        # Java development kit
 # brew 'python'         # Python interpreter
 # brew 'rust'           # Rust language
 # cask 'android-sdk'    # Android software dev kit
@@ -142,7 +153,7 @@ brew 'openjdk'        # Java development kit
 # brew 'gh'             # Interact with GitHub PRs, issues, repos
 # brew 'git-extras'     # Extra git commands for common tasks
 # brew 'scrcpy'         # Display and control Android devices
-brew 'terminal-notifier' # Trigger Mac notifications from terminal
+brew 'terminal-notifier'# Trigger Mac notifications from terminal
 # brew 'tig'            # Text-mode interface for git
 # brew 'ttygif'         # Generate GIF from terminal commands + output
 # brew 'watchman'       # Watch for changes and reload dev server
@@ -189,17 +200,23 @@ cask 'vlc'          # Media player
 
 # Personal Applications
 # cask '1password'      # Password manager (proprietary)
-# cask 'tresorit'       # Encrypted file backup (proprietary)
-cask 'standard-notes' # Encrypted synced notes
-# cask 'signal'         # Link to encrypted mobile messenger
+cask 'keepingyouawake' # Prevent Mac from sleeping
 # cask 'ledger-live'    # Crypto hardware wallet manager
 # cask 'mountain-duck'  # Mount remote storage locations
+cask 'onyx'            # System maintenance tool
 # cask 'protonmail-bridge' # Decrypt ProtonMail emails
 # cask 'protonvpn'      # Client app for ProtonVPN
+cask 'rectangle'       # Window management
+# cask 'signal'         # Link to encrypted mobile messenger
+cask 'standard-notes' # Encrypted synced notes
+cask 'stats'          # System monitor
+cask 'sublime-text'   # Text editor
+# cask 'tresorit'       # Encrypted file backup (proprietary)
 # cask 'vorta'          # GUI for BorgBackup
 
 # Browsers
 cask 'firefox'
+cask 'google-chrome'
 # cask 'chromium'
 # cask 'orion'
 

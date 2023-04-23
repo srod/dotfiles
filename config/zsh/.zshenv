@@ -14,6 +14,7 @@ export EDITOR="code"
 # export TERMINAL="konsole"
 # export BROWSER="firefox"
 # export PAGER="less"
+export DOTFILES=$HOME/.dotfiles
 
 ## Respect XDG directories
 export ADOTDIR="${XDG_CACHE_HOME}/zsh/antigen"
