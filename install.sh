@@ -180,8 +180,8 @@ function pre_setup_tasks () {
 
   # Verify required packages are installed
   system_verify "git" true
-  system_verify "zsh" false
-  system_verify "vim" false
+  # system_verify "zsh" false
+  # system_verify "vim" false
 
   # If XDG variables arn't yet set, then configure defaults
   if [ -z ${XDG_CONFIG_HOME+x} ]; then
@@ -247,7 +247,8 @@ function apply_preferences () {
     read -t $PROMPT_TIMEOUT -n 1 -r ans_zsh
     if [[ $ans_zsh =~ ^[Yy]$ ]] || [[ $AUTO_YES = true ]] ; then
       echo -e "${PURPLE}Setting ZSH as default shell${RESET}"
-      chsh -s $(which zsh) $USER
+      # chsh -s $(which zsh) $USER
+      chsh -s $(grep /zsh$ /etc/shells | tail -1)
     fi
   fi
 
@@ -278,8 +279,8 @@ function apply_preferences () {
       done
     else
       echo -e "\n${PURPLE}Applying preferences to GNOME apps, ensure you've understood before proceeding${RESET}\n"
-      dconf_script="$DOTFILES_DIR/scripts/linux/dconf-prefs.sh"
-      chmod +x $dconf_script && $dconf_script
+      # dconf_script="$DOTFILES_DIR/scripts/linux/dconf-prefs.sh"
+      # chmod +x $dconf_script && $dconf_script
     fi
   fi
 }
@@ -358,8 +359,47 @@ function install_packages () {
     $flatpak_script $PARAMS
   fi
 
+  # ZSH
+  zsh_bin=$(grep /zsh$ /etc/shells | tail -1)
+
+  if [ "$zsh_bin" != "" ]; then
+    echo -e "${PURPLE}ZSH installed${RESET}"
+  else
+    echo -e "${PURPLE}Installing ZSH${RESET}"
+    if [ "$SYSTEM_TYPE" = "Darwin" ]; then
+      brew install zsh
+    elif [ -f "/etc/arch-release" ]; then
+      sudo pacman -S zsh
+    elif [ -f "/etc/debian_version" ]; then
+      sudo apt install -y zsh
+    fi
+    # chsh -s $(grep /zsh$ /etc/shells | tail -1)
+  fi
+
+  # VIM
+  if command_exists vim; then
+    echo -e "${PURPLE}VIM installed${RESET}"
+  else
+    echo -e "${PURPLE}Installing VIM${RESET}"
+    if [ "$SYSTEM_TYPE" = "Darwin" ]; then
+      brew install vim
+    elif [ -f "/etc/arch-release" ]; then
+      sudo pacman -S vim
+    elif [ -f "/etc/debian_version" ]; then
+      sudo apt install -y vim
+    fi
+  fi
+
   # NVM
-  source $(brew --prefix nvm)/nvm.sh
+  if [ "$SYSTEM_TYPE" = "Darwin" ]; then
+    source $(brew --prefix nvm)/nvm.sh
+  else
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+    export NVM_DIR="$HOME/.config/nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+  fi
+
   nvm install 18
 
   # Install global NPM packages

@@ -18,59 +18,75 @@
 debian_apps=(
   # Essentials
   'git'           # Version controll
-  'neovim'        # Text editor
-  'ranger'        # Directory browser
-  'tmux'          # Term multiplexer
+  # 'neovim'        # Text editor
+  # 'ranger'        # Directory browser
+  # 'tmux'          # Term multiplexer
+  'vim'           # Text editor
   'wget'          # Download files
 
   # CLI Power Basics
-  'aria2'         # Resuming download util (better wget)
+  # 'aria2'         # Resuming download util (better wget)
   'bat'           # Output highlighting (better cat)
-  'broot'         # Interactive directory navigation
-  'ctags'         # Indexing of file info + headers
-  'diff-so-fancy' # Readable file compares (better diff)
-  'duf'           # Get info on mounted disks (better df)
-  'exa'           # Listing files with info (better ls)
-  'fzf'           # Fuzzy file finder and filtering
-  'hyperfine'     # Benchmarking for arbitrary commands
-  'just'          # Powerful command runner (better make)
-  'jq'            # JSON parser, output and query files
-  'most'          # Multi-window scroll pager (better less)
-  'procs'         # Advanced process viewer (better ps)
-  'ripgrep'       # Searching within files (better grep)
-  'scrot'         # Screenshots programmatically via CLI
-  'sd'            # RegEx find and replace (better sed)
-  'thefuck'       # Auto-correct miss-typed commands
-  'tealdeer'      # Reader for command docs (better man)
-  'tree'          # Directory listings as tree structure
-  'tokei'         # Count lines of code (better cloc)
-  'trash-cli'     # Record and restore removed files
-  'xsel'          # Copy paste access to the X clipboard
-  'zoxide'        # Auto-learning navigation (better cd)
+  # 'broot'         # Interactive directory navigation
+  # 'ctags'         # Indexing of file info + headers
+  # 'diff-so-fancy' # Readable file compares (better diff)
+  # 'duf'           # Get info on mounted disks (better df)
+  # 'exa'           # Listing files with info (better ls)
+  # 'fzf'           # Fuzzy file finder and filtering
+  # 'hyperfine'     # Benchmarking for arbitrary commands
+  # 'just'          # Powerful command runner (better make)
+  # 'jq'            # JSON parser, output and query files
+  # 'most'          # Multi-window scroll pager (better less)
+  'ngrep'
+  # 'procs'         # Advanced process viewer (better ps)
+  # 'ripgrep'       # Searching within files (better grep)
+  # 'scrot'         # Screenshots programmatically via CLI
+  # 'sd'            # RegEx find and replace (better sed)
+  # 'thefuck'       # Auto-correct miss-typed commands
+  # 'tealdeer'      # Reader for command docs (better man)
+  # 'tree'          # Directory listings as tree structure
+  # 'tokei'         # Count lines of code (better cloc)
+  # 'trash-cli'     # Record and restore removed files
+  # 'xsel'          # Copy paste access to the X clipboard
+  'xclip'
+  # 'zoxide'        # Auto-learning navigation (better cd)
 
   # Security Utilities
-  'clamav'        # Open source virus scanning suite
-  'cryptsetup'    # Reading / writing encrypted volumes
+  # 'clamav'        # Open source virus scanning suite
+  # 'cryptsetup'    # Reading / writing encrypted volumes
   'gnupg'         # PGP encryption, signing and verifying
-  'git-crypt'     # Transparent encryption for git repos
-  'lynis'         # Scan system for common security issues
+  # 'git-crypt'     # Transparent encryption for git repos
+  # 'lynis'         # Scan system for common security issues
   'openssl'       # Cryptography and SSL/TLS Toolkit
-  'rkhunter'      # Search / detect potential root kits
+  # 'rkhunter'      # Search / detect potential root kits
 
   # Monitoring, management and stats
-  'btop'          # Live system resource monitoring
-  'bmon'          # Bandwidth utilization monitor
-  'ctop'          # Container metrics and monitoring
-  'gping'         # Interactive ping tool, with graph
-  'glances'       # Resource monitor + web and API
-  'goaccess'      # Web log analyzer and viewer
+  # 'btop'          # Live system resource monitoring
+  # 'bmon'          # Bandwidth utilization monitor
+  # 'ctop'          # Container metrics and monitoring
+  # 'gping'         # Interactive ping tool, with graph
+  # 'glances'       # Resource monitor + web and API
+  # 'goaccess'      # Web log analyzer and viewer
+  'htop'          # Interactive process viewer
   'speedtest-cli' # Command line speed test utility
 
   # CLI Fun
-  'cowsay'        # Outputs message with ASCII art cow
+  # 'cowsay'        # Outputs message with ASCII art cow
   'figlet'        # Outputs text as 3D ASCII word art
   'lolcat'        # Rainbow colored terminal output
   'neofetch'      # Show off distro and system info
+
+  'default-jre'   # Java Runtime Environment
+
+  # Apps
+  'meld'          # File comparison tool
+  'unrar'         # Unpack rar archives
+  'pdfarranger'   # Merge and rearrange PDF files
+
+  # Fonts
+  'fonts-firacode' # Fira Code font
+  'fonts-powerline' # Powerline fonts
+  'ttf-mscorefonts-installer' # Microsoft fonts
 )
 
 ubuntu_repos=(
@@ -129,27 +145,27 @@ if ! hash apt 2> /dev/null; then
 fi
 
 # Enable upstream package repositories
-echo -e "${CYAN_B}Would you like to enable listed repos? (y/N)${RESET}\n"
-read -t $PROMPT_TIMEOUT -n 1 -r
-echo
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-  if ! hash add-apt-repository 2> /dev/null; then
-    sudo apt install --reinstall software-properties-common
-  fi
-  # If Ubuntu, add Ubuntu repos
-  if lsb_release -a 2>/dev/null | grep -q 'Ubuntu'; then
-    for repo in ${ubuntu_repos[@]}; do
-      echo -e "${PURPLE}Enabling ${repo} repo...${RESET}"
-      sudo add-apt-repository $repo
-    done
-  else
-    # Otherwise, add Debian repos
-    for repo in ${debian_repos[@]}; do
-      echo -e "${PURPLE}Enabling ${repo} repo...${RESET}"
-      sudo add-apt-repository $repo
-    done
-  fi
-fi
+# echo -e "${CYAN_B}Would you like to enable listed repos? (y/N)${RESET}\n"
+# read -t $PROMPT_TIMEOUT -n 1 -r
+# echo
+# if [[ $REPLY =~ ^[Yy]$ ]]; then
+#   if ! hash add-apt-repository 2> /dev/null; then
+#     sudo apt install --reinstall software-properties-common
+#   fi
+#   # If Ubuntu, add Ubuntu repos
+#   if lsb_release -a 2>/dev/null | grep -q 'Ubuntu'; then
+#     for repo in ${ubuntu_repos[@]}; do
+#       echo -e "${PURPLE}Enabling ${repo} repo...${RESET}"
+#       sudo add-apt-repository $repo
+#     done
+#   else
+#     # Otherwise, add Debian repos
+#     for repo in ${debian_repos[@]}; do
+#       echo -e "${PURPLE}Enabling ${repo} repo...${RESET}"
+#       sudo add-apt-repository $repo
+#     done
+#   fi
+# fi
 
 # Prompt user to update package database
 echo -e "${CYAN_B}Would you like to update package database? (y/N)${RESET}\n"
@@ -195,6 +211,46 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     fi
   done
 fi
+
+# Meslo font
+echo -e "${PURPLE}Installing Meslo font${RESET}"
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
+unzip Meslo.zip -d ~/.fonts
+fc-cache -fv
+rm -f Meslo.zip
+
+# Office
+# echo -e "${PURPLE}Installing Libreoffice${RESET}"
+# sudo add-apt-repository ppa:libreoffice/ppa
+# sudo apt-get update
+# sudo apt-get dist-upgrade -y
+
+if hash "code" 2> /dev/null; then
+  echo -e "${YELLOW}[Skipping]${LIGHT} Visual Studio Code is already installed${RESET}"
+else
+  echo -e "${PURPLE}Visual Studio Code${RESET}"
+  wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+  sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+  sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+  sudo apt update
+  sudo apt install -y apt-transport-https code
+  rm -f packages.microsoft.gpg
+fi
+
+# Insync
+if hash "insync" 2> /dev/null; then
+  echo -e "${YELLOW}[Skipping]${LIGHT} Insync is already installed${RESET}"
+else
+  echo -e "${PURPLE}Installing Insync${RESET}"
+  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ACCAF35C
+  sudo touch /etc/apt/sources.list.d/insync.list
+  echo 'deb http://apt.insync.io/ubuntu jammy non-free contrib' | sudo tee -a /etc/apt/sources.list.d/insync.list
+  sudo apt-get update
+  sudo apt-get install -y insync
+fi
+
+echo -e "${PURPLE}Freeing up disk space...${RESET}"
+sudo apt autoclean
 
 echo -e "${PURPLE}Finished installing / updating Debian packages.${RESET}"
 

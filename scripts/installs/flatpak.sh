@@ -29,80 +29,83 @@ flatpak_apps=(
 
   # Communication
   'com.discordapp.Discord'    # Team messaging and voice
-  'im.riot.Riot'              # Decentralized Matrix chat
-  'info.mumble.Mumble'        # Low latency VoIP client
-  'org.jitsi.jitsi-meet'      # Encrypted video calls
-  'org.mozilla.Thunderbird'   # Email + calendar client
-  'org.signal.Signal'         # Private messenger, mobile
-  'im.pidgin.Pidgin'          # Extendable XMPP chat client
+  # 'im.riot.Riot'              # Decentralized Matrix chat
+  # 'info.mumble.Mumble'        # Low latency VoIP client
+  # 'org.jitsi.jitsi-meet'      # Encrypted video calls
+  # 'org.mozilla.Thunderbird'   # Email + calendar client
+  # 'org.signal.Signal'         # Private messenger, mobile
+  # 'im.pidgin.Pidgin'          # Extendable XMPP chat client
   'com.slack.Slack'           # Work and team messaging
+  'org.telegram.desktop'      # Private messenger, mobile
   'com.github.eneshecan.WhatsAppForLinux' # WhatApp client
 
   # Media
   'com.spotify.Client'        # Music streaming
-  'com.valvesoftware.Steam'   # Gaming
-  'com.gitlab.newsflash'      # RSS reader
-  'org.gnome.Cheese'          # Webcam client
-  'org.libretro.RetroArch'    # Retro game emulation
+  # 'com.valvesoftware.Steam'   # Gaming
+  # 'com.gitlab.newsflash'      # RSS reader
+  # 'org.gnome.Cheese'          # Webcam client
+  # 'org.libretro.RetroArch'    # Retro game emulation
   'org.videolan.VLC'          # Media player
-  'com.github.johnfactotum.Foliate' # E-book reader
-  'tech.feliciano.pocket-casts' # Podcast client
+  # 'com.github.johnfactotum.Foliate' # E-book reader
+  # 'tech.feliciano.pocket-casts' # Podcast client
 
   # Creativity
-  'com.ultimaker.cura'        # 3D slicing
-  'com.obsproject.Studio'     # Video streaming
-  'com.jgraph.drawio.desktop' # UML + Diagram tool
-  'com.transmissionbt.Transmission' # Torrent downloader
-  'com.uploadedlobster.peek'  # Screen recorder
-  'fr.handbrake.ghb'          # Video transcoder
-  'nl.hjdskes.gcolor3'        # Color picker
-  'org.audacityteam.Audacity' # Sound editor
-  'org.blender.Blender'       # 3D modeling
-  'org.darktable.Darktable'   # Video editor
-  'org.flameshot.Flameshot'   # Screenshot tool
+  # 'com.ultimaker.cura'        # 3D slicing
+  # 'com.obsproject.Studio'     # Video streaming
+  # 'com.jgraph.drawio.desktop' # UML + Diagram tool
+  # 'com.transmissionbt.Transmission' # Torrent downloader
+  # 'com.uploadedlobster.peek'  # Screen recorder
+  # 'fr.handbrake.ghb'          # Video transcoder
+  # 'nl.hjdskes.gcolor3'        # Color picker
+  # 'org.audacityteam.Audacity' # Sound editor
+  # 'org.blender.Blender'       # 3D modeling
+  # 'org.darktable.Darktable'   # Video editor
+  # 'org.flameshot.Flameshot'   # Screenshot tool
   'org.gimp.GIMP'             # Picture editor
-  'org.inkscape.Inkscape'     # Vector editor
-  'org.shotcut.Shotcut'       # Video editor
-  'org.synfig.SynfigStudio'   # 2D animation
+  # 'org.inkscape.Inkscape'     # Vector editor
+  # 'org.shotcut.Shotcut'       # Video editor
+  # 'org.synfig.SynfigStudio'   # 2D animation
 
   # Software development
-  'com.visualstudio.code'     # Extendable IDE
+  # 'com.visualstudio.code'     # Extendable IDE
   'com.getpostman.Postman'    # API development
-  'cc.arduino.IDE2'           # IOT development
+  # 'cc.arduino.IDE2'           # IOT development
   'com.axosoft.GitKraken'     # GUI git client
-  'com.google.AndroidStudio'  # Android dev IDE
-  'flathub org.gnome.GHex'    # Hex and binary inspector
-  'io.podman_desktop.PodmanDesktop' # Docker / Podman UI
+  # 'com.google.AndroidStudio'  # Android dev IDE
+  # 'flathub org.gnome.GHex'    # Hex and binary inspector
+  # 'io.podman_desktop.PodmanDesktop' # Docker / Podman UI
 
   # Security testing
-  'org.wireshark.Wireshark'   # Packet capture and analyzer
-  'org.zaproxy.ZAP'           # Auto vulnerability scanning
-  'org.nmap.Zenmap'           # GUI for Nmap security scans
+  # 'org.wireshark.Wireshark'   # Packet capture and analyzer
+  # 'org.zaproxy.ZAP'           # Auto vulnerability scanning
+  # 'org.nmap.Zenmap'           # GUI for Nmap security scans
 
   # Settings and system utils
-  'com.borgbase.Vorta'        # Borg backup client
-  'org.kde.kleopatra'         # GPG key and certificate manager
-  'io.github.jacalz.rymdport' # Encrypted file transfers, via Wormhole
-  'org.bleachbit.BleachBit'   # Disk cleaner and log remover
-  'it.mijorus.smile'            # Emoji picker
+  # 'com.borgbase.Vorta'        # Borg backup client
+  # 'org.kde.kleopatra'         # GPG key and certificate manager
+  # 'io.github.jacalz.rymdport' # Encrypted file transfers, via Wormhole
+  # 'org.bleachbit.BleachBit'   # Disk cleaner and log remover
+  # 'it.mijorus.smile'            # Emoji picker
 
   # Browsers and internet
   'org.mozilla.firefox'       # Firefox web browser (primary)
-  'com.github.Eloston.UngoogledChromium' # Chromium-based borwser (secondary)
-  'com.github.micahflee.torbrowser-launcher' # Tor browser
-  'org.filezillaproject.Filezilla' # FTP client
+  # 'com.github.Eloston.UngoogledChromium' # Chromium-based browser (secondary)
+  'com.google.Chrome'         # Chrome web browser
+  # 'com.github.micahflee.torbrowser-launcher' # Tor browser
+  # 'org.filezillaproject.Filezilla' # FTP client
 
   # Office
-  'org.libreoffice.LibreOffice' # Office suite
-  'net.xm1math.Texmaker'        # LaTeX editor
-  'md.obsidian.Obsidian'        # Markdown editor
+  # 'org.libreoffice.LibreOffice' # Office suite
+  # 'net.xm1math.Texmaker'        # LaTeX editor
+  # 'md.obsidian.Obsidian'        # Markdown editor
 
   # Personal
-  'ch.protonmail.protonmail-bridge' # ProtonMail bridge
-  'com.belmoussaoui.Authenticator'  # OTP authenticator
-  'org.cryptomator.Cryptomator'     # Encryption for cloud
+  # 'ch.protonmail.protonmail-bridge' # ProtonMail bridge
+  # 'com.belmoussaoui.Authenticator'  # OTP authenticator
+  # 'org.cryptomator.Cryptomator'     # Encryption for cloud
   'org.standardnotes.standardnotes' # Encrypted synced notes
-  'com.onepassword.OnePassword'     # Password manager
+  # 'com.onepassword.OnePassword'     # Password manager
+  'com.bitwarden.desktop'     # Password manager
   # Missing: Trewsorit, EteSync, Veracrypt, Ledger
 )
 
