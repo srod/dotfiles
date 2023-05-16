@@ -8,7 +8,7 @@
 
 - shell:
     - description: Set XDG environmental variables
-      command: source ./config/zsh/.zshenv
+      command: source config/zsh/.zshenv
 
 # Symlink locations for files / directories
 - link:
