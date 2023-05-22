@@ -4,7 +4,7 @@ antigen_git="https://raw.githubusercontent.com/zsh-users/antigen/master/bin/anti
 
 antigen_bin="${ADOTDIR}/antigen.zsh"
 
-# Import angigen if present, or prompt to install if missing
+# Import antigen if present, or prompt to install if missing
 if [[ -f $antigen_bin ]]; then
   source $antigen_bin
 else

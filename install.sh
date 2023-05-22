@@ -85,7 +85,7 @@ make_intro () {
   "  ${C3}- On Debian Linux, updates and installs packages via apt get\n"\
   "  ${C3}- On Linux desktop systems, prompt to install desktop apps via Flatpak\n"\
   "  ${C3}- Checks that OS is up-to-date and criticial patches are installed\n"\
-  "${C2}(4) Configure sytstem\n"\
+  "${C2}(4) Configure system\n"\
   "  ${C3}- Setup Vim, and install / update Vim plugins via Plug\n"\
   "  ${C3}- Setup Tmux, and install / update Tmux plugins via TPM\n"\
   "  ${C3}- Setup ZSH, and install / update ZSH plugins via Antigen\n"\
@@ -351,6 +351,11 @@ function install_packages () {
     debian_pkg_install_script="${DOTFILES_DIR}/scripts/installs/debian-apt.sh"
     chmod +x $debian_pkg_install_script
     $debian_pkg_install_script $PARAMS
+  elif [ -f "/etc/fedora-release" ]; then
+    # Fedora
+    fedora_pkg_install_script="${DOTFILES_DIR}/scripts/installs/fedora-dnf.sh"
+    chmod +x $fedora_pkg_install_script
+    $fedora_pkg_install_script $PARAMS
   fi
   # If running in Linux desktop mode, prompt to install desktop apps via Flatpak
   flatpak_script="${DOTFILES_DIR}/scripts/installs/flatpak.sh"
@@ -372,8 +377,9 @@ function install_packages () {
       sudo pacman -S zsh
     elif [ -f "/etc/debian_version" ]; then
       sudo apt install -y zsh
+    elif [ -f "/etc/fedora-release" ]; then
+      sudo dnf install -y zsh util-linux-user
     fi
-    # chsh -s $(grep /zsh$ /etc/shells | tail -1)
   fi
 
   # VIM
@@ -387,6 +393,8 @@ function install_packages () {
       sudo pacman -S vim
     elif [ -f "/etc/debian_version" ]; then
       sudo apt install -y vim
+    elif [ -f "/etc/fedora-release" ]; then
+      sudo dnf install -y vim
     fi
   fi
 

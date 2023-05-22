@@ -38,6 +38,10 @@ function install_debian () {
   echo -e "${PURPLE}Installing ${1} via apt-get${RESET}"
   sudo apt install $1
 }
+function install_fedora () {
+  echo -e "${PURPLE}Installing ${1} via dnf${RESET}"
+  sudo dnf install -y $1
+}
 function install_arch () {
   echo -e "${PURPLE}Installing ${1} via Pacman${RESET}"
   sudo pacman -S $1
@@ -62,6 +66,8 @@ function multi_system_install () {
     install_arch $app # Arch Linux via Pacman
   elif ! [ -f "/etc/debian_version" ] && hash apt 2> /dev/null; then
     install_debian $app # Debian via apt-get
+  elif [ -f "/etc/fedora-release" ] && hash dnf 2> /dev/null; then
+    install_fedora $app # Fedora via dnf
   else
     echo -e "${YELLOW}Skipping ${app}, as couldn't detect system type ${RESET}"
   fi
