@@ -37,7 +37,7 @@ flatpak_apps=(
   # 'im.pidgin.Pidgin'          # Extendable XMPP chat client
   'com.slack.Slack'           # Work and team messaging
   'org.telegram.desktop'      # Private messenger, mobile
-  'com.github.eneshecan.WhatsAppForLinux' # WhatApp client
+  'io.github.mimbrero.WhatsAppDesktop' # WhatApp client
 
   # Media
   'com.spotify.Client'        # Music streaming
@@ -45,7 +45,7 @@ flatpak_apps=(
   # 'com.gitlab.newsflash'      # RSS reader
   # 'org.gnome.Cheese'          # Webcam client
   # 'org.libretro.RetroArch'    # Retro game emulation
-  'org.videolan.VLC'          # Media player
+  # 'org.videolan.VLC'          # Media player
   # 'com.github.johnfactotum.Foliate' # E-book reader
   # 'tech.feliciano.pocket-casts' # Podcast client
 
@@ -61,7 +61,7 @@ flatpak_apps=(
   # 'org.blender.Blender'       # 3D modeling
   # 'org.darktable.Darktable'   # Video editor
   # 'org.flameshot.Flameshot'   # Screenshot tool
-  'org.gimp.GIMP'             # Picture editor
+  # 'org.gimp.GIMP'             # Picture editor
   # 'org.inkscape.Inkscape'     # Vector editor
   # 'org.shotcut.Shotcut'       # Video editor
   # 'org.synfig.SynfigStudio'   # 2D animation
@@ -74,6 +74,7 @@ flatpak_apps=(
   # 'com.google.AndroidStudio'  # Android dev IDE
   # 'flathub org.gnome.GHex'    # Hex and binary inspector
   # 'io.podman_desktop.PodmanDesktop' # Docker / Podman UI
+  'com.sublimetext.three'    # Text editor
 
   # Security testing
   # 'org.wireshark.Wireshark'   # Packet capture and analyzer
@@ -81,6 +82,7 @@ flatpak_apps=(
   # 'org.nmap.Zenmap'           # GUI for Nmap security scans
 
   # Settings and system utils
+  'com.mattjakeman.ExtensionManager' # Gnome extension manager
   # 'com.borgbase.Vorta'        # Borg backup client
   # 'org.kde.kleopatra'         # GPG key and certificate manager
   # 'io.github.jacalz.rymdport' # Encrypted file transfers, via Wormhole
@@ -88,13 +90,15 @@ flatpak_apps=(
   # 'it.mijorus.smile'            # Emoji picker
 
   # Browsers and internet
-  'org.mozilla.firefox'       # Firefox web browser (primary)
+  # 'org.mozilla.firefox'       # Firefox web browser (primary)
   # 'com.github.Eloston.UngoogledChromium' # Chromium-based browser (secondary)
-  'com.google.Chrome'         # Chrome web browser
+  # 'com.google.Chrome'         # Chrome web browser
   # 'com.github.micahflee.torbrowser-launcher' # Tor browser
   # 'org.filezillaproject.Filezilla' # FTP client
+  # 'com.brave.Browser'        # Brave web browser
 
   # Office
+  'org.onlyoffice.desktopeditors' # Office suite
   # 'org.libreoffice.LibreOffice' # Office suite
   # 'net.xm1math.Texmaker'        # LaTeX editor
   # 'md.obsidian.Obsidian'        # Markdown editor

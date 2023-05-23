@@ -8,6 +8,7 @@
 fedora_apps=(
   # Essentials
   'git'           # Version controll
+  'git-lfs'
   # 'neovim'        # Text editor
   # 'ranger'        # Directory browser
   # 'tmux'          # Term multiplexer
@@ -64,33 +65,45 @@ fedora_apps=(
   # CLI Fun
   # 'cowsay'        # Outputs message with ASCII art cow
   'figlet'        # Outputs text as 3D ASCII word art
-  'lolcat'        # Rainbow colored terminal output
+  # 'lolcat'        # Rainbow colored terminal output
   'neofetch'      # Show off distro and system info
 
   'java-latest-openjdk-headless'   # Java Runtime Environment
 
   # Apps
+  'gnome-tweaks'  # Gnome settings manager
   'meld'          # File comparison tool
   'unrar'         # Unpack rar archives
   'pdfarranger'   # Merge and rearrange PDF files
+  'gimp'          # Image editor
+  'vlc'           # Video player
 
   # Fonts
+  'mscore-fonts-all' # Microsoft fonts
   'fira-code-fonts' # Fira Code font
   'powerline-fonts' # Powerline fonts
   # 'ttf-mscorefonts-installer' # Microsoft fonts
 )
 
 # General Setup
-sudo sh -c 'echo "fastestmirror=true" >> /etc/dnf/dnf.conf'
+# sudo sh -c 'echo "fastestmirror=true" >> /etc/dnf/dnf.conf'
 sudo sh -c 'echo "deltarpm=true" >> /etc/dnf/dnf.conf'
 sudo sh -c 'echo "defaultyes=true" >> /etc/dnf/dnf.conf'
 sudo sh -c 'echo "max_parallel_downloads=10" >> /etc/dnf/dnf.conf'
 sudo dnf install -y fedora-workstation-repositories
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-sudo dnf distro-sync
+sudo dnf upgrade -y --refresh
+sudo dnf distro-sync -y
 sudo dnf groupupdate -y core
-sudo dnf groupupdate -y multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
-sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+sudo dnf install -y rpmfusion-free-release-tainted
+sudo dnf install -y dnf-plugins-core
+
+# Extras
+sudo dnf groupupdate -y sound-and-video
+# sudo dnf install -y gstreamer1-plugins-{bad-\*,good-\*,ugly-\*,base} gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel ffmpeg gstreamer-ffmpeg
+sudo dnf install -y gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel ffmpeg gstreamer-ffmpeg
+sudo dnf install -y lame\* --exclude=lame-devel
+sudo dnf group upgrade -y --with-optional Multimedia
 
 # Colors
 PURPLE='\033[0;35m'
@@ -174,14 +187,28 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   done
 fi
 
-# Meslo font
+# Fonts
 echo -e "${PURPLE}Installing Meslo font${RESET}"
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
 unzip Meslo.zip -d ~/.fonts
 fc-cache -fv
 rm -f Meslo.zip
 
-# VSCode
+sudo dnf copr enable hyperreal/better_fonts -y
+sudo dnf install fontconfig-font-replacements -y
+sudo dnf install fontconfig-enhanced-defaults -y
+
+# Brave
+sudo dnf install dnf-plugins-core
+sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+sudo dnf install -y brave-browser
+
+# Google Chrome
+sudo dnf config-manager --set-enabled google-chrome
+sudo dnf install -y google-chrome-stable
+
+# Visual Studio Code
 if hash "code" 2> /dev/null; then
   echo -e "${YELLOW}[Skipping]${LIGHT} Visual Studio Code is already installed${RESET}"
 else
@@ -190,15 +217,6 @@ else
   sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
   sudo dnf check-update
   sudo dnf install -y code
-fi
-
-# Sublime Text
-if hash "sublime" 2> /dev/null; then
-  echo -e "${YELLOW}[Skipping]${LIGHT} Sublime Text is already installed${RESET}"
-else
-  sudo rpm -v --import https://download.sublimetext.com/sublimehq-rpm-pub.gpg
-  sudo dnf config-manager --add-repo https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo
-  sudo dnf install -y sublime-text
 fi
 
 # Insync

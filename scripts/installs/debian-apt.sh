@@ -18,6 +18,7 @@
 debian_apps=(
   # Essentials
   'git'           # Version controll
+  'git-lfs'
   # 'neovim'        # Text editor
   # 'ranger'        # Directory browser
   # 'tmux'          # Term multiplexer
@@ -73,7 +74,7 @@ debian_apps=(
   # CLI Fun
   # 'cowsay'        # Outputs message with ASCII art cow
   'figlet'        # Outputs text as 3D ASCII word art
-  'lolcat'        # Rainbow colored terminal output
+  # 'lolcat'        # Rainbow colored terminal output
   'neofetch'      # Show off distro and system info
 
   'default-jre'   # Java Runtime Environment
@@ -82,6 +83,8 @@ debian_apps=(
   'meld'          # File comparison tool
   'unrar'         # Unpack rar archives
   'pdfarranger'   # Merge and rearrange PDF files
+  'gimp'          # Image editor
+  'vlc'           # Video player
 
   # Fonts
   'fonts-firacode' # Fira Code font
@@ -224,6 +227,19 @@ rm -f Meslo.zip
 # sudo add-apt-repository ppa:libreoffice/ppa
 # sudo apt-get update
 # sudo apt-get dist-upgrade -y
+
+# Brave
+sudo apt install curl
+sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+sudo apt update
+sudo apt install brave-browser
+
+# Google Chrome
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+echo 'deb [arch=amd64,arm64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
+sudo apt update
+sudo apt-get install -y google-chrome-stable
 
 if hash "code" 2> /dev/null; then
   echo -e "${YELLOW}[Skipping]${LIGHT} Visual Studio Code is already installed${RESET}"

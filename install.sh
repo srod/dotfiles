@@ -419,7 +419,9 @@ function install_packages () {
   pnpm add -g $(cat ${DOTFILES_DIR}/scripts/installs/npmfile)
 
   # Setup SSH key
-  source "${DOTFILES_DIR}/scripts/installs/set_ssh_key.sh"
+  ssh_script="${DOTFILES_DIR}/scripts/installs/set_ssh_key.sh"
+  chmod +x $ssh_script
+  $ssh_script $PARAMS
 }
 
 # Updates current session, and outputs summary

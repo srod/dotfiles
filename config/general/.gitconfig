@@ -12,7 +12,7 @@
   editor = code --wait
 
   # Use custom `.gitignore`
-  excludesfile = ~/.gitignore
+  excludesfile = ~/.config/.gitignore_global
 
   autocrlf = input
   safecrlf = warn
@@ -62,51 +62,28 @@
 
 [alias]
   ll = log --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat --date=relative
-
   ls = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-
   today = log --since=1am --author='Rodolphe Stoclin' --format='- %s'
-
   filelog = log -u
-
   d = diff
-
   grep = grep -n
-
   la = "!git config -l | grep alias | cut -c 7-"
-
   st = status -sb
-
   s = status -sb
-
   lpush = "!git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit origin/$(git currentbranch)..HEAD"
-
   lpull = "!git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit HEAD..origin/$(git currentbranch)"
-
   whatsnew = "!git diff origin/$(git currentbranch)...HEAD"
-
   whatscoming = "!git diff HEAD...origin/$(git currentbranch)"
-
   currentbranch = "!git branch | grep \"^\\*\" | cut -d \" \" -f 2"
-
   w = whatchanged --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-
   undo = reset --soft HEAD^
-
   count = shortlog -sn
-
   pullr = pull --rebase
-
   reb = "!r() { git rebase -i HEAD~$1; }; r"
-
   dm = "!git branch --merged | grep -v '\\*'"
-
   empty = "!git commit --allow-empty -m 'chore(deploy): trigger build with empty commit'"
-
   pr = "!f() { git fetch -fu ${2:-upstream} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
-
   pr-clean = "!git checkout master ; git for-each-ref refs/heads/pr/* --format=\"%(refname)\" | while read ref ; do branch=${ref#refs/heads/} ; git branch -D $branch ; done"
-
   up = pull --rebase --autostash
 
 [help]

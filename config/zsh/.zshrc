@@ -36,27 +36,27 @@ fi
 
 # Source all ZSH config files (if present)
 if [[ -d $zsh_dir ]]; then
-  # Import alias files
-  source ${zsh_dir}/aliases/general.zsh
-  source ${zsh_dir}/aliases/git.zsh
-  source ${zsh_dir}/aliases/node-js.zsh
-  # source ${zsh_dir}/aliases/alias-tips.zsh
-
   # Setup Antigen, and import plugins
   source ${zsh_dir}/helpers/setup-antigen.zsh
   source ${zsh_dir}/helpers/import-plugins.zsh
   source ${zsh_dir}/helpers/misc-stuff.zsh
 
   # Configure ZSH stuff
-  source ${zsh_dir}/lib/colors.zsh
-  source ${zsh_dir}/lib/cursor.zsh
-  source ${zsh_dir}/lib/history.zsh
-  source ${zsh_dir}/lib/surround.zsh
-  source ${zsh_dir}/lib/completion.zsh
-  source ${zsh_dir}/lib/term-title.zsh
-  source ${zsh_dir}/lib/navigation.zsh
-  source ${zsh_dir}/lib/expansions.zsh
-  source ${zsh_dir}/lib/key-bindings.zsh
+  # source ${zsh_dir}/lib/colors.zsh
+  # source ${zsh_dir}/lib/cursor.zsh
+  # source ${zsh_dir}/lib/history.zsh
+  # source ${zsh_dir}/lib/surround.zsh
+  # source ${zsh_dir}/lib/completion.zsh
+  # source ${zsh_dir}/lib/term-title.zsh
+  # source ${zsh_dir}/lib/navigation.zsh
+  # source ${zsh_dir}/lib/expansions.zsh
+  # source ${zsh_dir}/lib/key-bindings.zsh
+
+  # Import alias files
+  source ${zsh_dir}/aliases/general.zsh
+  source ${zsh_dir}/aliases/git.zsh
+  # source ${zsh_dir}/aliases/node-js.zsh
+  # source ${zsh_dir}/aliases/alias-tips.zsh
 fi
 
 # Import utility functions
