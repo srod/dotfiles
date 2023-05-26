@@ -257,8 +257,8 @@ function apply_preferences () {
   read -t $PROMPT_TIMEOUT -n 1 -r ans_cliplugins
   if [[ $ans_cliplugins =~ ^[Yy]$ ]] || [[ $AUTO_YES = true ]] ; then
     # Install / update vim plugins with Plug
-    echo -e "\n${PURPLE}Installing Vim Plugins${RESET}"
-    vim +PlugInstall +qall
+    # echo -e "\n${PURPLE}Installing Vim Plugins${RESET}"
+    # vim +PlugInstall +qall
 
     # Install / update ZSH plugins with Antigen
     echo -e "${PURPLE}Installing ZSH Plugins${RESET}"

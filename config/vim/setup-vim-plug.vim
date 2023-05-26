@@ -2,7 +2,7 @@
 " Sets up all Vim / Neovim Plugins via Vim Plug                      "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Installs and imports Vim Plug, updates and loads listed plugins    "
-" For more info, see docs at: https://github.com/srod/dotfiles    "
+" For more info, see docs at: https://github.com/srod/dotfiles       "
 " Licensed under MIT (C) Alicia Sykes 2022 <https://aliciasykes.com> "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -58,10 +58,4 @@ call plug#begin(vim_plug_plugins_dir)
   Plug 'triglav/vim-visual-increment'
   " Wraper for running tests
   Plug 'janko/vim-test'
-  " Smyck theme
-  Plug 'https://github.com/hukl/Smyck-Color-Scheme'
 call plug#end()
-
-"echom "Install smyck theme"
-"execute '!curl -o ' . vim_plug_plugins_dir . '/smyck.vim' .
-"\ ' https://raw.githubusercontent.com/hukl/Smyck-Color-Scheme/master/smyck.vim'

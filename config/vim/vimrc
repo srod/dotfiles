@@ -1,4 +1,3 @@
-
 " Setup Vim Plugged, and load plugins
 source ~/.config/vim/setup-vim-plug.vim
 
