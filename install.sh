@@ -408,15 +408,18 @@ function install_packages () {
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
   fi
 
-  nvm install 18
+  nvm install 20
 
-  # Install global NPM packages
+  # Install global NPM packages with PNPM
   corepack enable
   corepack prepare pnpm@latest --activate
   export PNPM_HOME=~/.local/share/pnpm
   export PATH="$PNPM_HOME:$PATH"
   mkdir -p ~/.local/share/pnpm
   pnpm add -g $(cat ${DOTFILES_DIR}/scripts/installs/npmfile)
+
+  # Bun
+  curl -fsSL https://bun.sh/install | bash
 
   # Setup SSH key
   ssh_script="${DOTFILES_DIR}/scripts/installs/set_ssh_key.sh"

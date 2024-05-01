@@ -24,7 +24,7 @@ tap 'homebrew/bundle'
 # tap 'jesseduffield/lazygit'
 # tap 'koekeishiya/formulae'
 # tap 'kdash-rs/kdash'
-tap "teamookla/speedtest"
+# tap "teamookla/speedtest"
 
 #############################################################
 # Command Line                                              #
@@ -44,7 +44,7 @@ brew 'vim'            # Text editor
 brew 'coreutils'      # GNU core utilities (better ls)
 # brew 'ctags'        # Indexing of file info + headers
 # brew 'diff-so-fancy'# Readable file compares (better diff)
-# brew 'duf'          # Get info on mounted disks (better df)
+brew 'duf'          # Get info on mounted disks (better df)
 # brew 'entr'         # Run command whenever file changes
 # brew 'exa'          # Listing files with info (better ls)
 # brew 'exiftool'     # Read, write and modify exif data
@@ -53,13 +53,13 @@ brew 'findutils'      # GNU find, locate, updatedb, and xargs
 # brew 'hyperfine'    # Benchmarking for arbitrary commands
 # brew 'jdupes'       # Duplicate file finder
 # brew 'just'         # Powerful command runner (better make)
-# brew 'jq'           # JSON parser, output and query files
+brew 'jq'           # JSON parser, output and query files
 # brew 'most'         # Multi-window scroll pager (better less)
 brew 'nano'           # Text editor
 brew 'prettyping'     # Ping with a progress bar
 # brew 'procs'        # Advanced process viewer (better ps)
 brew 'ripgrep'      # Searching within files (better grep)
-# brew 'rsync'        # Fast incremental file transfer
+brew 'rsync'        # Fast incremental file transfer
 # brew 'sd'           # RegEx find and replace (better sed)
 brew 'ssh-copy-id'    # Copy SSH keys to remote server
 # brew 'thefuck'      # Auto-correct miss-typed commands
@@ -82,7 +82,7 @@ brew 'bpytop'       # Resource monitoring (like htop)
 # brew 'glances'      # Resource monitor + web and API
 # brew 'goaccess'     # Web log analyzer and viewer
 # brew 'gping'        # Interactive ping tool, with graph
-brew 'speedtest'      # Command line speed test utility
+# brew 'speedtest'      # Command line speed test utility
 
 # CLI Productivity Apps
 # brew 'aspell'       # Spell check
@@ -105,7 +105,7 @@ brew 'speedtest'      # Command line speed test utility
 # brew 'kdash'        # Kubernetes management
 
 # CLI External Sercvices
-# cask 'ngrok'        # Reverse proxy for sharing localhost
+cask 'ngrok'        # Reverse proxy for sharing localhost
 # brew 'tmate'        # Share a terminal session via internet
 # brew 'asciinema'    # Recording + sharing terminal sessions
 # brew 'navi'         # Browse, search, read cheat sheets
@@ -135,12 +135,12 @@ cask 'visual-studio-code' # Code editor
 # Development Langs, Compilers, Package Managers and SDKs
 # brew 'gcc'            # GNU C++ compilers
 # brew 'go'             # Compiler for Go Lang
-brew 'java'             # Java runtime
+# brew 'java'           # Java runtime
 # brew 'lua'            # Lua interpreter
 # brew 'luarocks'       # Package manager for Lua
 # brew 'node'           # Node.js
-brew 'nvm'            # Switching node versions
-# brew 'openjdk'        # Java development kit
+brew 'nvm'              # Switching node versions
+brew 'openjdk@11'       # Java development kit
 # brew 'python'         # Python interpreter
 # brew 'rust'           # Rust language
 # cask 'android-sdk'    # Android software dev kit
@@ -171,10 +171,13 @@ brew 'terminal-notifier'# Trigger Mac notifications from terminal
 # brew 'borgbackup'     # Encrypted, deduplicated backups
 # brew 'clamav'         # Open source virus scanning suite
 # brew 'dnscrypt-proxy' # Proxy for using encrypted DNS
-cask 'gpg-suite'      # PGP encryption for emails and files
+cask 'gpg-suite'        # PGP encryption for emails and files
 # brew 'git-crypt'      # Transparent encryption for git repos
+cask 'iina'             # Media player
+cask 'insomnia'         # REST client
 # brew 'lynis'          # Scan system for common security issues
-# brew 'openssl'        # Cryptography and SSL/TLS Toolkit
+brew 'openssl'          # Cryptography and SSL/TLS Toolkit
+# cask 'pinentry-mac'   # GPG password entry for Mac
 # brew 'rkhunter'       # Search / detect potential root kits
 # cask 'veracrypt'      # File and volume encryption
 
@@ -185,7 +188,7 @@ cask 'gpg-suite'      # PGP encryption for emails and files
 # Creativity
 # cask 'audacity'     # Audio editor / recorder
 # cask 'gimp'         # Photo editor
-# brew 'handbrake'    # Video transcoder
+brew 'handbrake'    # Video transcoder
 # cask 'inkscape'     # Vector editor
 # cask 'obs'          # Screencasting / recording
 # cask 'shotcut'      # Video editor
@@ -194,28 +197,31 @@ cask 'gpg-suite'      # PGP encryption for emails and files
 # cask 'calibre'      # E-Book reader
 cask 'spotify', args: { require_sha: false } # Propietary music streaming
 # cask 'transmission' # Torrent client
-cask 'vlc'          # Media player
+# cask 'vlc'          # Media player
 # brew 'pandoc'       # Universal file converter
 # brew 'youtube-dl'   # YouTube video downloader
 
 # Personal Applications
-# cask '1password'      # Password manager (proprietary)
-cask 'keepingyouawake' # Prevent Mac from sleeping
-# cask 'ledger-live'    # Crypto hardware wallet manager
-# cask 'mountain-duck'  # Mount remote storage locations
-cask 'onyx'            # System maintenance tool
+# cask '1password'         # Password manager (proprietary)
+cask 'karabiner-elements'  # Keyboard customizer
+cask 'keepingyouawake'     # Prevent Mac from sleeping
+# cask 'ledger-live'       # Crypto hardware wallet manager
+# cask 'mountain-duck'     # Mount remote storage locations
+cask 'onyx', args: { require_sha: false } # System maintenance tool
 # cask 'protonmail-bridge' # Decrypt ProtonMail emails
-# cask 'protonvpn'      # Client app for ProtonVPN
-cask 'rectangle'       # Window management
-# cask 'signal'         # Link to encrypted mobile messenger
-cask 'standard-notes' # Encrypted synced notes
-cask 'sublime-text'   # Text editor
-# cask 'tresorit'       # Encrypted file backup (proprietary)
-# cask 'vorta'          # GUI for BorgBackup
+# cask 'protonvpn'         # Client app for ProtonVPN
+cask 'plex'                # Client for Plex media server
+cask 'rectangle'           # Window management
+# cask 'signal'            # Link to encrypted mobile messenger
+# cask 'standard-notes'    # Encrypted synced notes
+cask 'sublime-text'        # Text editor
+# cask 'tresorit'          # Encrypted file backup (proprietary)
+# cask 'vorta'             # GUI for BorgBackup
+cask 'virtualbuddy'        # Virtualization tool
 
 # Browsers
 cask 'firefox'
-cask 'google-chrome'
+cask 'google-chrome', args: { require_sha: false }
 # cask 'chromium'
 # cask 'orion'
 
@@ -239,7 +245,7 @@ cask 'qlstephen'      # QL for dev text files
 cask 'qlvideo'        # QL for video formats
 cask 'quicklook-csv'  # QL for tables in CSV format
 cask 'quicklook-json', args: { require_sha: false } # QL for JSON, with trees
-cask 'quicklookapk',   args: { require_sha: false } # QL for Android APKs
+# cask 'quicklookapk',   args: { require_sha: false } # QL for Android APKs
 cask 'webpquicklook',  args: { require_sha: false } # QL for WebP image files
 
 # Mac OS Mods and Imrovments
@@ -249,23 +255,23 @@ cask 'webpquicklook',  args: { require_sha: false } # QL for WebP image files
 # cask 'espanso'        # Live text expander (cross-platform)
 # cask 'finicky'        # Website-specific default browser
 # cask 'hiddenbar'      # Hide / show annoying menubar icons
-brew 'iproute2mac'    # MacOS port of netstat and ifconfig
+brew 'iproute2mac'      # MacOS port of netstat and ifconfig
 # brew 'lporg'          # Backup and restore launchpad layout
 # brew 'm-cli'          # All in one MacOS management CLI app
 # cask 'mjolnir'        # Util for loading Lua automations
 # cask 'openinterminal' # Finder button, opens directory in terminal
 # cask 'popclip'        # Popup options for text on highlight
-# cask 'raycast', args: { require_sha: false }  # Spotlight alternative
+cask 'raycast', args: { require_sha: false }  # Spotlight alternative
 # cask 'santa'          # Binary authorization for security
 # cask 'shottr'         # Better screenshot utility
 # brew 'skhd'           # Hotkey daemon for macOS
-cask 'stats'          # System resource usage in menubar
+cask 'stats'            # System resource usage in menubar
 # brew 'yabai'          # Tiling window manager
-brew 'dockutil'          # Dock management
+# brew 'dockutil'         # Dock management
 
 # Mac OS Utility Apps
 # cask 'coteditor'      # Just a simple plain-text editor
 # cask 'little-snitch'  # Firewall app viewing / blocking traffic
-cask 'keka'           # File archiver and extractor
+cask 'keka'             # File archiver and extractor
 
 # EOF
