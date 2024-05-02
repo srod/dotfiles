@@ -410,16 +410,30 @@ function install_packages () {
 
   nvm install 20
 
-  # Install global NPM packages with PNPM
-  corepack enable
-  corepack prepare pnpm@latest --activate
-  export PNPM_HOME=~/.local/share/pnpm
-  export PATH="$PNPM_HOME:$PATH"
-  mkdir -p ~/.local/share/pnpm
-  pnpm add -g $(cat ${DOTFILES_DIR}/scripts/installs/npmfile)
+  # Corepack and PNPM
+  if command_exists corepack; then
+    echo -e "\033[1;93mEnabling Corepack...\033[0m"
+    corepack enable
+
+    echo -e "\033[0;33mInstalling PNPM...\033[0m"
+    corepack prepare pnpm@latest --activate
+    export PNPM_HOME=~/.local/share/pnpm
+    export PATH="$PNPM_HOME:$PATH"
+    mkdir -p ~/.local/share/pnpm
+
+    echo -e "\033[0;33mInstalling globals...\033[0m"
+    pnpm add -g $(cat ${DOTFILES_DIR}/scripts/installs/npmfile)
+  fi
 
   # Bun
-  curl -fsSL https://bun.sh/install | bash
+  if command_exists bun; then
+    echo -e "\033[0;33mBun already installed, skipping...\033[0m"
+  else
+    echo -e "\033[0;33mInstalling Bun...\033[0m"
+    curl -fsSL https://bun.sh/install | bash
+    export BUN_INSTALL="$HOME/.bun"
+    export PATH="$BUN_INSTALL/bin:$PATH"
+  fi
 
   # Setup SSH key
   ssh_script="${DOTFILES_DIR}/scripts/installs/set_ssh_key.sh"

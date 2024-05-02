@@ -30,7 +30,17 @@
 # alias yk='yarn check'
 # alias yh='yarn help'
 
-# Nuke - Remove node_modules and the lock file, then reinstall
+# Enable auto-Node version switching, based on .nvmrc file in current directory
+autoload -U add-zsh-hook
+load-nvmrc() {
+  local nvmrc_path=".nvmrc"
+  if [[ -f $nvmrc_path ]]; then
+    nvm use
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+
+# Nuke - Helper to remove node_modules and the lock file, then reinstall
 reinstall_modules () {
   if read -q "choice?Remove and reinstall all node_modules? (y/N)"; then
     echo
@@ -89,6 +99,7 @@ print_node_versions () {
   # Print versions of core Node things
   get_version 'node' 'Node.js'
   get_version 'npm' 'NPM'
+  get_version 'corepack' 'Corepack'
   get_version 'yarn' 'Yarn'
   get_version 'nvm' 'NVM'
   get_version 'ni' 'ni'

@@ -37,7 +37,7 @@ RESET_COLOR='\033[0m'
 
 # Current and total taslks, used for progress updates
 current_event=0
-total_events=90
+total_events=105
 
 if [ ! "$(uname -s)" = "Darwin" ]; then
   echo -e "${PRIMARY_COLOR}Incompatible System${RESET_COLOR}"
@@ -122,10 +122,10 @@ echo -e "\n${PRIMARY_COLOR}Starting...${RESET_COLOR}"
 log_section "Finder"
 
 log_msg "Open new tabs to Home"
-defaults write com.apple.finder NewWindowTarget -string "PfHm"
+defaults write com.apple.finder NewWindowTarget -string "PfLo"
 
-log_msg "Open new windows to file root"
-defaults write com.apple.finder NewWindowTargetPath -string "file:///"
+log_msg "Open new windows to Home"
+defaults write com.apple.finder NewWindowTargetPath -string "file://$HOME"
 
 log_msg "Show hidden files"
 defaults write com.apple.finder AppleShowAllFiles -bool true
@@ -189,6 +189,34 @@ defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
 
 log_msg "Open a new Finder window when a disk is mounted"
 defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
+
+log_msg "Use list view in all Finder windows by default"
+# Preferred view style
+# Icon View   : `icnv`
+# List View   : `Nlsv`
+# Column View : `clmv`
+# Cover Flow  : `Flwv`
+defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+
+log_msg "Arrange by"
+# Kind, Name, Application, Date Last Opened,
+# Date Added, Date Modified, Date Created, Size, Tags, None
+defaults write com.apple.finder FXPreferredGroupBy -string "Name"
+
+log_msg "Hide icons for hard drives, servers, and removable media on the desktop"
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false
+defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
+defaults write com.apple.finder ShowMountedServersOnDesktop -bool false
+defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
+
+log_msg "Do not show recent tags"
+defaults write com.apple.finder ShowRecentTags -bool false
+
+log_msg "Enable spring loading for directories"
+defaults write NSGlobalDomain com.apple.springing.enabled -bool true
+
+log_msg "Remove the spring loading delay for directories"
+defaults write NSGlobalDomain com.apple.springing.delay -float 0
 
 log_msg "Show item info"
 /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
@@ -328,6 +356,13 @@ defaults write com.apple.mail DraftsViewerAttributes -dict-add "SortedDescending
 log_msg "Disable inline attachment viewing"
 defaults write com.apple.mail DisableInlineAttachmentViewing -bool true
 
+log_msg "Mark all messages as read when opening a conversation"
+defaults write com.apple.mail ConversationViewMarkAllAsRead -bool true
+
+log_msg "Disable send and reply animations in Mail.app"
+defaults write com.apple.mail DisableReplyAnimations -bool true
+defaults write com.apple.mail DisableSendAnimations -bool true
+
 ################
 # Terminal App #
 ################
@@ -373,11 +408,26 @@ defaults write com.apple.ActivityMonitor SortDirection -int 0
 ###################
 log_section "Apple Mac Store"
 
+log_msg "Turn on app auto-update"
+defaults write com.apple.commerce AutoUpdate -bool true
+
 log_msg "Allow automatic update checks"
 defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true
 
+log_msg "Check for software updates daily, not just once per week"
+defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
+
+log_msg "Download newly available updates in background"
+defaults write com.apple.SoftwareUpdate AutomaticDownload -int 1
+
 log_msg "Auto install criticial security updates"
 defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
+
+log_msg "Don't automatically download apps purchased on other Macs"
+defaults write com.apple.SoftwareUpdate ConfigDataInstall -int 0
+
+log_msg "Don't allow the App Store to reboot machine on macOS updates"
+defaults write com.apple.commerce AutoUpdateRestartRequired -bool false
 
 log_msg "Enable the debug menu"
 defaults write com.apple.appstore ShowDebugMenu -bool true
@@ -411,6 +461,12 @@ log_section "Address Book, Calendar, TextEdit"
 
 log_msg "Enable the debug menu in Address Book"
 defaults write com.apple.addressbook ABShowDebugMenu -bool true
+
+log_msg "Show week numbers (10.8 only)"
+defaults write com.apple.iCal "Show Week Numbers" -bool true
+
+log_msg "Week starts on monday"
+defaults write com.apple.iCal "first day of week" -int 1
 
 log_msg "Enable Dashboard dev mode"
 defaults write com.apple.dashboard devmode -bool true

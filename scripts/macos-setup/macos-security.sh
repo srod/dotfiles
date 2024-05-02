@@ -37,7 +37,7 @@ RESET_COLOR='\033[0m'
 
 # Current and total taslks, used for progress updates
 current_event=0
-total_events=34
+total_events=32
 
 if [ ! "$(uname -s)" = "Darwin" ]; then
   echo -e "${PRIMARY_COLOR}Incompatible System${RESET_COLOR}"
@@ -210,19 +210,19 @@ sudo spctl --master-disable
 log_section "Account Security"
 
 # Enforce system hibernation
-log_msg "Enforce hibernation instead of sleep"
-sudo pmset -a destroyfvkeyonstandby 1
+# log_msg "Enforce hibernation instead of sleep"
+# sudo pmset -a destroyfvkeyonstandby 1
 
 # Evict FileVault keys from memory
 log_msg "Evict FileVault keys from memory on hibernate"
-sudo pmset -a hibernatemode 25
+sudo pmset -a hibernatemode 3
 
 # Set power settings (required when evicting FV keys)
-log_msg "Disable power nap and other auto-power settings"
-sudo pmset -a powernap 0
-sudo pmset -a standby 0
-sudo pmset -a standbydelay 0
-sudo pmset -a autopoweroff 0
+# log_msg "Disable power nap and other auto-power settings"
+# sudo pmset -a powernap 0
+# sudo pmset -a standby 0
+# sudo pmset -a standbydelay 0
+# sudo pmset -a autopoweroff 0
 
 # Require a password to wake the computer from sleep or screen saver
 log_msg "Require a password to wake the computer from sleep or screen saver"

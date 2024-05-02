@@ -37,7 +37,7 @@ RESET_COLOR='\033[0m'
 
 # Current and total taslks, used for progress updates
 current_event=0
-total_events=70
+total_events=80
 
 # Check system is compatible
 if [ ! "$(uname -s)" = "Darwin" ]; then
@@ -115,7 +115,7 @@ function log_section () {
 echo -e "\n${PRIMARY_COLOR}Starting...${RESET_COLOR}"
 
 # Vzariables for system preferences
-COMPUTER_NAME="AS-AND-MacBook"
+# COMPUTER_NAME="MacBook"
 HIGHLIGHT_COLOR="0 0.8 0.7"
 
 # Quit System Preferences before starting
@@ -131,6 +131,7 @@ log_section "Device Info"
 
 # Set computer name and hostname
 log_msg "Set computer name"
+read -r -p "Please provide a name for your computer: " COMPUTER_NAME
 sudo scutil --set ComputerName "$COMPUTER_NAME"
 
 log_msg "Set remote hostname"
@@ -151,10 +152,10 @@ log_msg "Set language to English"
 defaults write NSGlobalDomain AppleLanguages -array "en"
 
 log_msg "Set locale to British"
-defaults write NSGlobalDomain AppleLocale -string "en_GB@currency=GBP"
+defaults write NSGlobalDomain AppleLocale -string "en_FR@currency=EUR"
 
-log_msg "Set time zone to London"
-sudo systemsetup -settimezone "Europe/London" > /dev/null
+log_msg "Set time zone to Paris"
+sudo systemsetup -settimezone "Europe/Paris" > /dev/null
 
 log_msg "Set units to metric"
 defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
@@ -169,6 +170,9 @@ log_section "UI Settings"
 log_msg "Set text highlight color"
 defaults write NSGlobalDomain AppleHighlightColor -string "${HIGHLIGHT_COLOR}"
 
+log_msg "Use dark menu bar and Dock"
+osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to true'
+
 ##################
 # File Locations #
 ##################
@@ -180,13 +184,16 @@ defaults write com.apple.screencapture location -string "${HOME}/Downloads/scree
 log_msg "Save screenshots in .png format"
 defaults write com.apple.screencapture type -string "png"
 
+log_msg "Disable shadow in screenshots"
+defaults write com.apple.screencapture disable-shadow -bool true
+
 ###############################################
 # Saving, Opening, Printing and Viewing Files #
 ###############################################
 log_section "Opening, Saving and Printing Files"
 
-log_msg "Set scrollbar to always show"
-defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
+# log_msg "Set scrollbar to always show"
+# defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
 
 log_msg "Set sidebar icon size to medium"
 defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
@@ -195,7 +202,7 @@ log_msg "Set toolbar title rollover delay"
 defaults write NSGlobalDomain NSToolbarTitleViewRolloverDelay -float 0
 
 log_msg "Set increased window resize speed"
-defaults write NSGlobalDomain NSWindowResizeTime -float 0.05
+defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
 
 log_msg "Set file save dialog to expand to all files by default"
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
@@ -243,7 +250,7 @@ sudo pmset -c sleep 0
 
 log_msg "Require password immediately after sleep or screensaver"
 defaults write com.apple.screensaver askForPassword -int 1
-defaults write com.apple.screensaver askForPasswordDelay -int 0
+defaults write com.apple.screensaver askForPasswordDelay -int 5
 
 log_msg "Disable system wide resuming of windows"
 defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
@@ -257,6 +264,9 @@ defaults write com.apple.CrashReporter DialogType -string "none"
 log_msg "Add host info to the login screen"
 sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
 
+log_msg "Restart automatically if the computer freezes"
+sudo systemsetup -setrestartfreeze on
+
 ##############################
 # Sound and Display Settings #
 ##############################
@@ -264,6 +274,12 @@ log_section "Sound and Display"
 
 log_msg "Increase sound quality for Bluetooth devices"
 defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
+
+log_msg "Enable audio feedback when volume is changed"
+defaults write com.apple.sound.beep.feedback -bool true
+
+log_msg "Disable the sound effects on boot"
+sudo nvram SystemAudioVolume=" "
 
 log_msg "Enable subpixel font rendering on non-Apple LCDs"
 defaults write NSGlobalDomain AppleFontSmoothing -int 1
@@ -302,13 +318,19 @@ log_msg "Follow the keyboard focus while zoomed in"
 defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
 
 log_msg "Set time before keys start repeating"
-defaults write NSGlobalDomain InitialKeyRepeat -int 50
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
 
 log_msg "Set super fast key repeat rate"
-defaults write NSGlobalDomain KeyRepeat -int 8
+defaults write NSGlobalDomain KeyRepeat -int 3
 
 log_msg "Fix UTF-8 bug in QuickLook"
 echo "0x08000100:0" > ~/.CFUserTextEncoding
+
+log_msg "Disable press-and-hold for keys in favor of key repeat"
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+
+log_msg "Set delay until repeat"
+defaults write -g 'InitialKeyRepeat_Level_Saved' -int 10
 
 #####################################
 # Mouse, Trackpad, Pointing Devices #
@@ -324,15 +346,38 @@ defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 log_msg "Enable tap to click for the login screen"
 defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
+log_msg "Map 'click or tap with two fingers' to the secondary click"
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
+defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -int 1
+defaults -currentHost write -g com.apple.trackpad.enableSecondaryClick -bool true
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 0
+defaults write com.apple.AppleMultitouchTrackpad TrackpadCornerSecondaryClick -int 0
+defaults -currentHost write -g com.apple.trackpad.trackpadCornerClickBehavior -int 0
+
+log_msg "Swipe between pages with three fingers"
+defaults write NSGlobalDomain AppleEnableSwipeNavigateWithScrolls -bool true
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.threeFingerHorizSwipeGesture -int 1
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerHorizSwipeGesture -int 1
+
+log_msg "Disable “natural” (Lion-style) scrolling"
+defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
+
 log_msg "Set hot corners for trackpad"
-defaults write com.apple.dock wvous-tl-corner -int 11
-defaults write com.apple.dock wvous-tl-modifier -int 0
-defaults write com.apple.dock wvous-bl-corner -int 2
-defaults write com.apple.dock wvous-bl-modifier -int 1048576
-defaults write com.apple.dock wvous-br-corner -int 5
-defaults write com.apple.dock wvous-br-modifier -int 1048576
-defaults write com.apple.dock wvous-tr-corner -int 0
-defaults write com.apple.dock wvous-tr-modifier -int 0
+# Possible values:
+#  0: no-op
+#  2: Mission Control
+#  3: Show application windows
+#  4: Desktop
+#  5: Start screen saver
+#  6: Disable screen saver
+#  7: Dashboard
+# 10: Put display to sleep
+# 11: Launchpad Notification Center
+# 13: Lock Screen
+defaults write com.apple.dock 'wvous-bl-corner' -int 5
+defaults write com.apple.dock 'wvous-bl-modifier' -int 1048576
+defaults write com.apple.dock 'wvous-br-corner' -int 13
+defaults write com.apple.dock 'wvous-br-modifier' -int 1048576
 
 # ##############################
 # Spotlight Search Preferences #
