@@ -203,7 +203,7 @@ cask 'spotify', args: { require_sha: false } # Propietary music streaming
 
 # Personal Applications
 # cask '1password'         # Password manager (proprietary)
-cask 'karabiner-elements'  # Keyboard customizer
+# cask 'karabiner-elements'  # Keyboard customizer
 cask 'keepingyouawake'     # Prevent Mac from sleeping
 # cask 'ledger-live'       # Crypto hardware wallet manager
 # cask 'mountain-duck'     # Mount remote storage locations
