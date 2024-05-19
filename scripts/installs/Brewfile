@@ -31,7 +31,7 @@ tap 'homebrew/bundle'
 #############################################################
 
 # CLI Essentials
-brew 'git'          # Version controll
+brew 'git'          # Version control
 # brew 'neovim'       # Text editor
 # brew 'ranger'       # Directory browser
 # brew 'tmux'         # Term multiplexer
@@ -68,7 +68,7 @@ brew 'ssh-copy-id'    # Copy SSH keys to remote server
 # brew 'tree'         # Directory listings as tree structure
 # brew 'trash-cli'    # Record and restore removed files
 brew 'unar'
-# brew 'watch'        # Run commands periorically
+# brew 'watch'        # Run commands periodically
 brew 'wget'
 # brew 'xsel'         # Copy paste access to the X clipboard
 # brew 'zoxide'       # Auto-learning navigation (better cd)
@@ -190,12 +190,12 @@ brew 'openssl'          # Cryptography and SSL/TLS Toolkit
 # cask 'gimp'         # Photo editor
 brew 'handbrake'    # Video transcoder
 # cask 'inkscape'     # Vector editor
-# cask 'obs'          # Screencasting / recording
+# cask 'obs'          # Screen casting / recording
 # cask 'shotcut'      # Video editor
 
 # Media
 # cask 'calibre'      # E-Book reader
-cask 'spotify', args: { require_sha: false } # Propietary music streaming
+cask 'spotify', args: { require_sha: false } # Proprietary music streaming
 # cask 'transmission' # Torrent client
 # cask 'vlc'          # Media player
 # brew 'pandoc'       # Universal file converter

@@ -6,7 +6,7 @@
 # Installs listed packages on Arch-based systems via Pacman    #
 # Also updates the cache database and existing applications    #
 # Confirms apps aren't installed via different package manager #
-# Doesn't include desktop apps, that're managed via Flatpak    #
+# Doesn't include desktop apps, that'd managed via Flatpak    #
 # Apps are sorted by category, and arranged alphabetically     #
 # Be sure to delete / comment out anything you do not need     #
 # For more info, see: https://wiki.archlinux.org/title/Pacman  #
@@ -17,7 +17,7 @@
 # Apps to be installed via Pacman
 pacman_apps=(
   # Essentials
-  'git'           # Version controll
+  'git'           # Version control
   'neovim'        # Text editor
   'ranger'        # Directory browser
   'tmux'          # Term multiplexer

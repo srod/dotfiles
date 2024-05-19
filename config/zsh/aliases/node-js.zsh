@@ -1,5 +1,3 @@
-
-
 ######################################################################
 # ZSH aliases and helper functions for Node.js / web development     #
 # Includes aliases for yarn, npn, nvm, npx, node, react, etc         #
@@ -82,19 +80,19 @@ alias node-nuke='reinstall_modules'
 # Prints out versions of core Node.js packages
 print_node_versions () {
   versions=''
-  format_verion_number () {
+  format_version_number () {
     echo "$($1 --version 2>&1 | head -n 1 | sed 's/[^0-9.]*//g')"
   }
 
   get_version () {
     if hash $1 2> /dev/null || command -v $1 >/dev/null; then
-      versions="$versions\e[36m\e[1m $2: \033[0m$(format_verion_number $1) \n\033[0m"
+      versions="$versions\e[36m\e[1m $2: \033[0m$(format_version_number $1) \n\033[0m"
     else
       versions="$versions\e[33m\e[1m $2: \033[0m\033[3m Not installed\n\033[0m"
     fi
   }
-  # Source NVM if not yet done
-  if typeset -f source_nvm > /dev/null && source_nvm
+  # Source NVM
+  source_nvm
 
   # Print versions of core Node things
   get_version 'node' 'Node.js'
@@ -142,7 +140,7 @@ install_nvm () {
   nvm_repo='https://github.com/nvm-sh/nvm.git'
   if [ -d "$NVM_DIR" ]; then # Already installed, update
     cd $NVM_DIR && git pull
-  else # Not yet installed, promt user to confirm before proceeding
+  else # Not yet installed, prompt user to confirm before proceeding
     if read -q "choice?Install NVM now? (y/N)"; then
       echo -e "\nInstalling..."
       git clone $nvm_repo $NVM_DIR

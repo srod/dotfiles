@@ -20,22 +20,21 @@
 ############################################################
 
 # Record start time
-start_time=`date +%s`
+start_time=$(date +%s)
 
 # Get params
 params="$params $*"
 
 # Color variables
 PRIMARY_COLOR='\033[1;33m'
-ACCENT_COLOR='\033[0;34m'
-INFO_COLOR='\033[0;30m'
-INFO_COLOR_U='\033[4;30m'
+ACCENT_COLOR='\033[0;36m'
+INFO_COLOR='\033[0;37m'
 SUCCESS_COLOR='\033[0;32m'
 WARN_1='\033[1;31m'
 WARN_2='\033[0;31m'
 RESET_COLOR='\033[0m'
 
-# Current and total taslks, used for progress updates
+# Current and total tasks, used for progress updates
 current_event=0
 total_events=80
 
@@ -48,7 +47,7 @@ if [ ! "$(uname -s)" = "Darwin" ]; then
   exit 1
 fi
 
-# Print info, and prompt for confrimation
+# Print info, and prompt for confirmation
 if [[ ! $params == *"--skip-intro"* ]]; then
   # Output what stuff will be updated
   echo -e "${PRIMARY_COLOR} MacOS User Preferences${RESET_COLOR}"
@@ -82,7 +81,7 @@ if [[ ! $params == *"--skip-intro"* ]]; then
   fi
 fi
 
-# Check have got admin privilages
+# Check have got admin privileges
 if [ "$EUID" -ne 0 ]; then
   echo -e "${ACCENT_COLOR}\nElevated permissions are required to adjust system settings."
   echo -e "${PRIMARY_COLOR}Please enter your password...${RESET_COLOR}"
@@ -114,7 +113,7 @@ function log_section () {
 
 echo -e "\n${PRIMARY_COLOR}Starting...${RESET_COLOR}"
 
-# Vzariables for system preferences
+# Variables for system preferences
 # COMPUTER_NAME="MacBook"
 HIGHLIGHT_COLOR="0 0.8 0.7"
 
@@ -155,7 +154,7 @@ log_msg "Set locale to British"
 defaults write NSGlobalDomain AppleLocale -string "en_FR@currency=EUR"
 
 log_msg "Set time zone to Paris"
-sudo systemsetup -settimezone "Europe/Paris" > /dev/null
+sudo systemsetup -settimezone Europe/Paris
 
 log_msg "Set units to metric"
 defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
@@ -298,7 +297,7 @@ defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
 log_msg "Disable automatic dash substitution"
 defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 
-log_msg "Disable automatic periord substitution"
+log_msg "Disable automatic period substitution"
 defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
 
 log_msg "Disable automatic period substitution"
@@ -359,7 +358,7 @@ defaults write NSGlobalDomain AppleEnableSwipeNavigateWithScrolls -bool true
 defaults -currentHost write NSGlobalDomain com.apple.trackpad.threeFingerHorizSwipeGesture -int 1
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerHorizSwipeGesture -int 1
 
-log_msg "Disable “natural” (Lion-style) scrolling"
+log_msg "Disable 'natural' (Lion-style) scrolling"
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 
 log_msg "Set hot corners for trackpad"
@@ -384,7 +383,7 @@ defaults write com.apple.dock 'wvous-br-modifier' -int 1048576
 # ##############################
 log_section "Spotlight and Search"
 
-# Emable / disable search locations, and indexing order
+# Enable / disable search locations, and indexing order
 log_msg "Set Spotlight Search Locations Order"
 defaults write com.apple.spotlight orderedItems -array \
 	'{"enabled" = 1;"name" = "APPLICATIONS";}' \
@@ -451,7 +450,7 @@ defaults write com.apple.dock launchanim -bool true
 log_msg "Set opening animation speed"
 defaults write com.apple.dock expose-animation-duration -float 1
 
-log_msg "Disable auntomatic rearranging of spaces"
+log_msg "Disable automatic rearranging of spaces"
 defaults write com.apple.dock mru-spaces -bool false
 
 log_msg "Set dock to auto-hide by default"
@@ -483,13 +482,13 @@ if hash dockutil 2> /dev/null; then
   )
   IFS=""
   # Removes useless apps from dock
-  for app in ${apps_to_remove_from_dock[@]}; do
-    dockutil --remove ~/Applications/${app}.app
+  for app in "${apps_to_remove_from_dock[@]}"; do
+    dockutil --remove "$HOME/Applications/${app}.app"
   done
   # Adds useful apps to dock, if installed
-  for app in ${apps_to_add_to_dock[@]}; do
-    if [[ -d "~/Applications/${app}.app" ]]; then
-      dockutil --add ~/Applications/${app}.app
+  for app in "${apps_to_add_to_dock[@]}"; do
+    if [[ -d "$HOME/Applications/${app}.app" ]]; then
+      dockutil --add "$HOME/Applications/${app}.app"
     fi
   done
 fi
@@ -508,7 +507,7 @@ killall Dock
 #####################################
 echo -e "${PRIMARY_COLOR}\nFinishing...${RESET_COLOR}"
 echo -e "${SUCCESS_COLOR}✔ ${current_event}/${total_events} tasks were completed \
-succesfully in $((`date +%s`-start_time)) seconds${RESET_COLOR}"
+successfully in $(($(date +%s)-start_time)) seconds${RESET_COLOR}"
 echo -e "\n${PRIMARY_COLOR}         .:'\n     __ :'__\n  .'\`__\`-'__\`\`.\n \
 :__________.-'\n :_________:\n  :_________\`-;\n   \`.__.-.__.'\n${RESET_COLOR}"
 

@@ -32,7 +32,7 @@ alias git_conflicts="git diff --name-only --diff-filter=U"
 # alias gm="git merge" # Merge <branch> into your current HEAD
 
 # # Repo setup
-# alias gi="git init" # Initiialize a new empty local repo
+# alias gi="git init" # Initialize a new empty local repo
 # alias gcl="git clone" # Downloads repo from <url>
 
 # # Branching
@@ -58,7 +58,7 @@ alias git_conflicts="git diff --name-only --diff-filter=U"
 
 # # Undoing
 # alias guc="git revert" # Revert a <commit>
-# alias gu="git reset" # Reset HEAD pointer to a <commit>, perserves changes
+# alias gu="git reset" # Reset HEAD pointer to a <commit>, preserves changes
 # alias gua="git reset --hard HEAD" # Resets all uncommited changes
 # alias gnewmsg="git commit --amend -m" # Update <message> of previous commit
 # alias gclean="git clean -df" # Remove all untracked files

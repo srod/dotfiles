@@ -20,22 +20,21 @@
 ############################################################
 
 # Record start time
-start_time=`date +%s`
+start_time=$(date +%s)
 
 # Get params
 params="$params $*"
 
 # Color variables
 PRIMARY_COLOR='\033[1;33m'
-ACCENT_COLOR='\033[0;34m'
-INFO_COLOR='\033[0;30m'
-INFO_COLOR_U='\033[4;30m'
+ACCENT_COLOR='\033[0;36m'
+INFO_COLOR='\033[0;37m'
 SUCCESS_COLOR='\033[0;32m'
 WARN_1='\033[1;31m'
 WARN_2='\033[0;31m'
 RESET_COLOR='\033[0m'
 
-# Current and total taslks, used for progress updates
+# Current and total tasks, used for progress updates
 current_event=0
 total_events=105
 
@@ -82,7 +81,7 @@ if [[ ! $params == *"--skip-intro"* ]]; then
   fi
 fi
 
-# Check have got admin privilages
+# Check have got admin privileges
 if [ "$EUID" -ne 0 ]; then
   echo -e "${ACCENT_COLOR}\nElevated permissions are required to adjust system settings."
   echo -e "${PRIMARY_COLOR}Please enter your password...${RESET_COLOR}"
@@ -242,7 +241,7 @@ log_msg "Set icon size on desktop and in finder"
 
 
 ########################################
-# Safari & Webkit Privacy Enchanements #
+# Safari & Webkit Privacy Enchantments #
 ########################################
 log_section "Safari and Webkit"
 
@@ -293,7 +292,7 @@ defaults write com.apple.Safari WebContinuousSpellCheckingEnabled -bool true
 log_msg "Disable auto-correct"
 defaults write com.apple.Safari WebAutomaticSpellingCorrectionEnabled -bool false
 
-log_msg "Disable auto-fill addressess"
+log_msg "Disable auto-fill addresses"
 defaults write com.apple.Safari AutoFillFromAddressBook -bool false
 
 log_msg "Disable auto-fill passwords"
@@ -321,7 +320,7 @@ log_msg "Prevent pop-ups"
 defaults write com.apple.Safari WebKitJavaScriptCanOpenWindowsAutomatically -bool false
 defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaScriptCanOpenWindowsAutomatically -bool false
 
-log_msg "Dissallow auto-play"
+log_msg "Disallow auto-play"
 defaults write com.apple.Safari WebKitMediaPlaybackAllowsInline -bool false
 defaults write com.apple.SafariTechnologyPreview WebKitMediaPlaybackAllowsInline -bool false
 defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2AllowsInlineMediaPlayback -bool false
@@ -420,7 +419,7 @@ defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
 log_msg "Download newly available updates in background"
 defaults write com.apple.SoftwareUpdate AutomaticDownload -int 1
 
-log_msg "Auto install criticial security updates"
+log_msg "Auto install critical security updates"
 defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
 
 log_msg "Don't automatically download apps purchased on other Macs"
@@ -559,7 +558,7 @@ done
 #####################################
 echo -e "${PRIMARY_COLOR}\nFinishing...${RESET_COLOR}"
 echo -e "${SUCCESS_COLOR}✔ ${current_event}/${total_events} tasks were completed \
-succesfully in $((`date +%s`-start_time)) seconds${RESET_COLOR}"
+successfully in $(($(date +%s)-start_time)) seconds${RESET_COLOR}"
 echo -e "\n${PRIMARY_COLOR}         .:'\n     __ :'__\n  .'\`__\`-'__\`\`.\n \
 :__________.-'\n :_________:\n  :_________\`-;\n   \`.__.-.__.'\n${RESET_COLOR}"
 

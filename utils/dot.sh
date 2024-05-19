@@ -56,11 +56,11 @@ function aio_check_pnpm() {
   pnpm -g update; pnpm install -g npm
 }
 
-function aio_edit() {
+function aio_dots_edit() {
   sh -c "$DOTFILES_IDE $DOTFILES"
 }
 
-function aio_help() {
+function aio_dots_help() {
   echo -e "Utility for checking updates and edit dotfiles\n"
   echo -e "Usage: dot [OPTION]\n"
   echo -e "Options:"
@@ -70,15 +70,15 @@ function aio_help() {
 }
 
 # Runs everything, prints output
-function aio_start() {
-  if [[ $@ == *"--help"* ]] || [[ $@ == *"-h"* ]]; then
-    aio_help
+function aio_dots_start() {
+  if [[ "$@" == *"--help"* ]] || [[ "$@" == *"-h"* ]]; then
+    aio_dots_help
     return
   fi;
 
-  if [[ $@ == *"--edit"* ]] || [[ $@ == *"-e"* ]]; then
-    aio_edit
-  elif [ -z $@ ] || [[ $@ == *"--update"* ]] || [[ $@ == *"-u"* ]]; then
+  if [[ "$@" == *"--edit"* ]] || [[ "$@" == *"-e"* ]]; then
+    aio_dots_edit
+  elif [ -z "$@" ] || [[ "$@" == *"--update"* ]] || [[ "$@" == *"-u"* ]]; then
     aio_check_updates
   fi
 }
@@ -89,9 +89,9 @@ function aio_start() {
     printf '%s' "${PWD%/}/")$(basename -- "$0") != "${.sh.file}" ]] ||
   [[ -n $BASH_VERSION ]] && (return 0 2>/dev/null)) && sourced=1 || sourced=0
 
-# If script being called directly run immediatley, otherwise register aliases
+# If script being called directly run immediately, otherwise register aliases
 if [ $sourced -eq 0 ]; then
-  aio_start $@
+  aio_dots_start "$@"
 else
-  alias dot=aio_start $@
+  alias dot=aio_dots_start "$@"
 fi

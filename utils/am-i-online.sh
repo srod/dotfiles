@@ -24,8 +24,8 @@ function aio_check-dns() {
 # Checks if can ping default getway
 function aio_ping-gateway() {
   ping -q -c 1 `ip r | grep default | cut -d ' ' -f 3 | head -1` > /dev/null && \
-  echo -e "${pre_success} Gateway Availible${post_string}" || \
-  echo -e "${pre_failure} Gateway Unavailible${post_string}"
+  echo -e "${pre_success} Gateway Available${post_string}" || \
+  echo -e "${pre_failure} Gateway Unavailable${post_string}"
 }
 
 # Checks if can curl a URL
@@ -61,7 +61,7 @@ function aio_help() {
 }
 
 # Runs everything, prints output
-function aio_start() {
+function aio_start_online() {
   if [[ $@ == *"--help"* ]]; then
     aio_help
     return
@@ -74,7 +74,7 @@ function aio_start() {
   aio_ping-gateway
   aio_check-url 'https://duck.com'
   aio_check-interfaces
-  echo -e ${line}
+  echo -e "${line}"
 }
 
 # Determine if file is being run directly or sourced
@@ -85,9 +85,9 @@ function aio_start() {
 
 # If script being called directly run immediatley, otherwise register aliases
 if [ $sourced -eq 0 ]; then
-  aio_start $@
+  aio_start_online $@
 else
-  alias amionline=aio_start $@
-  alias online=aio_start $@
-  alias aio=aio_start $@
+  alias amionline=aio_start_online $@
+  alias online=aio_start_online $@
+  alias aio=aio_start_online $@
 fi

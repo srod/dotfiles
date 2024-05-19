@@ -12,7 +12,7 @@
 ########################################################################
 
 # Color variables
-PRIMARY_COLOR='\033[1;34m'
+PRIMARY_COLOR='\033[1;37m'
 ACCENT_COLOR='\033[0;96m'
 ERROR_COLOR='\033[1;31m'
 WARN_COLOR='\033[0;33m'

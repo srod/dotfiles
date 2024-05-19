@@ -25,7 +25,7 @@
 # if alias_not_used v; then; alias v='vim'; fi
 
 # File listing options
-# alias lr='ls -R' # List files in sub-directories, recursivley
+# alias lr='ls -R' # List files in sub-directories, recursively
 # alias lf='ls -A | grep' # Use grep to find files
 # alias lc='find . -type f | wc -l' # Shows number of files
 # alias ld='ls -l | grep "^d"' # List directories only
@@ -99,7 +99,7 @@
 #       mv "$@"
 # }
 
-# Getting outa directories
+# Getting out directories
 # alias c~='cd ~'
 # alias c.='cd ..'
 # alias c..='cd ../../'
@@ -112,11 +112,11 @@
 alias dud='du -d 1 -h' # List sizes of files within directory
 alias duf='du -sh *' # List total size of current directory
 alias ff='find . -type f -name' # Find a file by name within current directory
-(( $+commands[fd] )) || alias fd='find . -type d -name' # Find direcroy by name
+(( $+commands[fd] )) || alias fd='find . -type d -name' # Find directory by name
 
 # Command line history
 # alias h='history' # Shows full history
-# alias h-search='fc -El 0 | grep' # Searchses for a word in terminal history
+# alias h-search='fc -El 0 | grep' # Searches for a word in terminal history
 # alias top-history='history 0 | awk '{print $2}' | sort | uniq -c | sort -n -r | head'
 # alias histrg='history -500 | rg' # Rip grep search recent history
 
@@ -139,7 +139,7 @@ alias ff='find . -type f -name' # Find a file by name within current directory
 # alias -g NUL="> /dev/null 2>&1" # Silences both stdout and stderr
 # alias -g P="2>&1| pygmentize -l pytb" # Writes stderr to stdout, and passes to pygmentize
 
-# Use color diff, if availible
+# Use color diff, if available
 # if command_exists colordiff ; then
 #   alias diff='colordiff'
 # fi

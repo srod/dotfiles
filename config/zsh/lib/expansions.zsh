@@ -1,4 +1,3 @@
-
 # Expands all glob expressions, subcommands and aliases (including global)
 # Inspired by: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/globalias
 
@@ -13,7 +12,7 @@ globalias() {
   zle self-insert
 }
 
-# Make function availible
+# Make function available
 zle -N globalias
 
 # space expands all aliases, including global

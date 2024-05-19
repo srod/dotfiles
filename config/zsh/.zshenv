@@ -1,6 +1,6 @@
 #  ~/.zshenv
-# Core envionmental variables
-# Locations configured here are requred for all other files to be correctly imported
+# Core environmental variables
+# Locations configured here are required for all other files to be correctly imported
 
 # Set XDG directories
 export XDG_CONFIG_HOME="${HOME}/.config"
@@ -10,7 +10,7 @@ export XDG_LIB_HOME="${HOME}/.local/lib"
 export XDG_CACHE_HOME="${HOME}/.cache"
 
 # Set default applications
-export EDITOR="code"
+export EDITOR="subl"
 # export TERMINAL="konsole"
 # export BROWSER="firefox"
 # export PAGER="less"
@@ -35,10 +35,9 @@ export XINITRC="${XDG_CONFIG_HOME}/X11/xinitrc"
 export XSERVERRC="${XDG_CONFIG_HOME}/X11/xserverrc"
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 export ZLIB="${ZDOTDIR}/lib"
+export MYVIMRC="${XDG_CONFIG_HOME}/vim/vimrc"
 
-# source $XDG_CONFIG_HOME/zsh/.zshrc
-
-# Encodings, languges and misc settings
+# Encodings, languages and misc settings
 export LANG='en_US.UTF-8';
 export LC_ALL='en_US.UTF-8';
 export PYTHONIOENCODING='UTF-8';

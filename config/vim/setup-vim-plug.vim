@@ -11,22 +11,25 @@ if has('nvim')
   let vim_plug_location=$XDG_DATA_HOME."/nvim/autoload/plug.vim"
   let vim_plug_plugins_dir = $XDG_DATA_HOME."/nvim/plugins"
 else
-  let vim_plug_location=$HOME.'/.vim/autoload/plug.vim'
+  let vim_plug_location=$XDG_CONFIG_HOME.'/vim/autoload/plug.vim'
   let vim_plug_plugins_dir = $XDG_DATA_HOME."/vim/plugins"
 endif
 
-" If vim-plug not present, install it now
-if !filereadable(expand(vim_plug_location))
-  echom "Vim Plug not found, downloading to '" . vim_plug_location . "'"
-  execute '!curl -o ' . vim_plug_location . ' --create-dirs' .
-  \ ' https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  echom "Next, run :PlugInstall to install all plugins"
+" Install vim-plug if not found
+if empty(glob(vim_plug_location))
+  silent execute '!curl -fLo ' . vim_plug_location . ' --create-dirs' .
+    \ ' https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 endif
 
 " If Plugins directory not yet exist, create it
 if empty(vim_plug_plugins_dir)
   call mkdir(vim_plug_plugins_dir, 'p')
 endif
+
+" Run PlugInstall if there are missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
 
 " Initialize Vim Plugged
 call plug#begin(vim_plug_plugins_dir)

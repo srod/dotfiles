@@ -20,22 +20,21 @@
 ############################################################
 
 # Record start time
-start_time=`date +%s`
+start_time=$(date +%s)
 
 # Get params
 params="$params $*"
 
 # Color variables
 PRIMARY_COLOR='\033[1;33m'
-ACCENT_COLOR='\033[0;34m'
-INFO_COLOR='\033[0;30m'
-INFO_COLOR_U='\033[4;30m'
+ACCENT_COLOR='\033[0;36m'
+INFO_COLOR='\033[0;37m'
 SUCCESS_COLOR='\033[0;32m'
 WARN_1='\033[1;31m'
 WARN_2='\033[0;31m'
 RESET_COLOR='\033[0m'
 
-# Current and total taslks, used for progress updates
+# Current and total tasks, used for progress updates
 current_event=0
 total_events=32
 
@@ -73,10 +72,9 @@ if [[ ! $params == *"--skip-intro"* ]]; then
       exit 0
     fi
   fi
-
 fi
 
-# Check have got admin privilages
+# Check have got admin privileges
 if [ "$EUID" -ne 0 ]; then
   echo -e "${ACCENT_COLOR}\nElevated permissions are required to adjust system settings."
   echo -e "${PRIMARY_COLOR}Please enter your password...${RESET_COLOR}"
@@ -132,7 +130,7 @@ sudo launchctl disable 'system/com.apple.assistantd'
 launchctl disable "user/$UID/com.apple.Siri.agent"
 launchctl disable "gui/$UID/com.apple.Siri.agent"
 sudo launchctl disable 'system/com.apple.Siri.agent'
-if [ $(/usr/bin/csrutil status | awk '/status/ {print $5}' | sed 's/\.$//') = "enabled" ]; then
+if [ "$(/usr/bin/csrutil status | awk '/status/ {print $5}' | sed 's/\.$//')" = "enabled" ]; then
     >&2 echo 'This script requires SIP to be disabled. Read more: \
     https://developer.apple.com/documentation/security/disabling_and_enabling_system_integrity_protection'
 fi
@@ -159,7 +157,7 @@ log_msg "Disable crash reporter"
 defaults write com.apple.CrashReporter DialogType none
 
 ############################
-# MacOS Firefwall Security #
+# MacOS Firewall Security #
 ############################
 log_section "Firewall Config"
 
@@ -295,7 +293,7 @@ sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.captive.c
 #####################################
 echo -e "${PRIMARY_COLOR}\nFinishing...${RESET_COLOR}"
 echo -e "${SUCCESS_COLOR}✔ ${current_event}/${total_events} tasks were completed \
-succesfully in $((`date +%s`-start_time)) seconds${RESET_COLOR}"
+successfully in $(($(date +%s)-start_time)) seconds${RESET_COLOR}"
 echo -e "\n${PRIMARY_COLOR}         .:'\n     __ :'__\n  .'\`__\`-'__\`\`.\n \
 :__________.-'\n :_________:\n  :_________\`-;\n   \`.__.-.__.'\n${RESET_COLOR}"
 

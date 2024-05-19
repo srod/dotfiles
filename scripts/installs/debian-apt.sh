@@ -6,7 +6,7 @@
 # Installs listed packages on Debian-based systems via apt-get #
 # Also updates the cache database and existing applications    #
 # Confirms apps aren't installed via different package manager #
-# Doesn't include desktop apps, that're managed via Flatpak    #
+# Doesn't include desktop apps, that'd managed via Flatpak    #
 # Apps are sorted by category, and arranged alphabetically     #
 # Be sure to delete / comment out anything you do not need     #
 # For more info, see: https://wiki.debian.org/Apt              #
@@ -17,7 +17,7 @@
 # Apps to be installed via apt-get
 debian_apps=(
   # Essentials
-  'git'           # Version controll
+  'git'           # Version control
   'git-lfs'
   # 'neovim'        # Text editor
   # 'ranger'        # Directory browser

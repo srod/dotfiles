@@ -4,7 +4,7 @@
 # Linux Desktop Application Installations via Flatpak                #
 ######################################################################
 # This script will:                                                  #
-# - Check that Flatpak is installed / promt to install               #
+# - Check that Flatpak is installed / prompt to install               #
 # - Update currently installed Flatpak apps from FlatHub             #
 # - Check app not already installed via system package manager       #
 # - Then install any not-yet-installed that are apps listed          #
@@ -239,8 +239,8 @@ flatpak update --assumeyes --noninteractive
 
 # Install each app listed above (if not already installed)
 echo -e "${PURPLE}Installing apps defined in manifest${RESET}"
-for app in ${flatpak_apps[@]}; do
-  install_app $app
+for app in "${flatpak_apps[@]}"; do
+  install_app "$app"
 done
 
 echo -e "${PURPLE}Finished processing Flatpak apps${RESET}"

@@ -2,7 +2,7 @@
 
 # Utilities for checking terminal color support, and printing color palette
 
-TEXT_COL="\033[1;30m"
+TEXT_COL="\033[1;37m"
 RESET='\033[0m'
 
 # Outputs the number of colors supported by your terminal emulator

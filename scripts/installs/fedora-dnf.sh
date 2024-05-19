@@ -7,7 +7,7 @@
 # Apps to be installed via dnf
 fedora_apps=(
   # Essentials
-  'git'           # Version controll
+  'git'           # Version control
   'git-lfs'
   # 'neovim'        # Text editor
   # 'ranger'        # Directory browser
@@ -175,7 +175,7 @@ read -t $PROMPT_TIMEOUT -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   echo -e "${PURPLE}Starting install...${RESET}"
-  for app in ${fedora_apps[@]}; do
+  for app in "${fedora_apps[@]}"; do
     if hash "${app}" 2> /dev/null; then
       echo -e "${YELLOW}[Skipping]${LIGHT} ${app} is already installed${RESET}"
     elif hash flatpak 2> /dev/null && [[ ! -z $(echo $(flatpak list --columns=ref | grep $app)) ]]; then

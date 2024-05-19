@@ -15,7 +15,7 @@ COLOR_P='\033[1;36m'
 COLOR_S='\033[0;36m'
 RESET='\033[0m'
 
-# Print time-based personalized message, using figlet & lolcat if availible
+# Print time-based personalized message, using figlet & lolcat if available
 function welcome_greeting () {
   h=$(date +%H)
   h=$((10#$h))
@@ -50,10 +50,10 @@ function welcome_sysinfo () {
   fi
 }
 
-# Print todays info: Date, IP, weather, etc
+# Print today's info: Date, IP, weather, etc
 function welcome_today () {
   timeout=0.5
-  echo -e "\033[1;34mToday\n------"
+  echo -e "\033[1;36mToday\n------"
 
   # Print last login in the format: "Last Login: Day Month Date HH:MM on tty"
   last_login=$(last | grep "^$USER " | head -1 | awk '{print "⏲️  Last Login: "$4" "$5" "$6" "$7" on "$2}')
@@ -90,7 +90,7 @@ function welcome() {
 
 # If script being called directly run immediately
 if [ $sourced -eq 0 ]; then
-  welcome $@
+  welcome "$@"
 fi
 
 # EOF

@@ -3,7 +3,7 @@
 # ~/.bashrc - Custom PS1 Prompt for Bash Shell                        #
 #######################################################################
 # I don't much use Bash me, prefer ZSH of Fish...                     #
-# When that's not availible, let's at least make things look half ok  #
+# When that's not available, let's at least make things look half ok  #
 #######################################################################
 # Originated from: https://github.com/Lissy93/minimal-terminal-prompt #
 # Licensed under MIT (C) Alicia Sykes 2022 <https://aliciasykes.com>  #
@@ -14,10 +14,10 @@ COL_USER_HOST='\e[35m' # The color of 'user@host.ext'
 COL_CURSOR='\e[35m' # The color of the trailing cursor arrow
 COL_CURRENT_PATH='\e[37m' # The color of the current directory full path
 COL_GIT_STATUS_CLEAN='\e[93m' # Color of fresh git branch name, with NO changes
-COL_GIT_STATUS_CHANGES='\e[92m' # Color of git branch, affter its diverged from remote
+COL_GIT_STATUS_CHANGES='\e[92m' # Color of git branch, after its diverged from remote
 
 ## Text Styles
-RESET='\e[0m' # What color will comand outputs be in
+RESET='\e[0m' # What color will command outputs be in
 BOLD='\e[1m' # BOLD
 
 ## Config

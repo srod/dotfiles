@@ -15,10 +15,9 @@
 
 # Set variables for reference
 PARAMS=$* # User-specified parameters
-CURRENT_DIR=$(cd "$(dirname ${BASH_SOURCE[0]})" && pwd)
 SYSTEM_TYPE=$(uname -s) # Get system type - Linux / MacOS (Darwin)
 PROMPT_TIMEOUT=15 # When user is prompted for input, skip after x seconds
-START_TIME=`date +%s` # Start timer
+START_TIME=$(date +%s) # Start timer
 SRC_DIR=$(dirname ${0})
 
 # Dotfiles Source Repo and Destination Directory
@@ -173,7 +172,7 @@ function pre_setup_tasks () {
   fi
   echo
 
-  # If pre-requsite packages not found, prompt to install
+  # If pre-requisite packages not found, prompt to install
   if ! command_exists git; then
     bash <(curl -s  -L 'https://raw.githubusercontent.com/srod/dotfiles/HEAD/scripts/installs/prerequisites.sh') $PARAMS
   fi
@@ -205,7 +204,6 @@ function pre_setup_tasks () {
 
 # Downloads / updates dotfiles and symlinks them
 function setup_dot_files () {
-
   # If dotfiles not yet present, clone the repo
   if [[ ! -d "$DOTFILES_DIR" ]]; then
     echo -e "${PURPLE}Dotfiles not yet present."\
@@ -214,7 +212,7 @@ function setup_dot_files () {
     "by setting the DOTFILES_DIR env var${RESET}"
     mkdir -p "${DOTFILES_DIR}" && \
     git clone --recursive ${DOTFILES_REPO} ${DOTFILES_DIR} && \
-    cd "${DOTFILES_DIR}"
+    cd "${DOTFILES_DIR}" || exit
   else # Dotfiles already downloaded, just fetch latest changes
     echo -e "${PURPLE}Pulling changes from ${REPO_NAME} into ${DOTFILES_DIR}${RESET}"
     cd "${DOTFILES_DIR}" && \
@@ -231,7 +229,7 @@ function setup_dot_files () {
 
   # Set up symlinks with dotbot
   echo -e "${PURPLE}Setting up Symlinks${RESET}"
-  cd "${DOTFILES_DIR}"
+  cd "${DOTFILES_DIR}" || exit
   git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
   git submodule update --init --recursive "${DOTBOT_DIR}"
   chmod +x  lib/dotbot/bin/dotbot
@@ -248,7 +246,7 @@ function apply_preferences () {
     if [[ $ans_zsh =~ ^[Yy]$ ]] || [[ $AUTO_YES = true ]] ; then
       echo -e "${PURPLE}Setting ZSH as default shell${RESET}"
       # chsh -s $(which zsh) $USER
-      chsh -s $(grep /zsh$ /etc/shells | tail -1)
+      chsh -s "$(grep /zsh$ /etc/shells | tail -1)"
     fi
   fi
 
@@ -274,8 +272,8 @@ function apply_preferences () {
       ensure you've understood before proceeding${RESET}\n"
       macos_settings_dir="$DOTFILES_DIR/scripts/macos-setup"
       for macScript in "macos-security.sh" "macos-preferences.sh" "macos-apps.sh"; do
-        chmod +x $macos_settings_dir/$macScript && \
-        $macos_settings_dir/$macScript --quick-exit --yes-to-all
+        chmod +x "$macos_settings_dir/$macScript" && \
+        "$macos_settings_dir/$macScript" --quick-exit --yes-to-all
       done
     else
       echo -e "\n${PURPLE}Applying preferences to GNOME apps, ensure you've understood before proceeding${RESET}\n"
@@ -286,7 +284,7 @@ function apply_preferences () {
 }
 
 # Setup Brew, install / update packages, organize launchpad and checks for macOS updates
-function intall_macos_packages () {
+function install_macos_packages () {
   # Homebrew not installed, ask user if they'd like to download it now
   if ! command_exists brew; then
     echo -e "\n${CYAN_B}Would you like to install Homebrew? (y/N)${RESET}"
@@ -340,7 +338,7 @@ function install_packages () {
   fi
   if [ "$SYSTEM_TYPE" = "Darwin" ]; then
     # Mac OS
-    intall_macos_packages
+    install_macos_packages
   elif [ -f "/etc/arch-release" ]; then
     # Arch Linux
     arch_pkg_install_script="${DOTFILES_DIR}/scripts/installs/arch-pacman.sh"
@@ -400,9 +398,9 @@ function install_packages () {
 
   # NVM
   if [ "$SYSTEM_TYPE" = "Darwin" ]; then
-    source $(brew --prefix nvm)/nvm.sh
+    source "$(brew --prefix nvm)/nvm.sh"
   else
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
     export NVM_DIR="$HOME/.config/nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
@@ -422,7 +420,7 @@ function install_packages () {
     mkdir -p ~/.local/share/pnpm
 
     echo -e "\033[0;33mInstalling globals...\033[0m"
-    pnpm add -g $(cat ${DOTFILES_DIR}/scripts/installs/npmfile)
+    pnpm add -g "$(cat ${DOTFILES_DIR}/scripts/installs/npmfile)"
   fi
 
   # Bun
@@ -489,7 +487,7 @@ fi
 
 # Let's Begin!
 pre_setup_tasks   # Print start message, and check requirements are met
-setup_dot_files   # Clone / updatae dotfiles, and create the symlinks
+setup_dot_files   # Clone / update dotfiles, and create the symlinks
 install_packages  # Prompt to install / update OS-specific packages
 apply_preferences # Apply settings for individual applications
 finishing_up      # Refresh current session, print summary and exit

@@ -68,7 +68,7 @@ echo "${CYAN_B}Installing Windows Packages...${RESET}"
 
 # Winget
 if hash winget 2> /dev/null; then
-  for app in ${winget_apps[@]}; do
+  for app in "${winget_apps[@]}"; do
     winget install --id=${app} -e
   done
 else

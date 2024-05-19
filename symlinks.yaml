@@ -19,7 +19,7 @@
 
     # Utility config files
     ${XDG_CONFIG_HOME}/.bashrc: config/general/.bashrc
-    ${XDG_CONFIG_HOME}/git/.gitconfig: config/general/.gitconfig
+    ~/.gitconfig: { path: config/general/.gitconfig, force: true }
     ${XDG_CONFIG_HOME}/.gitignore_global: config/general/.gitignore_global
     ${XDG_CONFIG_HOME}/wget/.wgetrc: config/general/.wgetrc
 

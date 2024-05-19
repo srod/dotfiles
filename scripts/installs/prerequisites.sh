@@ -3,7 +3,7 @@
 ######################################################################
 # Core Dependency Install Script                                     #
 ######################################################################
-# Installs essential pre-requsite packages, when using new systems   #
+# Installs essential pre-requisite packages, when using new systems   #
 # Intended to be run before install.sh, if packages not yet present. #
 # All other package installs are managed in system-specific scripts  #
 # For docs and more info, see: https://github.com/srod/dotfiles   #
@@ -89,7 +89,7 @@ if [[ ! $* == *"--auto-yes"* ]] ; then
 fi
 
 # For each app, check if not present and install
-for app in ${core_packages[@]}; do
+for app in "${core_packages[@]}"; do
   if ! hash "${app}" 2> /dev/null; then
     multi_system_install $app
   else
