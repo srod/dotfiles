@@ -10,19 +10,19 @@ export XDG_LIB_HOME="${HOME}/.local/lib"
 export XDG_CACHE_HOME="${HOME}/.cache"
 
 # Set default applications
-export EDITOR="subl"
-# export TERMINAL="konsole"
+export EDITOR="vim"
+export TERMINAL="iTerm.app"
 # export BROWSER="firefox"
-# export PAGER="less"
+export PAGER="less"
 export DOTFILES=$HOME/.dotfiles
 
-## Respect XDG directories
+# Respect XDG directories
 export ADOTDIR="${XDG_CACHE_HOME}/zsh/antigen"
 export OPENSSL_DIR="/usr/local/ssl"
 export CARGO_HOME="${XDG_DATA_HOME}/cargo"
 export CURL_HOME="${XDG_CONFIG_HOME}/curl"
 export DOCKER_CONFIG="${XDG_CONFIG_HOME}/docker"
-export GIT_CONFIG="${XDG_CONFIG_HOME}/git/.gitconfig"
+# export GIT_CONFIG="${XDG_CONFIG_HOME}/git/.gitconfig"
 export KDEHOME="${XDG_CONFIG_HOME}/kde"
 export LESSHISTFILE="-" # Disable less history.
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME}/pass"

@@ -415,9 +415,9 @@ function install_packages () {
 
     echo -e "\033[0;33mInstalling PNPM...\033[0m"
     corepack prepare pnpm@latest --activate
-    export PNPM_HOME=~/.local/share/pnpm
+    export PNPM_HOME=$HOME/.local/share/pnpm
     export PATH="$PNPM_HOME:$PATH"
-    mkdir -p ~/.local/share/pnpm
+    mkdir -p $HOME/.local/share/pnpm
 
     echo -e "\033[0;33mInstalling globals...\033[0m"
     pnpm add -g "$(cat ${DOTFILES_DIR}/scripts/installs/npmfile)"

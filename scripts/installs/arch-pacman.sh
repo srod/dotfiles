@@ -146,7 +146,7 @@ read -t $PROMPT_TIMEOUT -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   echo -e "${PURPLE}Starting install...${RESET}"
-  for app in ${pacman_apps[@]}; do
+  for app in "${pacman_apps[@]}"; do
     if hash "${app}" 2> /dev/null; then
       echo -e "${YELLOW}[Skipping]${LIGHT} ${app} is already installed${RESET}"
     elif [[ $(echo $(pacman -Qk $(echo $app | tr 'A-Z' 'a-z') 2> /dev/null )) == *"total files"* ]]; then

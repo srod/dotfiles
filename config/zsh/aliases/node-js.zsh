@@ -46,7 +46,7 @@ reinstall_modules () {
     # Check file exists, remove it and print message
     check-and-remove() {
       if [ -d "$project_dir/$1" ]; then
-        echo -e "\e[35mRemoveing $1...\e[0m"
+        echo -e "\e[35mRemoving $1...\e[0m"
         rm -rf "$project_dir/$1"
       fi
     }

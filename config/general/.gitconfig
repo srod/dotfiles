@@ -9,7 +9,7 @@
   whitespace = fix
 
 [core]
-  editor = code --wait
+	editor = vim
 
   # Use custom `.gitignore`
   excludesfile = ~/.config/.gitignore_global
@@ -116,23 +116,19 @@
 [git-up "rebase"]
   auto = false
 
-[mergetool "Code"]
-  cmd = code --wait $MERGED
-  trustexitcode = true
+[mergetool]
+	prompt = false
 
 [merge]
   # Include summaries of merged commits in newly created merge commit messages
   log = true
-  tool = Code
-
-[difftool "Code"]
-  cmd = code --wait --diff $LOCAL $REMOTE
+  tool = vimdiff
+	conflictstyle = diff3
 
 [diff]
   # Detect copies as well as renames
   renames = copies
-  # external = git-external-patdiff
-  tool = Code
+  tool = vimdiff
 
 [url "git@github.com:"]
   insteadOf = git://github.com/

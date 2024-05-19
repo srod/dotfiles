@@ -17,6 +17,10 @@ function aio_check_updates() {
   if hash pnpm 2> /dev/null; then
     aio_check_pnpm
   fi
+
+  if hash bun 2> /dev/null; then
+    aio_check_bun
+  fi
   echo -e ${line}
 }
 
@@ -54,6 +58,13 @@ function aio_check_pnpm() {
   echo -e "${pre_general}📶 Checking PNPM...${post_string}"
   echo -e ${line}
   pnpm -g update; pnpm install -g npm
+}
+
+function aio_check_bun() {
+  echo -e ${line}
+  echo -e "${pre_general}📶 Checking Bun...${post_string}"
+  echo -e ${line}
+  bun upgrade
 }
 
 function aio_dots_edit() {
