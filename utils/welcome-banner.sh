@@ -63,7 +63,7 @@ function welcome_today () {
   echo -e "$COLOR_S$(date '+🗓️  Date: %A, %B %d, %Y at %H:%M')"
 
   # Print local weather
-  curl -s -m $timeout "https://wttr.in?format=%cWeather:+%C+%t,+%p+%w"
+  curl -s -m $timeout "https://fr.wttr.in/77600?format=%cWeather:+%C+%t,+%p+%w"
   echo -e "${RESET}"
 
   # Print IP address

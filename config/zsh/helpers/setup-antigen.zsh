@@ -1,5 +1,5 @@
 #zsh_dir=${XDG_CONFIG_HOME:-$HOME/.config}/zsh
-antigen_dir=${ADOTDIR:-$XDG_DATA_HOME/zsh/antigen}
+antigen_dir=${ADOTDIR:-$XDG_CACHE_HOME/zsh/antigen}
 antigen_git="https://raw.githubusercontent.com/zsh-users/antigen/master/bin/antigen.zsh"
 
 antigen_bin="${ADOTDIR}/antigen.zsh"
@@ -18,4 +18,3 @@ fi
 
 # Set the ZSH prompt
 antigen theme romkatv/powerlevel10k
-

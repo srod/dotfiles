@@ -328,6 +328,12 @@ function install_macos_packages () {
   fi
 }
 
+# Post-install tasks for MacOS
+function post_install_macos_packages () {
+  # Link OpenJDK 11 to /Library/Java/JavaVirtualMachines
+  sudo ln -sfn /opt/homebrew/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk
+}
+
 # Based on system type, uses appropriate package manager to install / updates apps
 function install_packages () {
   echo -e "\n${CYAN_B}Would you like to install / update system packages? (y/N)${RESET}"
@@ -339,6 +345,7 @@ function install_packages () {
   if [ "$SYSTEM_TYPE" = "Darwin" ]; then
     # Mac OS
     install_macos_packages
+    post_install_macos_packages
   elif [ -f "/etc/arch-release" ]; then
     # Arch Linux
     arch_pkg_install_script="${DOTFILES_DIR}/scripts/installs/arch-pacman.sh"

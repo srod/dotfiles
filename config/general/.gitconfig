@@ -1,7 +1,7 @@
 [user]
   name = Rodolphe Stoclin
   email = srodolphe@gmail.com
-  signingkey = 37C817DE4492623E
+  signingkey = B4C3B95A3B8F83D626FB42BC37C817DE4492623E
   username = srod
 
 [apply]
@@ -135,3 +135,6 @@
 
 [add "interactive"]
   useBuiltin = false
+
+[gpg]
+	program = /usr/local/bin/gpg

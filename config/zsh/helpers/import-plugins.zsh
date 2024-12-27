@@ -25,6 +25,8 @@ antigen bundle node
 antigen bundle npm
 antigen bundle vscode
 
+# antigen bundle Aloxaf/fzf-tab
+
 # Syntax highlighting for commands
 antigen bundle zsh-users/zsh-syntax-highlighting
 

@@ -1,7 +1,6 @@
-
-# command_exists () {
-#   hash "$1" 2> /dev/null
-# }
+command_exists () {
+  hash "$1" 2> /dev/null
+}
 
 # alias_not_used () {
 #   ! alias "$1" >/dev/null && ! hash "$1" 2> /dev/null
@@ -38,12 +37,15 @@
 #   alias lm='exa -lahr --color-scale --icons -s=modified' # Recent
 #   alias lb='exa -lahr --color-scale --icons -s=size' # Largest / size
 #   alias tree='f() { exa -aF --tree -L=${1:-2} --icons };f'
-# else
+if command_exists eza ; then
+  alias ls='eza --icons=always --color=always --git'
+  alias ll='ls -lAh'
+else
   alias la='ls -A' # List all files/ includes hidden
   alias ll='ls -lAFh' # List all files, with full details
   alias lb='ls -lhSA' # List all files sorted by biggest
   alias lm='ls -tA -1' # List files sorted by last modified
-# fi
+fi
 
 # List contents of packed file, depending on type
 # ls-archive () {
@@ -168,12 +170,12 @@ alias ff='find . -type f -name' # Find a file by name within current directory
 
 # External Services
 alias myip='curl icanhazip.com'
-alias weather='curl wttr.in'
-alias weather-short='curl "wttr.in?format=3"'
+alias weather='curl "fr.wttr.in/77600"'
+alias weather-short='curl "fr.wttr.in/77600?format=3"'
 # alias cheat='curl cheat.sh/'
 # alias tinyurl='curl -s "http://tinyurl.com/api-create.php?url='
 # alias joke='curl https://icanhazdadjoke.com'
-alias hackernews='curl hkkr.in'
+#alias hackernews='curl hkkr.in'
 alias worldinternet='curl https://status.plaintext.sh/t'
 
 # Random lolz

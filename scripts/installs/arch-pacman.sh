@@ -30,7 +30,7 @@ pacman_apps=(
   'ctags'         # Indexing of file info + headers
   'diff-so-fancy' # Readable file compares (better diff)
   'duf'           # Get info on mounted disks (better df)
-  'exa'           # Listing files with info (better ls)
+  'eza'           # Listing files with info (better ls)
   'fzf'           # Fuzzy file finder and filtering
   'hyperfine'     # Benchmarking for arbitrary commands
   'just'          # Powerful command runner (better make)

@@ -29,12 +29,15 @@ function aio_check_system() {
   echo -e "${pre_general}📶 Checking system updates...${post_string}"
   echo -e ${line}
   if [ "$(uname -s)" = "Darwin" ]; then
-    sudo softwareupdate -i -a
     if hash brew 2> /dev/null; then
-      brew update
-      brew upgrade
-      brew cleanup
+      topgrade
     fi
+    # sudo softwareupdate -i -a
+    # if hash brew 2> /dev/null; then
+    #   brew update
+    #   brew upgrade
+    #   brew cleanup
+    # fi
   elif [ -f "/etc/arch-release" ] && hash pacman 2> /dev/null; then
     sudo pacman -Syu
   elif [ -f "/etc/debian_version" ] && hash apt 2> /dev/null; then

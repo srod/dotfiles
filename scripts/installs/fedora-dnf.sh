@@ -22,15 +22,15 @@ fedora_apps=(
   # 'ctags'         # Indexing of file info + headers
   # 'diff-so-fancy' # Readable file compares (better diff)
   # 'duf'           # Get info on mounted disks (better df)
-  # 'exa'           # Listing files with info (better ls)
-  # 'fzf'           # Fuzzy file finder and filtering
+  'eza'           # Listing files with info (better ls)
+  'fzf'           # Fuzzy file finder and filtering
   # 'hyperfine'     # Benchmarking for arbitrary commands
   # 'just'          # Powerful command runner (better make)
   # 'jq'            # JSON parser, output and query files
   # 'most'          # Multi-window scroll pager (better less)
   'ngrep'
   # 'procs'         # Advanced process viewer (better ps)
-  # 'ripgrep'       # Searching within files (better grep)
+  'ripgrep'       # Searching within files (better grep)
   # 'scrot'         # Screenshots programmatically via CLI
   # 'sd'            # RegEx find and replace (better sed)
   # 'thefuck'       # Auto-correct miss-typed commands

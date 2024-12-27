@@ -46,10 +46,10 @@ brew 'coreutils'      # GNU core utilities (better ls)
 # brew 'diff-so-fancy'# Readable file compares (better diff)
 brew 'duf'          # Get info on mounted disks (better df)
 # brew 'entr'         # Run command whenever file changes
-# brew 'exa'          # Listing files with info (better ls)
+brew 'eza'          # Listing files with info (better ls)
 # brew 'exiftool'     # Read, write and modify exif data
 brew 'findutils'      # GNU find, locate, updatedb, and xargs
-# brew 'fzf'          # Fuzzy file finder and filtering
+brew 'fzf'          # Fuzzy file finder and filtering
 # brew 'hyperfine'    # Benchmarking for arbitrary commands
 # brew 'jdupes'       # Duplicate file finder
 # brew 'just'         # Powerful command runner (better make)
@@ -268,6 +268,7 @@ cask 'raycast', args: { require_sha: false }  # Spotlight alternative
 cask 'stats'            # System resource usage in menubar
 # brew 'yabai'          # Tiling window manager
 # brew 'dockutil'         # Dock management
+brew 'topgrade'         # Upgrade all the things
 
 # Mac OS Utility Apps
 # cask 'coteditor'      # Just a simple plain-text editor
