@@ -1,0 +1,15 @@
+theme = apple system colors
+background-opacity = 0.9
+background-blur-radius = 20
+unfocused-split-opacity = 0.8
+window-padding-x = 5
+window-padding-y = 5
+quit-after-last-window-closed = true
+shell-integration-features = no-cursor
+shell-integration = zsh
+macos-auto-secure-input = true
+macos-titlebar-style = hidden
+macos-icon = custom-style
+macos-icon-frame = plastic
+macos-icon-ghost-color = cba6f7
+macos-icon-screen-color = 181825
