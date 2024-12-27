@@ -22,6 +22,7 @@
     ~/.gitconfig: { path: config/general/.gitconfig, force: true }
     ${XDG_CONFIG_HOME}/.gitignore_global: config/general/.gitignore_global
     ${XDG_CONFIG_HOME}/wget/.wgetrc: config/general/.wgetrc
+    ${XDG_CONFIG_HOME}/topgrade.toml: config/general/topgrade.toml
 
     # Bash utils
     ${XDG_CONFIG_HOME}/utils: utils

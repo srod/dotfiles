@@ -123,7 +123,7 @@
   # Include summaries of merged commits in newly created merge commit messages
   log = true
   tool = vimdiff
-	conflictstyle = diff3
+  conflictstyle = diff3
 
 [diff]
   # Detect copies as well as renames
@@ -137,4 +137,7 @@
   useBuiltin = false
 
 [gpg]
-	program = /usr/local/bin/gpg
+  program = /usr/local/bin/gpg
+
+[init]
+  defaultBranch = main
