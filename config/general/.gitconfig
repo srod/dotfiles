@@ -9,7 +9,7 @@
   whitespace = fix
 
 [core]
-	editor = vim
+  editor = vim
 
   # Use custom `.gitignore`
   excludesfile = ~/.config/.gitignore_global
@@ -34,10 +34,10 @@
   # https://git-scm.com/docs/git-update-index#_untracked_cache
   untrackedCache = true
 
-  pager = diff-so-fancy | less --tabs=4 -RFX
+  pager = delta
 
 [interactive]
-  diffFilter = diff-so-fancy --patch
+  diffFilter = delta --color-only
 
 [color]
   ui = true
@@ -59,9 +59,11 @@
 [commit]
   # https://help.github.com/articles/signing-commits-using-gpg/
   gpgsign = true
+  verbose = true
 
 [tag]
   forceSignAnnotated = true
+  sort = version:refname
 
 [alias]
   ll = log --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat --date=relative
@@ -88,21 +90,24 @@
   pr = "!f() { git fetch -fu ${2:-upstream} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
   pr-clean = "!git checkout master ; git for-each-ref refs/heads/pr/* --format=\"%(refname)\" | while read ref ; do branch=${ref#refs/heads/} ; git branch -D $branch ; done"
   up = pull --rebase --autostash
+  mycommits = log --author='Rodolphe Stoclin' --since='last wednesday' --pretty=format:'%C(auto)%h %C(green)%ad%C(reset) %s' --date=short --graph --decorate --all
 
 [help]
   # Automatically correct and execute mistyped commands
-  autocorrect = 1
+  autocorrect = prompt
 
 [rerere]
-  enabled = 1
-  autoupdate = 1
+  enabled = true
+  autoupdate = true
 
 [push]
-  default = current
+  default = simple
   followTags = true
+  autoSetupRemote = true
 
 [pull]
   default = current
+  rebase = true
 
 [credential]
   helper = osxkeychain
@@ -117,18 +122,19 @@
   auto = false
 
 [mergetool]
-	prompt = false
+  prompt = false
 
 [merge]
   # Include summaries of merged commits in newly created merge commit messages
   log = true
   tool = vimdiff
-  conflictstyle = diff3
+  conflictStyle = zdiff3
 
 [diff]
   # Detect copies as well as renames
   renames = copies
   tool = vimdiff
+  algorithm = histogram
 
 [url "git@github.com:"]
   insteadOf = git://github.com/
@@ -141,3 +147,23 @@
 
 [init]
   defaultBranch = main
+
+[column]
+  ui = auto
+
+[branch]
+  sort = -committerdate
+
+[fetch]
+  prune = true
+  pruneTags = true
+  all = true
+
+[rebase]
+  autoSquash = true
+  autoStash = true
+  updateRefs = true
+
+[delta]
+  navigate = true
+

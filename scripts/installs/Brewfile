@@ -103,9 +103,10 @@ brew 'bpytop'       # Resource monitoring (like htop)
 # brew 'lazydocker'   # Full Docker management app
 # brew 'lazygit'      # Full Git management app
 # brew 'kdash'        # Kubernetes management
+brew 'git-delta'      # Syntax-highlighting pager for git
 
 # CLI External Sercvices
-cask 'ngrok'        # Reverse proxy for sharing localhost
+# cask 'ngrok'        # Reverse proxy for sharing localhost
 # brew 'tmate'        # Share a terminal session via internet
 # brew 'asciinema'    # Recording + sharing terminal sessions
 # brew 'navi'         # Browse, search, read cheat sheets
@@ -203,6 +204,7 @@ cask 'spotify', args: { require_sha: false } # Proprietary music streaming
 
 # Personal Applications
 # cask '1password'         # Password manager (proprietary)
+cask 'applite'             # brew app store client
 # cask 'karabiner-elements'  # Keyboard customizer
 cask 'keepingyouawake'     # Prevent Mac from sleeping
 # cask 'ledger-live'       # Crypto hardware wallet manager
