@@ -407,13 +407,13 @@ function install_packages () {
   if [ "$SYSTEM_TYPE" = "Darwin" ]; then
     source "$(brew --prefix nvm)/nvm.sh"
   else
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
     export NVM_DIR="$HOME/.config/nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
   fi
 
-  nvm install 20
+  nvm install 22
 
   # Corepack and PNPM
   if command_exists corepack; then
@@ -427,7 +427,7 @@ function install_packages () {
     mkdir -p $HOME/.local/share/pnpm
 
     echo -e "\033[0;33mInstalling globals...\033[0m"
-    pnpm add -g "$(cat ${DOTFILES_DIR}/scripts/installs/npmfile)"
+    pnpm add -g $(cat ${DOTFILES_DIR}/scripts/installs/npmfile)
   fi
 
   # Bun

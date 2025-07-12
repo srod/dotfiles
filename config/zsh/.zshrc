@@ -46,11 +46,6 @@ if [ "$(uname -s)" = "Darwin" ]; then
   if [[ -d /opt/homebrew/bin ]]; then
     export PATH=/opt/homebrew/bin:$PATH
   fi
-
-  # If using iTerm, import the shell integration if available
-  if [[ -f "${XDG_CONFIG_HOME}/zsh/.iterm2_shell_integration.zsh" ]]; then
-    source "${XDG_CONFIG_HOME}/zsh/.iterm2_shell_integration.zsh"
-  fi
 fi
 
 # Source all ZSH config files (if present)
@@ -84,9 +79,6 @@ fi
 #  welcome
 #fi
 
-# bun completions
-[ -s "/Users/rodolphe/.bun/_bun" ] && source "/Users/rodolphe/.bun/_bun"
-
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
@@ -109,6 +101,3 @@ fi
 # _fzf_compgen_dir() {
 #     fd --type=d --hidden --exclude .git . "$1"
 # }
-
-# Created by `pipx` on 2024-06-11 13:23:54
-export PATH="$PATH:/Users/rodolphe/.local/bin"

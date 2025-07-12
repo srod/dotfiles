@@ -27,7 +27,16 @@ Be sure you've read and understood the what will be applied.\033[0m\n"
 
 # If dependencies not met, install them
 if ! hash git 2> /dev/null; then
-  bash <(curl -s  -L 'https://raw.githubusercontent.com/srod/dotfiles/HEAD/scripts/installs/prerequisites.sh')
+  # If sudo not installed, can't continue
+  if ! hash sudo 2> /dev/null; then
+    echo -e "\033[0;31mSudo not found. Please install git manually, and re-run.\033[0m"
+    exit 1
+  fi
+  # Explain why we need sudo, and refresh credentials
+  echo -e "\033[0;33mGit is not found. Sudo permissions are required to install it.\033[0m"
+  sudo -v
+  # Install prerequisites, with sudo
+  sudo bash <(curl -s  -L 'https://raw.githubusercontent.com/srod/dotfiles/HEAD/scripts/installs/prerequisites.sh')
 fi
 
 # If dotfiles not yet present then clone

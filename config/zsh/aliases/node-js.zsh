@@ -153,7 +153,7 @@ install_nvm () {
   # All done, import / re-import NVM script
   source "${NVM_DIR}/nvm.sh"
   # Then install Node
-  nvm install v20
+  nvm install v22
 }
 
 # NVM commands
