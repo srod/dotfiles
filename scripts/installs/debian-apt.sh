@@ -75,21 +75,21 @@ debian_apps=(
   # 'cowsay'        # Outputs message with ASCII art cow
   'figlet'        # Outputs text as 3D ASCII word art
   # 'lolcat'        # Rainbow colored terminal output
-  'neofetch'      # Show off distro and system info
+  # 'neofetch'      # Show off distro and system info
 
-  'default-jre'   # Java Runtime Environment
+  # 'default-jre'   # Java Runtime Environment
 
   # Apps
-  'meld'          # File comparison tool
-  'unrar'         # Unpack rar archives
-  'pdfarranger'   # Merge and rearrange PDF files
-  'gimp'          # Image editor
-  'vlc'           # Video player
+  # 'meld'          # File comparison tool
+  # 'unrar'         # Unpack rar archives
+  # 'pdfarranger'   # Merge and rearrange PDF files
+  # 'gimp'          # Image editor
+  # 'vlc'           # Video player
 
   # Fonts
-  'fonts-firacode' # Fira Code font
-  'fonts-powerline' # Powerline fonts
-  'ttf-mscorefonts-installer' # Microsoft fonts
+  # 'fonts-firacode' # Fira Code font
+  # 'fonts-powerline' # Powerline fonts
+  # 'ttf-mscorefonts-installer' # Microsoft fonts
 )
 
 ubuntu_repos=(
@@ -216,48 +216,48 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 fi
 
 # Meslo font
-echo -e "${PURPLE}Installing Meslo font${RESET}"
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
-unzip Meslo.zip -d ~/.fonts
-fc-cache -fv
-rm -f Meslo.zip
+# echo -e "${PURPLE}Installing Meslo font${RESET}"
+# wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
+# unzip Meslo.zip -d ~/.fonts
+# fc-cache -fv
+# rm -f Meslo.zip
 
 # Brave
-sudo apt install -y curl
-sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
-sudo apt update
-sudo apt install -y brave-browser
+# sudo apt install -y curl
+# sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+# echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+# sudo apt update
+# sudo apt install -y brave-browser
 
 # Google Chrome
-wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-echo 'deb [arch=amd64,arm64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
-sudo apt update
-sudo apt-get install -y google-chrome-stable
+# wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+# echo 'deb [arch=amd64,arm64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
+# sudo apt update
+# sudo apt-get install -y google-chrome-stable
 
-if hash "code" 2> /dev/null; then
-  echo -e "${YELLOW}[Skipping]${LIGHT} Visual Studio Code is already installed${RESET}"
-else
-  echo -e "${PURPLE}Visual Studio Code${RESET}"
-  wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
-  sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
-  sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
-  sudo apt update
-  sudo apt install -y apt-transport-https code
-  rm -f packages.microsoft.gpg
-fi
+# if hash "code" 2> /dev/null; then
+#   echo -e "${YELLOW}[Skipping]${LIGHT} Visual Studio Code is already installed${RESET}"
+# else
+#   echo -e "${PURPLE}Visual Studio Code${RESET}"
+#   wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+#   sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+#   sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+#   sudo apt update
+#   sudo apt install -y apt-transport-https code
+#   rm -f packages.microsoft.gpg
+# fi
 
 # Insync
-if hash "insync" 2> /dev/null; then
-  echo -e "${YELLOW}[Skipping]${LIGHT} Insync is already installed${RESET}"
-else
-  echo -e "${PURPLE}Installing Insync${RESET}"
-  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ACCAF35C
-  sudo touch /etc/apt/sources.list.d/insync.list
-  echo 'deb http://apt.insync.io/ubuntu jammy non-free contrib' | sudo tee -a /etc/apt/sources.list.d/insync.list
-  sudo apt-get update
-  sudo apt-get install -y insync
-fi
+# if hash "insync" 2> /dev/null; then
+#   echo -e "${YELLOW}[Skipping]${LIGHT} Insync is already installed${RESET}"
+# else
+#   echo -e "${PURPLE}Installing Insync${RESET}"
+#   sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ACCAF35C
+#   sudo touch /etc/apt/sources.list.d/insync.list
+#   echo 'deb http://apt.insync.io/ubuntu jammy non-free contrib' | sudo tee -a /etc/apt/sources.list.d/insync.list
+#   sudo apt-get update
+#   sudo apt-get install -y insync
+# fi
 
 echo -e "${PURPLE}Freeing up disk space...${RESET}"
 sudo apt autoclean
