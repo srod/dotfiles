@@ -28,7 +28,7 @@ pacman_apps=(
   'bat'           # Output highlighting (better cat)
   'broot'         # Interactive directory navigation
   'ctags'         # Indexing of file info + headers
-  'diff-so-fancy' # Readable file compares (better diff)
+  # 'diff-so-fancy' # Readable file compares (better diff)
   'duf'           # Get info on mounted disks (better df)
   'eza'           # Listing files with info (better ls)
   'fzf'           # Fuzzy file finder and filtering

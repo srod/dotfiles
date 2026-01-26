@@ -162,7 +162,6 @@
 [rebase]
   autoSquash = true
   autoStash = true
-  updateRefs = true
 
 [delta]
   navigate = true

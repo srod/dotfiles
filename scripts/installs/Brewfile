@@ -59,7 +59,7 @@ brew 'nano'           # Text editor
 brew 'prettyping'     # Ping with a progress bar
 # brew 'procs'        # Advanced process viewer (better ps)
 brew 'ripgrep'      # Searching within files (better grep)
-brew 'rsync'        # Fast incremental file transfer
+# brew 'rsync'        # Fast incremental file transfer
 # brew 'sd'           # RegEx find and replace (better sed)
 brew 'ssh-copy-id'    # Copy SSH keys to remote server
 # brew 'thefuck'      # Auto-correct miss-typed commands
@@ -77,7 +77,7 @@ brew 'wget'
 # brew 'bmon'         # Bandwidth utilization monitor
 # brew 'ctop'         # Container metrics and monitoring
 # brew 'dog'          # DNS lookup client (better dig)
-brew 'bpytop'       # Resource monitoring (like htop)
+# brew 'bpytop'       # Resource monitoring (like htop)
 # brew 'dua-cli'      # Disk usage analyzer and monitor (better du)
 # brew 'glances'      # Resource monitor + web and API
 # brew 'goaccess'     # Web log analyzer and viewer
@@ -140,8 +140,9 @@ cask 'visual-studio-code' # Code editor
 # brew 'lua'            # Lua interpreter
 # brew 'luarocks'       # Package manager for Lua
 # brew 'node'           # Node.js
-brew 'nvm'              # Switching node versions
-brew 'openjdk@11'       # Java development kit
+# brew 'nvm'              # Switching node versions
+brew 'fnm'              # Fast Node Manager
+brew 'openjdk@17'       # Java development kit
 # brew 'python'         # Python interpreter
 # brew 'rust'           # Rust language
 # cask 'android-sdk'    # Android software dev kit
@@ -175,7 +176,7 @@ brew 'terminal-notifier'# Trigger Mac notifications from terminal
 cask 'gpg-suite'        # PGP encryption for emails and files
 # brew 'git-crypt'      # Transparent encryption for git repos
 cask 'iina'             # Media player
-cask 'insomnia'         # REST client
+# cask 'insomnia'         # REST client
 # brew 'lynis'          # Scan system for common security issues
 brew 'openssl'          # Cryptography and SSL/TLS Toolkit
 # cask 'pinentry-mac'   # GPG password entry for Mac
@@ -219,7 +220,7 @@ cask 'rectangle'           # Window management
 cask 'sublime-text'        # Text editor
 # cask 'tresorit'          # Encrypted file backup (proprietary)
 # cask 'vorta'             # GUI for BorgBackup
-cask 'virtualbuddy'        # Virtualization tool
+# cask 'virtualbuddy'        # Virtualization tool
 
 # Browsers
 cask 'firefox'

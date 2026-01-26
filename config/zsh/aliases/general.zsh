@@ -190,3 +190,12 @@ alias plz="fc -l -1 | cut -d' ' -f2- | xargs sudo" # Re-run last cmd as root
 # Alias for install script
 # alias dotfiles="${DOTFILES_DIR:-$HOME/Documents/config/dotfiles}/install.sh"
 # alias dots="dotfiles"
+
+# Hledger alias, with multiple journal files
+alias hl='hledger-ui -f ~/Library/CloudStorage/OneDrive-Personal/hledger/2026.journal \
+                     -f ~/Library/CloudStorage/OneDrive-Personal/hledger/2025.journal \
+                     --forecast'
+
+alias hlweb='hledger-web -f ~/Library/CloudStorage/OneDrive-Personal/hledger/2026.journal \
+                         -f ~/Library/CloudStorage/OneDrive-Personal/hledger/2025.journal \
+                        --forecast'

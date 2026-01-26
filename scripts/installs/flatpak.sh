@@ -37,7 +37,7 @@ flatpak_apps=(
   # 'im.pidgin.Pidgin'          # Extendable XMPP chat client
   'com.slack.Slack'           # Work and team messaging
   'org.telegram.desktop'      # Private messenger, mobile
-  'io.github.mimbrero.WhatsAppDesktop' # WhatApp client
+  # 'io.github.mimbrero.WhatsAppDesktop' # WhatApp client
 
   # Media
   'com.spotify.Client'        # Music streaming
@@ -68,7 +68,7 @@ flatpak_apps=(
 
   # Software development
   # 'com.visualstudio.code'     # Extendable IDE
-  'com.getpostman.Postman'    # API development
+  # 'com.getpostman.Postman'    # API development
   # 'cc.arduino.IDE2'           # IOT development
   'com.axosoft.GitKraken'     # GUI git client
   # 'com.google.AndroidStudio'  # Android dev IDE
@@ -82,7 +82,7 @@ flatpak_apps=(
   # 'org.nmap.Zenmap'           # GUI for Nmap security scans
 
   # Settings and system utils
-  'com.mattjakeman.ExtensionManager' # Gnome extension manager
+  # 'com.mattjakeman.ExtensionManager' # Gnome extension manager
   # 'com.borgbase.Vorta'        # Borg backup client
   # 'org.kde.kleopatra'         # GPG key and certificate manager
   # 'io.github.jacalz.rymdport' # Encrypted file transfers, via Wormhole
@@ -107,7 +107,7 @@ flatpak_apps=(
   # 'ch.protonmail.protonmail-bridge' # ProtonMail bridge
   # 'com.belmoussaoui.Authenticator'  # OTP authenticator
   # 'org.cryptomator.Cryptomator'     # Encryption for cloud
-  'org.standardnotes.standardnotes' # Encrypted synced notes
+  # 'org.standardnotes.standardnotes' # Encrypted synced notes
   # 'com.onepassword.OnePassword'     # Password manager
   'com.bitwarden.desktop'     # Password manager
   # Missing: Trewsorit, EteSync, Veracrypt, Ledger

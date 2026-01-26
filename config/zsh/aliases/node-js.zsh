@@ -30,13 +30,13 @@
 
 # Enable auto-Node version switching, based on .nvmrc file in current directory
 autoload -U add-zsh-hook
-load-nvmrc() {
-  local nvmrc_path=".nvmrc"
-  if [[ -f $nvmrc_path ]]; then
-    nvm use
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
+# load-nvmrc() {
+#   local nvmrc_path=".nvmrc"
+#   if [[ -f $nvmrc_path ]]; then
+#     nvm use
+#   fi
+# }
+# add-zsh-hook chpwd load-nvmrc
 
 # Nuke - Helper to remove node_modules and the lock file, then reinstall
 reinstall_modules () {
