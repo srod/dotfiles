@@ -403,17 +403,18 @@ function install_packages () {
     fi
   fi
 
-  # NVM
+  # fnm (Fast Node Manager)
   if [ "$SYSTEM_TYPE" = "Darwin" ]; then
-    source "$(brew --prefix nvm)/nvm.sh"
+    eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
   else
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
-    export NVM_DIR="$HOME/.config/nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+    # Install fnm on Linux
+    curl -fsSL https://fnm.vercel.app/install | bash
+    export PATH="$HOME/.local/share/fnm:$PATH"
+    eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
   fi
 
-  nvm install 22
+  fnm install --lts
+  fnm default lts-latest
 
   # Corepack and PNPM
   if command_exists corepack; then

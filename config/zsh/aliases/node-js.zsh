@@ -1,6 +1,6 @@
 ######################################################################
 # ZSH aliases and helper functions for Node.js / web development     #
-# Includes aliases for yarn, npn, nvm, npx, node, react, etc         #
+# Includes aliases for yarn, npm, fnm, npx, node, react, etc         #
 #                                                                    #
 # Licensed under MIT (C) Alicia Sykes 2022 <https://aliciasykes.com> #
 ######################################################################
@@ -28,15 +28,8 @@
 # alias yk='yarn check'
 # alias yh='yarn help'
 
-# Enable auto-Node version switching, based on .nvmrc file in current directory
+# Auto-Node version switching handled by fnm --use-on-cd (see misc-stuff.zsh)
 autoload -U add-zsh-hook
-# load-nvmrc() {
-#   local nvmrc_path=".nvmrc"
-#   if [[ -f $nvmrc_path ]]; then
-#     nvm use
-#   fi
-# }
-# add-zsh-hook chpwd load-nvmrc
 
 # Nuke - Helper to remove node_modules and the lock file, then reinstall
 reinstall_modules () {
@@ -91,15 +84,12 @@ print_node_versions () {
       versions="$versions\e[33m\e[1m $2: \033[0m\033[3m Not installed\n\033[0m"
     fi
   }
-  # Source NVM
-  source_nvm
-
   # Print versions of core Node things
   get_version 'node' 'Node.js'
   get_version 'npm' 'NPM'
   get_version 'corepack' 'Corepack'
   get_version 'yarn' 'Yarn'
-  get_version 'nvm' 'NVM'
+  get_version 'fnm' 'fnm'
   get_version 'ni' 'ni'
   get_version 'pnpm' 'pnpm'
   get_version 'tsc' 'TypeScript'
@@ -121,52 +111,13 @@ alias node-versions='print_node_versions'
 # alias npmd='npm run dev'
 # alias npmp='npm publish'
 
-# Location of NVM, will inherit from .zshenv if set
-NVM_DIR=${NVM_DIR:-$XDG_DATA_HOME/nvm}
-
-# On first time using Node command, import NVM if present and not yet sourced
-function source_nvm node npm pnpm yarn $NVM_LAZY_CMD {
-  if [ -f "$NVM_DIR/nvm.sh" ] && ! which nvm &> /dev/null; then
-    echo -e "\033[1;93mInitialising NVM...\033[0m"
-    source "${NVM_DIR}/nvm.sh"
-    nvm use default
-  fi
-  unfunction node npm pnpm yarn source_nvm $NVM_LAZY_CMD
-  hash "$0" 2> /dev/null && command "$0" "$@"
-}
-
-# Helper function to install NVM
-install_nvm () {
-  nvm_repo='https://github.com/nvm-sh/nvm.git'
-  if [ -d "$NVM_DIR" ]; then # Already installed, update
-    cd $NVM_DIR && git pull
-  else # Not yet installed, prompt user to confirm before proceeding
-    if read -q "choice?Install NVM now? (y/N)"; then
-      echo -e "\nInstalling..."
-      git clone $nvm_repo $NVM_DIR
-      cd $NVM_DIR && git checkout v0.39.3
-    else
-      echo -e "\nAborting..."
-      return
-    fi
-  fi
-  # All done, import / re-import NVM script
-  source "${NVM_DIR}/nvm.sh"
-  # Then install Node
-  nvm install v22
-}
-
-# NVM commands
-# alias nvmi='nvm install'
-# alias nvmu='nvm use'
-# alias nvml='nvm ls'
-# alias nvmr='nvm run'
-# alias nvme='nvm exec'
-# alias nvmw='nvm which'
-# alias nvmlr='nvm ls-remote'
-# alias nvmlts='nvm install --lts && nvm use --lts'
-# alias nvmlatest='nvm install node --latest-npm && nvm use node'
-alias nvmsetup='install_nvm'
+# fnm aliases
+alias fnmi='fnm install'
+alias fnmu='fnm use'
+alias fnml='fnm list'
+alias fnmlr='fnm list-remote'
+alias fnmlts='fnm install --lts && fnm use lts-latest'
+alias fnmlatest='fnm install latest && fnm use latest'
 
 # Helper function that gets supported open method for system
 # launch-url() {
