@@ -53,7 +53,7 @@ compdef mosh=ssh
 zcompdump="${XDG_CACHE_HOME:-${HOME}/.cache}/zsh/.zcompdump"
 
 # If completions present, then load them
-if [ -f $zsh_dump_file ]; then
+if [ -f $zcompdump ]; then
     compinit -d $zcompdump
 fi
 

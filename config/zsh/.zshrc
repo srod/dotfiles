@@ -79,9 +79,6 @@ fi
 #  welcome
 #fi
 
-# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
-
 # FZF configurations
 # export FZF_DEFAULT_OPTS='--layout=reverse --height 40%'
 # export FZF_DEFAULT_COMMAND="rg --files --hidden --follow"
@@ -101,3 +98,34 @@ fi
 # _fzf_compgen_dir() {
 #     fd --type=d --hidden --exclude .git . "$1"
 # }
+
+# export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
+
+# export ANDROID_HOME=$HOME/Library/Android/sdk
+# export PATH=$PATH:$ANDROID_HOME/emulator
+# export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+# if [ -d "/opt/homebrew/opt/ruby/bin" ]; then
+#   export PATH=/opt/homebrew/opt/ruby/bin:$PATH
+#   export PATH=`gem environment gemdir`/bin:$PATH
+# fi
+# export PATH="/opt/homebrew/sbin:$PATH"
+
+# bun completions
+# [ -s "/Users/rodolphe/.bun/_bun" ] && source "/Users/rodolphe/.bun/_bun"
+
+# source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
+# source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
+
+# Created by `pipx` on 2025-09-22 12:53:32
+# export PATH="$PATH:/Users/rodolphe/.local/bin"
+
+
+
+# pnpm
+# export PNPM_HOME="/Users/rodolphe/.local/share/pnpm"
+# case ":$PATH:" in
+#   *":$PNPM_HOME:"*) ;;
+#   *) export PATH="$PNPM_HOME:$PATH" ;;
+# esac
+# pnpm end

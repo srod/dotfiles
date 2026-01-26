@@ -11,7 +11,6 @@ fi
 antigen bundle git
 antigen bundle git-extras
 antigen bundle command-not-found
-antigen bundle history-substring-search
 antigen bundle jsontools
 antigen bundle sudo
 antigen bundle urltools
