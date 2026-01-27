@@ -75,13 +75,13 @@ debian_apps=(
   # 'cowsay'        # Outputs message with ASCII art cow
   'figlet'        # Outputs text as 3D ASCII word art
   # 'lolcat'        # Rainbow colored terminal output
-  # 'neofetch'      # Show off distro and system info
+  'fastfetch'       # Show off distro and system info (replaces neofetch)
 
   'default-jre'   # Java Runtime Environment
 
   # Apps
   'meld'          # File comparison tool
-  # 'unrar'         # Unpack rar archives
+  'unrar'           # Unpack rar archives
   'pdfarranger'   # Merge and rearrange PDF files
   # 'gimp'          # Image editor
   'vlc'           # Video player
@@ -89,20 +89,9 @@ debian_apps=(
   # Fonts
   'fonts-firacode' # Fira Code font
   'fonts-powerline' # Powerline fonts
-  # 'ttf-mscorefonts-installer' # Microsoft fonts
-)
+  'ttf-mscorefonts-installer' # Microsoft fonts
+ )
 
-ubuntu_repos=(
-  'main'
-  'universe'
-  'restricted'
-  'multiverse'
-)
-
-debian_repos=(
-  'main'
-  'contrib'
-)
 
 # Following packages not found by apt, need to fix:
 # aria2, bat, broot, diff-so-fancy, duf, hyperfine,
@@ -143,32 +132,10 @@ fi
 
 # Check apt-get actually installed
 if ! hash apt 2> /dev/null; then
-  echo "${YELLOW_B}apt doesn't seem to be present on your system. Exiting...${RESET}"
+  echo -e "${YELLOW}apt doesn't seem to be present on your system. Exiting...${RESET}"
   exit 1
 fi
 
-# Enable upstream package repositories
-# echo -e "${CYAN_B}Would you like to enable listed repos? (y/N)${RESET}\n"
-# read -t $PROMPT_TIMEOUT -n 1 -r
-# echo
-# if [[ $REPLY =~ ^[Yy]$ ]]; then
-#   if ! hash add-apt-repository 2> /dev/null; then
-#     sudo apt install --reinstall software-properties-common
-#   fi
-#   # If Ubuntu, add Ubuntu repos
-#   if lsb_release -a 2>/dev/null | grep -q 'Ubuntu'; then
-#     for repo in ${ubuntu_repos[@]}; do
-#       echo -e "${PURPLE}Enabling ${repo} repo...${RESET}"
-#       sudo add-apt-repository $repo
-#     done
-#   else
-#     # Otherwise, add Debian repos
-#     for repo in ${debian_repos[@]}; do
-#       echo -e "${PURPLE}Enabling ${repo} repo...${RESET}"
-#       sudo add-apt-repository $repo
-#     done
-#   fi
-# fi
 
 # Prompt user to update package database
 echo -e "${CYAN_B}Would you like to update package database? (y/N)${RESET}\n"
@@ -202,6 +169,14 @@ echo -e "${CYAN_B}Would you like to install listed apps? (y/N)${RESET}\n"
 read -t $PROMPT_TIMEOUT -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
+   echo -e "${PURPLE}Enabling contrib and non-free repositories...${RESET}"
+   sudo apt-add-repository contrib
+   sudo apt-add-repository non-free
+   sudo apt update
+
+  echo -e "${PURPLE}Pre-accepting ttf-mscorefonts-installer EULA...${RESET}"
+  echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
+
   echo -e "${PURPLE}Starting install...${RESET}"
   for app in "${debian_apps[@]}"; do
     if hash "${app}" 2> /dev/null; then
@@ -217,49 +192,35 @@ fi
 
 # Meslo font
 echo -e "${PURPLE}Installing Meslo font${RESET}"
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Meslo.zip
 unzip Meslo.zip -d ~/.fonts
 fc-cache -fv
 rm -f Meslo.zip
 
 # Brave
-# sudo apt install -y curl
-# sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-# echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
-# sudo apt update
-# sudo apt install -y brave-browser
+sudo apt install -y curl
+sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+sudo curl -fsSLo /etc/apt/sources.list.d/brave-browser-release.sources https://brave-browser-apt-release.s3.brave.com/brave-browser.sources
+sudo apt update
+sudo apt install -y brave-browser
 
 # Google Chrome
-# wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /etc/apt/keyrings/linux_signing_key.pub
-# sudo sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/linux_signing_key.pub] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list'
-# sudo apt update
-# sudo apt-get install -y google-chrome-stable
-
-# Chromium
-sudo apt install -y chromium
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /etc/apt/keyrings/linux_signing_key.pub
+sudo sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/linux_signing_key.pub] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list'
+sudo apt update
+sudo apt-get install -y google-chrome-stable
 
 if hash "code" 2> /dev/null; then
   echo -e "${YELLOW}[Skipping]${LIGHT} Visual Studio Code is already installed${RESET}"
 else
   echo -e "${PURPLE}Visual Studio Code${RESET}"
-  wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
-  sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
-  sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+  wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+  sudo install -o root -g root -m 644 microsoft.gpg /usr/share/keyrings/microsoft.gpg
+  rm -f microsoft.gpg
+  sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/usr/share/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
   sudo apt update
-  sudo apt install -y apt-transport-https code
+  sudo apt install -y code
 fi
-
-# Insync
-# if hash "insync" 2> /dev/null; then
-#   echo -e "${YELLOW}[Skipping]${LIGHT} Insync is already installed${RESET}"
-# else
-#   echo -e "${PURPLE}Installing Insync${RESET}"
-#   sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ACCAF35C
-#   sudo touch /etc/apt/sources.list.d/insync.list
-#   echo 'deb http://apt.insync.io/ubuntu jammy non-free contrib' | sudo tee -a /etc/apt/sources.list.d/insync.list
-#   sudo apt-get update
-#   sudo apt-get install -y insync
-# fi
 
 echo -e "${PURPLE}Freeing up disk space...${RESET}"
 sudo apt autoclean
