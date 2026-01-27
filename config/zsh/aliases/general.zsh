@@ -39,7 +39,7 @@ command_exists () {
 #   alias tree='f() { exa -aF --tree -L=${1:-2} --icons };f'
 if command_exists eza ; then
   alias ls='eza --icons=always --color=always --git'
-  alias ll='ls -lAh'
+  alias ll='eza --icons=always --color=always --git -lAh'
 else
   alias la='ls -A' # List all files/ includes hidden
   alias ll='ls -lAFh' # List all files, with full details

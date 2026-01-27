@@ -39,7 +39,7 @@ GREEN_B='\033[1;32m'
 PLAIN_B='\033[1;37m'
 RESET='\033[0m'
 GREEN='\033[0;32m'
-PURPLE='\033[0;37m'
+PURPLE='\033[0;35m'
 
 # Clear the screen
 if [[ ! $PARAMS == *"--no-clear"* ]] && [[ ! $PARAMS == *"--help"* ]] ; then
@@ -74,8 +74,8 @@ make_banner () {
 make_intro () {
   C2="\033[1;97m"
   C3="\033[0;37m"
-  echo -e "${CYAN_B}The seup script will do the following:${RESET}\n"\
-  "${C2}(1) Pre-Setup Tasls\n"\
+  echo -e "${CYAN_B}The setup script will do the following:${RESET}\n"\
+  "${C2}(1) Pre-Setup Tasks\n"\
   "  ${C3}- Check that all requirements are met, and system is compatible\n"\
   "  ${C3}- Sets environmental variables from params, or uses sensible defaults\n"\
   "  ${C3}- Output welcome message and summary of changes\n"\
@@ -84,11 +84,11 @@ make_intro () {
   "  ${C3}- Symlinks dotfiles to correct locations\n"\
   "${C2}(3) Install packages\n"\
   "  ${C3}- On MacOS, prompt to install Homebrew if not present\n"\
-  "  ${C3}- On MacOS, updates and installs apps liseted in Brewfile\n"\
+  "  ${C3}- On MacOS, updates and installs apps listed in Brewfile\n"\
   "  ${C3}- On Arch Linux, updates and installs packages via Pacman\n"\
   "  ${C3}- On Debian Linux, updates and installs packages via apt get\n"\
   "  ${C3}- On Linux desktop systems, prompt to install desktop apps via Flatpak\n"\
-  "  ${C3}- Checks that OS is up-to-date and criticial patches are installed\n"\
+  "  ${C3}- Checks that OS is up-to-date and critical patches are installed\n"\
   "${C2}(4) Configure system\n"\
   "  ${C3}- Setup Vim, and install / update Vim plugins via Plug\n"\
   "  ${C3}- Setup Tmux, and install / update Tmux plugins via TPM\n"\
@@ -228,7 +228,7 @@ function setup_dot_files () {
 
   # If git clone / pull failed, then exit with error
   if ! test "$?" -eq 0; then
-    echo -e >&2 "${RED_B}Failed to fetch dotfiels from git${RESET}"
+    echo -e >&2 "${RED_B}Failed to fetch dotfiles from git${RESET}"
     terminate
   fi
 
@@ -336,7 +336,7 @@ function install_macos_packages () {
 # Post-install tasks for MacOS
 function post_install_macos_packages () {
   # Link OpenJDK 11 to /Library/Java/JavaVirtualMachines
-  sudo ln -sfn /opt/homebrew/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk
+  sudo ln -sfn /opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-17.jdk
 }
 
 # Based on system type, uses appropriate package manager to install / updates apps

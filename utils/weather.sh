@@ -135,12 +135,12 @@ elif [[ "${@: -1}" == "M" ]];then
   getLocationWeather "$args" || exit 1
 elif [[ $1 == "mM" || $1 == "Mm" ]]; then
   getIPWeather "?m?M" || exit 1
-elif [[ "${@: -1}" == "mM" || "${@:-1}" == "Mm" ]];then
+elif [[ "${@: -1}" == "mM" || "${@: -1}" == "Mm" ]];then
   args=$( echo "${@:1:(($# - 1))}" ?m?M | sed s/" "//g)
   getLocationWeather "$args" || exit 1
 elif [[ $1 == "iM" || $1 == "Mi" ]]; then
   getIPWeather "?u?M" || exit 1
-elif [[ "${@: -1}" == "iM" || "${@:-1}" == "Mi" ]];then
+elif [[ "${@: -1}" == "iM" || "${@: -1}" == "Mi" ]];then
   args=$( echo "${@:1:(($# - 1))}" ?u?M | sed s/" "//g)
   getLocationWeather "$args" || exit 1
 elif [[ $1 == "i" ]]; then

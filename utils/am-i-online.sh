@@ -15,21 +15,21 @@ function aio_http_host () {
 }
 
 # Checks if DNS gateway is online
-function aio_check-dns() {
+function aio_check_dns() {
   : >/dev/tcp/1.1.1.1/53 > /dev/null && \
   echo -e "${pre_success} DNS Online${post_string}" || \
   echo -e "${pre_failure} DNS Offline${post_string}"
 }
 
 # Checks if can ping default getway
-function aio_ping-gateway() {
+function aio_ping_gateway() {
   ping -q -c 1 `ip r | grep default | cut -d ' ' -f 3 | head -1` > /dev/null && \
   echo -e "${pre_success} Gateway Available${post_string}" || \
   echo -e "${pre_failure} Gateway Unavailable${post_string}"
 }
 
 # Checks if can curl a URL
-function aio_check-url() {
+function aio_check_url() {
   INTERNET_URL="${INTERNET_URL:-$1}"
     if [ -z "$(curl -Is $INTERNET_URL | head -n 1 2>&1 )" ]
     then
@@ -40,7 +40,7 @@ function aio_check-url() {
 }
 
 # Checks there are network interfaces
-function aio_check-interfaces() {
+function aio_check_interfaces() {
   if [[ -d /sys/class/net/ ]]; then
     for interface in $(ls /sys/class/net/ | grep -v lo); do
       if [[ $(cat /sys/class/net/$interface/carrier) = 1 ]]; then OnLine=1; fi
@@ -70,10 +70,10 @@ function aio_start_online() {
   echo -e ${line}
   echo -e "${pre_general}📶 Checking connection...${post_string}"
   echo -e ${line}
-  aio_check-dns
-  aio_ping-gateway
-  aio_check-url 'https://duck.com'
-  aio_check-interfaces
+  aio_check_dns
+  aio_ping_gateway
+  aio_check_url 'https://duck.com'
+  aio_check_interfaces
   echo -e "${line}"
 }
 
@@ -87,7 +87,7 @@ function aio_start_online() {
 if [ $sourced -eq 0 ]; then
   aio_start_online $@
 else
-  alias amionline=aio_start_online $@
-  alias online=aio_start_online $@
-  alias aio=aio_start_online $@
+  alias amionline='aio_start_online'
+  alias online='aio_start_online'
+  alias aio='aio_start_online'
 fi
