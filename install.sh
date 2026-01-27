@@ -334,7 +334,7 @@ function install_macos_packages () {
 
 # Post-install tasks for MacOS
 function post_install_macos_packages () {
-  # Link OpenJDK 11 to /Library/Java/JavaVirtualMachines
+  # Link OpenJDK 17 to /Library/Java/JavaVirtualMachines
   sudo ln -sfn /opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-17.jdk
 }
 
