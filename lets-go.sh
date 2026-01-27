@@ -45,9 +45,20 @@ if [[ ! -d "$DOTFILES_DIR" ]]; then
   git clone --recursive ${DOTFILES_REPO} ${DOTFILES_DIR}
 fi
 
+# Prompt for install mode
+echo -e "\033[1;94mSelect install mode:\033[0m"
+echo -e "  \033[0;37m1) Desktop - Full install with GUI apps, fonts, desktop preferences\033[0m"
+echo -e "  \033[0;37m2) Server  - Minimal install, skip GUI/desktop packages\033[0m"
+echo -en "\033[1;94mChoice [1/2]: \033[0m"
+read -r install_mode
+case "$install_mode" in
+  2|server|s) INSTALL_MODE="--server" ;;
+  *) INSTALL_MODE="--desktop" ;;
+esac
+
 # Execute setup or update script
 cd "${DOTFILES_DIR}" && \
 chmod +x ./install.sh && \
-./install.sh --no-clear
+./install.sh --no-clear $INSTALL_MODE
 
 # EOF
