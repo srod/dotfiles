@@ -417,10 +417,9 @@ function install_packages () {
     fi
   fi
   export PATH="$HOME/.local/share/fnm:$PATH"
-  eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
-
   fnm install --lts
   fnm default lts-latest
+  eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
 
   # Bun
   if ! command_exists bun; then
