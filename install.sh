@@ -54,6 +54,11 @@ if [[ $PARAMS == *"--server"* ]]; then
   IS_SERVER=true
 fi
 
+# If set to desktop mode - include all desktop apps, GUI tools, browsers, fonts
+if [[ $PARAMS == *"--desktop"* ]]; then
+  IS_DESKTOP=true
+fi
+
 # Function that prints important text in a banner with colored border
 # First param is the text to output, then optional color and padding
 make_banner () {
@@ -108,6 +113,8 @@ cleanup () {
   # Unset re-used variables
   unset PROMPT_TIMEOUT
   unset AUTO_YES
+  unset IS_SERVER
+  unset IS_DESKTOP
 
   # dinosaurs are awesome
   echo "🦖"
@@ -474,6 +481,18 @@ trap cleanup EXIT
 if [[ $PARAMS == *"--help"* ]]; then
   make_intro
   exit 0
+fi
+
+# Require --desktop or --server mode
+if [[ "$IS_SERVER" != true ]] && [[ "$IS_DESKTOP" != true ]]; then
+  make_intro
+  echo -e "\n${YELLOW_B}Error: You must specify a mode: --desktop or --server${RESET}"
+  echo -e "${CYAN_B}Usage:${RESET}"
+  echo -e "  ./install.sh --desktop          Full install (GUI apps, fonts, desktop prefs)"
+  echo -e "  ./install.sh --server           Server install (skip GUI/desktop packages)"
+  echo -e "  ./install.sh --desktop --auto-yes  Non-interactive full install"
+  echo -e "  ./install.sh --help             Show this help\n"
+  exit 1
 fi
 
 # Let's Begin!
