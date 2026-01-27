@@ -457,7 +457,7 @@ function finishing_up () {
   \ \\ \n  (|     | ) \n /'\_   _/\`\\ \n \\___)=(___/\n"
 
   # Refresh ZSH sesssion
-  SKIP_WELCOME=true || exec zsh
+  SKIP_WELCOME=true; exec zsh
 
   # Show popup
   if command_exists terminal-notifier; then

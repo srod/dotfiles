@@ -115,7 +115,7 @@ brew 'git-delta'      # Syntax-highlighting pager for git
 # brew 'cowsay'       # Have an ASCII cow say your message
 brew 'figlet'       # Output text as big ASCII art text
 # brew 'lolcat'       # Make console output rainbow colored
-brew 'neofetch'     # Show system data and ditstro info
+brew 'fastfetch'    # Show system data and distro info
 # brew 'pipes-sh'     # Cool terminal pipe screen saver
 # brew 'pv'           # Pipe viewer, with animation options
 

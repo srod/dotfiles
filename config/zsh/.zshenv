@@ -15,6 +15,7 @@ export TERMINAL="wezterm"
 export BROWSER="open"
 export PAGER="less"
 export VISUAL="vim"
+export DOTFILES_IDE="${EDITOR:-vim}"
 export DOTFILES=$HOME/.dotfiles
 
 # Respect XDG directories

@@ -107,5 +107,5 @@ function aio_dots_start() {
 if [ $sourced -eq 0 ]; then
   aio_dots_start "$@"
 else
-  alias dot=aio_dots_start "$@"
+  alias dot='aio_dots_start'
 fi

@@ -68,7 +68,7 @@ pacman_apps=(
   'cowsay'        # Outputs message with ASCII art cow
   'figlet'        # Outputs text as 3D ASCII word art
   'lolcat'        # Rainbow colored terminal output
-  'neofetch'      # Show off distro and system info
+  'fastfetch'     # Show off distro and system info (replaces neofetch)
 )
 
 # Desktop-only apps (skipped with --server)
@@ -78,9 +78,11 @@ pacman_desktop_apps=(
 )
 
 # Colors
+CYAN_B='\033[1;94m'
+YELLOW_B='\033[1;93m'
+RED_B='\033[1;31m'
 PURPLE='\033[0;37m'
 YELLOW='\033[0;93m'
-CYAN_B='\033[1;94m'
 LIGHT='\x1b[2m'
 RESET='\033[0m'
 
