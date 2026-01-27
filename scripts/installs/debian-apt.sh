@@ -14,7 +14,7 @@
 # MIT Licensed (C) Alicia Sykes 2023 <https://aliciasykes.com> #
 ################################################################
 
-# Apps to be installed via apt-get
+# Apps to be installed via apt-get (server + desktop)
 debian_apps=(
   # Essentials
   'git'           # Version control
@@ -76,7 +76,10 @@ debian_apps=(
   'figlet'        # Outputs text as 3D ASCII word art
   # 'lolcat'        # Rainbow colored terminal output
   'fastfetch'       # Show off distro and system info (replaces neofetch)
+ )
 
+# Desktop-only apps (skipped with --server)
+debian_desktop_apps=(
   'default-jre'   # Java Runtime Environment
 
   # Apps
@@ -112,6 +115,12 @@ PROMPT_TIMEOUT=15 # When user is prompted for input, skip after x seconds
 if [[ $* == *"--auto-yes"* ]]; then
   PROMPT_TIMEOUT=0
   REPLY='Y'
+fi
+
+if [[ $* == *"--server"* ]]; then
+  IS_SERVER=true
+else
+  debian_apps+=("${debian_desktop_apps[@]}")
 fi
 
 # Print intro message
@@ -174,8 +183,10 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
    sudo apt-add-repository non-free
    sudo apt update
 
-  echo -e "${PURPLE}Pre-accepting ttf-mscorefonts-installer EULA...${RESET}"
-  echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
+  if [[ "$IS_SERVER" != true ]]; then
+    echo -e "${PURPLE}Pre-accepting ttf-mscorefonts-installer EULA...${RESET}"
+    echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
+  fi
 
   echo -e "${PURPLE}Starting install...${RESET}"
   for app in "${debian_apps[@]}"; do
@@ -190,36 +201,38 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   done
 fi
 
-# Meslo font
-echo -e "${PURPLE}Installing Meslo font${RESET}"
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Meslo.zip
-unzip Meslo.zip -d ~/.fonts
-fc-cache -fv
-rm -f Meslo.zip
+if [[ "$IS_SERVER" != true ]]; then
+  # Meslo font
+  echo -e "${PURPLE}Installing Meslo font${RESET}"
+  wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Meslo.zip
+  unzip Meslo.zip -d ~/.fonts
+  fc-cache -fv
+  rm -f Meslo.zip
 
-# Brave
-sudo apt install -y curl
-sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-sudo curl -fsSLo /etc/apt/sources.list.d/brave-browser-release.sources https://brave-browser-apt-release.s3.brave.com/brave-browser.sources
-sudo apt update
-sudo apt install -y brave-browser
-
-# Google Chrome
-wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /etc/apt/keyrings/linux_signing_key.pub
-sudo sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/linux_signing_key.pub] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list'
-sudo apt update
-sudo apt-get install -y google-chrome-stable
-
-if hash "code" 2> /dev/null; then
-  echo -e "${YELLOW}[Skipping]${LIGHT} Visual Studio Code is already installed${RESET}"
-else
-  echo -e "${PURPLE}Visual Studio Code${RESET}"
-  wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-  sudo install -o root -g root -m 644 microsoft.gpg /usr/share/keyrings/microsoft.gpg
-  rm -f microsoft.gpg
-  sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/usr/share/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+  # Brave
+  sudo apt install -y curl
+  sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+  sudo curl -fsSLo /etc/apt/sources.list.d/brave-browser-release.sources https://brave-browser-apt-release.s3.brave.com/brave-browser.sources
   sudo apt update
-  sudo apt install -y code
+  sudo apt install -y brave-browser
+
+  # Google Chrome
+  wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /etc/apt/keyrings/linux_signing_key.pub
+  sudo sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/linux_signing_key.pub] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list'
+  sudo apt update
+  sudo apt-get install -y google-chrome-stable
+
+  if hash "code" 2> /dev/null; then
+    echo -e "${YELLOW}[Skipping]${LIGHT} Visual Studio Code is already installed${RESET}"
+  else
+    echo -e "${PURPLE}Visual Studio Code${RESET}"
+    wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+    sudo install -o root -g root -m 644 microsoft.gpg /usr/share/keyrings/microsoft.gpg
+    rm -f microsoft.gpg
+    sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/usr/share/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+    sudo apt update
+    sudo apt install -y code
+  fi
 fi
 
 echo -e "${PURPLE}Freeing up disk space...${RESET}"

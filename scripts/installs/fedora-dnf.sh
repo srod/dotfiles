@@ -4,7 +4,7 @@
 # 📜 Fedora, dnf Package Install / Update Script       #
 ################################################################
 
-# Apps to be installed via dnf
+# Apps to be installed via dnf (server + desktop)
 fedora_apps=(
   # Essentials
   'git'           # Version control
@@ -69,8 +69,10 @@ fedora_apps=(
   'neofetch'      # Show off distro and system info
 
   'java-latest-openjdk-headless'   # Java Runtime Environment
+)
 
-  # Apps
+# Desktop-only apps (skipped with --server)
+fedora_desktop_apps=(
   'gnome-tweaks'  # Gnome settings manager
   'meld'          # File comparison tool
   'unrar'         # Unpack rar archives
@@ -85,6 +87,12 @@ fedora_apps=(
   # 'ttf-mscorefonts-installer' # Microsoft fonts
 )
 
+if [[ $* == *"--server"* ]]; then
+  IS_SERVER=true
+else
+  fedora_apps+=("${fedora_desktop_apps[@]}")
+fi
+
 # General Setup
 # sudo sh -c 'echo "fastestmirror=true" >> /etc/dnf/dnf.conf'
 sudo sh -c 'echo "deltarpm=true" >> /etc/dnf/dnf.conf'
@@ -98,12 +106,14 @@ sudo dnf groupupdate -y core
 sudo dnf install -y rpmfusion-free-release-tainted
 sudo dnf install -y dnf-plugins-core
 
-# Extras
-sudo dnf groupupdate -y sound-and-video
-# sudo dnf install -y gstreamer1-plugins-{bad-\*,good-\*,ugly-\*,base} gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel ffmpeg gstreamer-ffmpeg
-sudo dnf install -y gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel ffmpeg gstreamer-ffmpeg
-sudo dnf install -y lame\* --exclude=lame-devel
-sudo dnf group upgrade -y --with-optional Multimedia
+if [[ "$IS_SERVER" != true ]]; then
+  # Extras
+  sudo dnf groupupdate -y sound-and-video
+  # sudo dnf install -y gstreamer1-plugins-{bad-\*,good-\*,ugly-\*,base} gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel ffmpeg gstreamer-ffmpeg
+  sudo dnf install -y gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel ffmpeg gstreamer-ffmpeg
+  sudo dnf install -y lame\* --exclude=lame-devel
+  sudo dnf group upgrade -y --with-optional Multimedia
+fi
 
 # Colors
 PURPLE='\033[0;37m'
@@ -187,49 +197,54 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   done
 fi
 
-# Fonts
-echo -e "${PURPLE}Installing Meslo font${RESET}"
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
-unzip Meslo.zip -d ~/.fonts
-fc-cache -fv
-rm -f Meslo.zip
+if [[ "$IS_SERVER" != true ]]; then
+  # Fonts
+  echo -e "${PURPLE}Installing Meslo font${RESET}"
+  wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
+  unzip Meslo.zip -d ~/.fonts
+  fc-cache -fv
+  rm -f Meslo.zip
 
-sudo dnf copr enable hyperreal/better_fonts -y
-sudo dnf install fontconfig-font-replacements -y
-sudo dnf install fontconfig-enhanced-defaults -y
+  sudo dnf copr enable hyperreal/better_fonts -y
+  sudo dnf install fontconfig-font-replacements -y
+  sudo dnf install fontconfig-enhanced-defaults -y
 
-# Brave
-sudo dnf install dnf-plugins-core
-sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
-sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-sudo dnf install -y brave-browser
+  # Brave
+  sudo dnf install dnf-plugins-core
+  sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+  sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+  sudo dnf install -y brave-browser
 
-# Google Chrome
-sudo dnf config-manager --set-enabled google-chrome
-sudo dnf install -y google-chrome-stable
+  # Google Chrome
+  sudo dnf config-manager --set-enabled google-chrome
+  sudo dnf install -y google-chrome-stable
 
-# Visual Studio Code
-if hash "code" 2> /dev/null; then
-  echo -e "${YELLOW}[Skipping]${LIGHT} Visual Studio Code is already installed${RESET}"
-else
-  echo -e "${PURPLE}Visual Studio Code${RESET}"
-  sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-  sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
-  sudo dnf check-update
-  sudo dnf install -y code
+  # Visual Studio Code
+  if hash "code" 2> /dev/null; then
+    echo -e "${YELLOW}[Skipping]${LIGHT} Visual Studio Code is already installed${RESET}"
+  else
+    echo -e "${PURPLE}Visual Studio Code${RESET}"
+    sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+    sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+    sudo dnf check-update
+    sudo dnf install -y code
+  fi
+
+  # Insync
+  if hash "insync" 2> /dev/null; then
+    echo -e "${YELLOW}[Skipping]${LIGHT} Insync is already installed${RESET}"
+  else
+    echo -e "${PURPLE}Installing Insync${RESET}"
+    sudo rpm --import https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key
+    sudo sh -c 'echo -e "[insync]\nname=insync repo\nbaseurl=http://yum.insync.io/fedora/\$releasever/\ngpgkey=https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key" > /etc/yum.repos.d/insync.repo'
+    sudo dnf install -y insync
+  fi
+
+  # Firewall GUI
+  sudo dnf install -y firewall-config
 fi
 
-# Insync
-if hash "insync" 2> /dev/null; then
-  echo -e "${YELLOW}[Skipping]${LIGHT} Insync is already installed${RESET}"
-else
-  echo -e "${PURPLE}Installing Insync${RESET}"
-  sudo rpm --import https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key
-  sudo sh -c 'echo -e "[insync]\nname=insync repo\nbaseurl=http://yum.insync.io/fedora/\$releasever/\ngpgkey=https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key" > /etc/yum.repos.d/insync.repo'
-  sudo dnf install -y insync
-fi
-
-# Firewall
+# Firewall (server + desktop)
 sudo dnf install -y firewalld
 sudo systemctl unmask firewalld
 sudo systemctl start firewalld
@@ -237,7 +252,6 @@ sudo systemctl enable firewalld
 sudo firewall-cmd --set-default-zone=home
 sudo firewall-cmd --remove-service=ssh --permanent --zone=home
 sudo firewall-cmd --reload
-sudo dnf install -y firewall-config
 
 echo -e "${PURPLE}Freeing up disk space...${RESET}"
 sudo dnf clean all

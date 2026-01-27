@@ -131,6 +131,11 @@ if [[ $PARAMS == *"--auto-yes"* ]]; then
   AUTO_YES=true
 fi
 
+if [[ $PARAMS == *"--server"* ]]; then
+  echo -e "${YELLOW}Server mode: skipping Flatpak desktop apps${RESET}"
+  exit 0
+fi
+
 # Helper function to install Flatpak (if not present) for users current distro
 function install_flatpak () {
   # Arch, Manjaro

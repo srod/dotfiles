@@ -14,7 +14,7 @@
 # MIT Licensed (C) Alicia Sykes 2022 <https://aliciasykes.com> #
 ################################################################
 
-# Apps to be installed via Pacman
+# Apps to be installed via Pacman (server + desktop)
 pacman_apps=(
   # Essentials
   'git'           # Version control
@@ -38,14 +38,12 @@ pacman_apps=(
   'most'          # Multi-window scroll pager (better less)
   'procs'         # Advanced process viewer (better ps)
   'ripgrep'       # Searching within files (better grep)
-  'scrot'         # Screenshots programmatically via CLI
   'sd'            # RegEx find and replace (better sed)
   'thefuck'       # Auto-correct miss-typed commands
   'tealdeer'      # Reader for command docs (better man)
   'tree'          # Directory listings as tree structure
   'tokei'         # Count lines of code (better cloc)
   'trash-cli'     # Record and restore removed files
-  'xsel'          # Copy paste access to the X clipboard
   'zoxide'        # Auto-learning navigation (better cd)
 
   # Security Utilities
@@ -73,6 +71,12 @@ pacman_apps=(
   'neofetch'      # Show off distro and system info
 )
 
+# Desktop-only apps (skipped with --server)
+pacman_desktop_apps=(
+  'scrot'         # Screenshots programmatically via CLI
+  'xsel'          # Copy paste access to the X clipboard
+)
+
 # Colors
 PURPLE='\033[0;37m'
 YELLOW='\033[0;93m'
@@ -86,6 +90,12 @@ PROMPT_TIMEOUT=15 # When user is prompted for input, skip after x seconds
 if [[ $* == *"--auto-yes"* ]]; then
   PROMPT_TIMEOUT=0
   REPLY='Y'
+fi
+
+if [[ $* == *"--server"* ]]; then
+  IS_SERVER=true
+else
+  pacman_apps+=("${pacman_desktop_apps[@]}")
 fi
 
 # Print intro message

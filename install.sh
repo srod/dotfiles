@@ -52,6 +52,11 @@ if [[ $PARAMS == *"--auto-yes"* ]]; then
   AUTO_YES=true
 fi
 
+# If set to server mode - skip desktop apps, GUI tools, browsers, fonts
+if [[ $PARAMS == *"--server"* ]]; then
+  IS_SERVER=true
+fi
+
 # Function that prints important text in a banner with colored border
 # First param is the text to output, then optional color and padding
 make_banner () {
@@ -364,7 +369,7 @@ function install_packages () {
   fi
   # If running in Linux desktop mode, prompt to install desktop apps via Flatpak
   flatpak_script="${DOTFILES_DIR}/scripts/installs/flatpak.sh"
-  if [[ $SYSTEM_TYPE == "Linux" ]] && [ ! -z $XDG_CURRENT_DESKTOP ] && [ -f $flatpak_script ]; then
+  if [[ $SYSTEM_TYPE == "Linux" ]] && [[ "$IS_SERVER" != true ]] && [ ! -z $XDG_CURRENT_DESKTOP ] && [ -f $flatpak_script ]; then
     chmod +x $flatpak_script
     $flatpak_script $PARAMS
   fi
