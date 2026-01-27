@@ -409,14 +409,15 @@ function install_packages () {
   fi
 
   # fnm (Fast Node Manager)
-  if [ "$SYSTEM_TYPE" = "Darwin" ]; then
-    eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
-  else
-    # Install fnm on Linux
-    curl -fsSL https://fnm.vercel.app/install | bash
-    export PATH="$HOME/.local/share/fnm:$PATH"
-    eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
+  if ! command_exists fnm; then
+    if [ "$SYSTEM_TYPE" = "Darwin" ]; then
+      brew install fnm
+    else
+      curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
+    fi
   fi
+  export PATH="$HOME/.local/share/fnm:$PATH"
+  eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
 
   fnm install --lts
   fnm default lts-latest
