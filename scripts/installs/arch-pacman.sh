@@ -74,7 +74,7 @@ pacman_apps=(
 )
 
 # Colors
-PURPLE='\033[0;35m'
+PURPLE='\033[0;36m'
 YELLOW='\033[0;93m'
 CYAN_B='\033[1;96m'
 LIGHT='\x1b[2m'

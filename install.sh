@@ -39,7 +39,7 @@ GREEN_B='\033[1;32m'
 PLAIN_B='\033[1;37m'
 RESET='\033[0m'
 GREEN='\033[0;32m'
-PURPLE='\033[0;35m'
+PURPLE='\033[0;36m'
 
 # Clear the screen
 if [[ ! $PARAMS == *"--no-clear"* ]] && [[ ! $PARAMS == *"--help"* ]] ; then
@@ -67,8 +67,8 @@ make_banner () {
 
 # Explain to the user what changes will be made
 make_intro () {
-  C2="\033[0;35m"
-  C3="\x1b[2m"
+  C2="\033[1;97m"
+  C3="\033[0;37m"
   echo -e "${CYAN_B}The seup script will do the following:${RESET}\n"\
   "${C2}(1) Pre-Setup Tasls\n"\
   "  ${C3}- Check that all requirements are met, and system is compatible\n"\
@@ -95,7 +95,7 @@ make_intro () {
   "  ${C3}- Print summary of applied changes and time taken\n"\
   "  ${C3}- Exit with appropriate status code\n\n"\
   "${PURPLE}You will be prompted at each stage, before any changes are made.${RESET}\n"\
-  "${PURPLE}For more info, see GitHub: \033[4;35mhttps://github.com/${REPO_NAME}${RESET}"
+  "${PURPLE}For more info, see GitHub: \033[4;36mhttps://github.com/${REPO_NAME}${RESET}"
 }
 
 # Cleanup tasks, run when the script exits

@@ -119,7 +119,7 @@ YELLOW='\033[0;93m'
 RED_B='\033[1;31m'
 RESET='\033[0m'
 GREEN='\033[0;32m'
-PURPLE='\033[0;35m'
+PURPLE='\033[0;36m'
 LIGHT='\x1b[2m'
 
 # Options
