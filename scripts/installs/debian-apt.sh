@@ -109,7 +109,7 @@ CYAN_B='\033[1;94m'
 LIGHT='\x1b[2m'
 RESET='\033[0m'
 
-PROMPT_TIMEOUT=15 # When user is prompted for input, skip after x seconds
+PROMPT_TIMEOUT=86400 # No practical timeout; --auto-yes overrides to 0s
 
 # If set to auto-yes - then don't wait for user reply
 if [[ $* == *"--auto-yes"* ]]; then

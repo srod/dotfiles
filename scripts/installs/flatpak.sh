@@ -123,7 +123,7 @@ PURPLE='\033[0;37m'
 LIGHT='\x1b[2m'
 
 # Options
-PROMPT_TIMEOUT=15 # When user is prompted for input, skip after x seconds
+PROMPT_TIMEOUT=86400 # No practical timeout; --auto-yes overrides to 1s
 PARAMS=$* # User-specified parameters
 
 if [[ $PARAMS == *"--auto-yes"* ]]; then

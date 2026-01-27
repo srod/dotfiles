@@ -16,7 +16,7 @@
 # Set variables for reference
 PARAMS=$* # User-specified parameters
 SYSTEM_TYPE=$(uname -s) # Get system type - Linux / MacOS (Darwin)
-PROMPT_TIMEOUT=15 # When user is prompted for input, skip after x seconds
+PROMPT_TIMEOUT=86400 # No practical timeout; --auto-yes overrides to 1s
 START_TIME=$(date +%s) # Start timer
 SRC_DIR=$(dirname ${0})
 
