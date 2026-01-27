@@ -178,12 +178,12 @@ echo -e "${CYAN_B}Would you like to install listed apps? (y/N)${RESET}\n"
 read -t $PROMPT_TIMEOUT -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-   echo -e "${PURPLE}Enabling contrib and non-free repositories...${RESET}"
-   sudo apt-add-repository contrib
-   sudo apt-add-repository non-free
-   sudo apt update
-
   if [[ "$IS_SERVER" != true ]]; then
+    echo -e "${PURPLE}Enabling contrib and non-free repositories...${RESET}"
+    sudo apt-add-repository contrib
+    sudo apt-add-repository non-free
+    sudo apt update
+
     echo -e "${PURPLE}Pre-accepting ttf-mscorefonts-installer EULA...${RESET}"
     echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
   fi
