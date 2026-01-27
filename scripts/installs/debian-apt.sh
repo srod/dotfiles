@@ -201,14 +201,15 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   done
 fi
 
-if [[ "$IS_SERVER" != true ]]; then
-  # Meslo font
-  echo -e "${PURPLE}Installing Meslo font${RESET}"
-  wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Meslo.zip
-  unzip Meslo.zip -d ~/.fonts
-  fc-cache -fv
-  rm -f Meslo.zip
+# Meslo Nerd Font (needed for Powerlevel10k)
+echo -e "${PURPLE}Installing Meslo font${RESET}"
+mkdir -p ~/.fonts
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Meslo.zip
+unzip Meslo.zip -d ~/.fonts
+fc-cache -fv
+rm -f Meslo.zip
 
+if [[ "$IS_SERVER" != true ]]; then
   # Brave
   sudo apt install -y curl
   sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
