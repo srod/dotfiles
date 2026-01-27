@@ -36,7 +36,7 @@ source "${DOTFILES_DIR}/lib/shared/colors.sh"
 source "${DOTFILES_DIR}/lib/shared/utils.sh"
 
 # Export color variables for subshell scripts
-export CYAN_B YELLOW_B RED_B GREEN_B PLAIN_B RESET GREEN PURPLE
+export CYAN_B YELLOW_B RED_B GREEN_B PLAIN_B RESET GREEN WHITE
 
 # Clear the screen
 if [[ ! $PARAMS == *"--no-clear"* ]] && [[ ! $PARAMS == *"--help"* ]] ; then
@@ -101,8 +101,8 @@ make_intro () {
   "  ${C3}- Refresh current terminal session\n"\
   "  ${C3}- Print summary of applied changes and time taken\n"\
   "  ${C3}- Exit with appropriate status code\n\n"\
-   "${PURPLE}You will be prompted at each stage, before any changes are made.${RESET}\n"\
-   "${PURPLE}For more info, see GitHub: \033[4;94mhttps://github.com/${REPO_NAME}${RESET}"
+   "${WHITE}You will be prompted at each stage, before any changes are made.${RESET}\n"\
+   "${WHITE}For more info, see GitHub: \033[4;94mhttps://github.com/${REPO_NAME}${RESET}"
 }
 
 # Cleanup tasks, run when the script exits
@@ -169,7 +169,7 @@ function pre_setup_tasks () {
   echo -e "\n${CYAN_B}Are you happy to continue? (y/N)${RESET}"
   read -t $PROMPT_TIMEOUT -n 1 -r ans_start
   if [[ ! $ans_start =~ ^[Yy]$ ]] && [[ $AUTO_YES != true ]] ; then
-    echo -e "\n${PURPLE}No worries, feel free to come back another time."\
+    echo -e "\n${WHITE}No worries, feel free to come back another time."\
     "\nTerminating...${RESET}"
     make_banner "🚧 Installation Aborted" ${YELLOW_B} 1
     exit 0
@@ -210,7 +210,7 @@ function pre_setup_tasks () {
 function setup_dot_files () {
   # If dotfiles not yet present, clone the repo
   if [[ ! -d "$DOTFILES_DIR" ]]; then
-    echo -e "${PURPLE}Dotfiles not yet present."\
+    echo -e "${WHITE}Dotfiles not yet present."\
     "Downloading ${REPO_NAME} into ${DOTFILES_DIR}${RESET}"
     echo -e "${YELLOW_B}You can change where dotfiles will be saved to,"\
     "by setting the DOTFILES_DIR env var${RESET}"
@@ -218,10 +218,10 @@ function setup_dot_files () {
     git clone --recursive ${DOTFILES_REPO} ${DOTFILES_DIR} && \
     cd "${DOTFILES_DIR}" || exit
   else # Dotfiles already downloaded, just fetch latest changes
-    echo -e "${PURPLE}Pulling changes from ${REPO_NAME} into ${DOTFILES_DIR}${RESET}"
+    echo -e "${WHITE}Pulling changes from ${REPO_NAME} into ${DOTFILES_DIR}${RESET}"
     cd "${DOTFILES_DIR}" && \
     git pull origin main && \
-    echo -e "${PURPLE}Updating submodules${RESET}" && \
+    echo -e "${WHITE}Updating submodules${RESET}" && \
     git submodule update --recursive --remote --init
   fi
 
@@ -232,7 +232,7 @@ function setup_dot_files () {
   fi
 
   # Set up symlinks with dotbot
-  echo -e "${PURPLE}Setting up Symlinks${RESET}"
+  echo -e "${WHITE}Setting up Symlinks${RESET}"
   cd "${DOTFILES_DIR}" || exit
   git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
   git submodule update --init --recursive "${DOTBOT_DIR}"
@@ -248,7 +248,7 @@ function apply_preferences () {
     echo -e "\n${CYAN_B}Would you like to set ZSH as your default shell? (y/N)${RESET}"
     read -t $PROMPT_TIMEOUT -n 1 -r ans_zsh
     if [[ $ans_zsh =~ ^[Yy]$ ]] || [[ $AUTO_YES = true ]] ; then
-      echo -e "${PURPLE}Setting ZSH as default shell${RESET}"
+      echo -e "${WHITE}Setting ZSH as default shell${RESET}"
       # chsh -s $(which zsh) $USER
       chsh -s "$(grep /zsh$ /etc/shells | tail -1)"
     fi
@@ -259,11 +259,11 @@ function apply_preferences () {
   read -t $PROMPT_TIMEOUT -n 1 -r ans_cliplugins
   if [[ $ans_cliplugins =~ ^[Yy]$ ]] || [[ $AUTO_YES = true ]] ; then
     # Install / update vim plugins with Plug
-    # echo -e "\n${PURPLE}Installing Vim Plugins${RESET}"
+    # echo -e "\n${WHITE}Installing Vim Plugins${RESET}"
     # vim +PlugInstall +qall
 
     # Install / update ZSH plugins with Antigen
-    echo -e "${PURPLE}Installing ZSH Plugins${RESET}"
+    echo -e "${WHITE}Installing ZSH Plugins${RESET}"
     /bin/zsh -i -c "antigen update && antigen-apply"
   fi
 
@@ -272,7 +272,7 @@ function apply_preferences () {
   read -t $PROMPT_TIMEOUT -n 1 -r ans_syspref
   if [[ $ans_syspref =~ ^[Yy]$ ]] || [[ $AUTO_YES = true ]]; then
     if [ "$SYSTEM_TYPE" = "Darwin" ]; then
-      echo -e "\n${PURPLE}Applying MacOS system preferences,\
+      echo -e "\n${WHITE}Applying MacOS system preferences,\
       ensure you've understood before proceeding${RESET}\n"
       macos_settings_dir="$DOTFILES_DIR/scripts/macos-setup"
       for macScript in "macos-security.sh" "macos-preferences.sh" "macos-apps.sh"; do
@@ -280,7 +280,7 @@ function apply_preferences () {
         "$macos_settings_dir/$macScript" --quick-exit --yes-to-all
       done
     else
-      echo -e "\n${PURPLE}Applying preferences to GNOME apps, ensure you've understood before proceeding${RESET}\n"
+      echo -e "\n${WHITE}Applying preferences to GNOME apps, ensure you've understood before proceeding${RESET}\n"
       # dconf_script="$DOTFILES_DIR/scripts/linux/dconf-prefs.sh"
       # chmod +x $dconf_script && $dconf_script
     fi
@@ -294,7 +294,7 @@ function install_macos_packages () {
     echo -e "\n${CYAN_B}Would you like to install Homebrew? (y/N)${RESET}"
     read -t $PROMPT_TIMEOUT -n 1 -r ans_homebrewins
     if [[ $ans_homebrewins =~ ^[Yy]$ ]] || [[ $AUTO_YES = true ]] ; then
-      echo -en "🍺 ${PURPLE}Installing Homebrew...${RESET}\n"
+      echo -en "🍺 ${WHITE}Installing Homebrew...${RESET}\n"
       brew_url='https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh'
       /bin/bash -c "$(curl -fsSL $brew_url)"
       export PATH=/opt/homebrew/bin:$PATH
@@ -302,27 +302,27 @@ function install_macos_packages () {
   fi
   # Update / Install the Homebrew packages in ~/.Brewfile
   if command_exists brew && [ -f "$DOTFILES_DIR/scripts/installs/Brewfile" ]; then
-    echo -e "\n${PURPLE}Updating homebrew and packages...${RESET}"
+    echo -e "\n${WHITE}Updating homebrew and packages...${RESET}"
     brew update # Update Brew to latest version
     brew upgrade # Upgrade all installed casks
     brew bundle --global --file $DOTFILES_DIR/scripts/installs/Brewfile # Install all listed Brew apps
     brew cleanup # Remove stale lock files and outdated downloads
     killall Finder # Restart finder (required for some apps)
   else
-    echo -e "${PURPLE}Skipping Homebrew as requirements not met${RESET}"
+    echo -e "${WHITE}Skipping Homebrew as requirements not met${RESET}"
   fi
   # Check for MacOS software updates, and ask user if they'd like to install
   echo -e "\n${CYAN_B}Would you like to check for OX X system updates? (y/N)${RESET}"
   read -t $PROMPT_TIMEOUT -n 1 -r ans_macoscheck
   if [[ $ans_macoscheck =~ ^[Yy]$ ]] || [[ $AUTO_YES = true ]] ; then
-    echo -e "${PURPLE}Checking for software updates...${RESET}"
+    echo -e "${WHITE}Checking for software updates...${RESET}"
     pending_updates=$(softwareupdate -l 2>&1)
     if [[ ! $pending_updates == *"No new software available."* ]]; then
-      echo -e "${PURPLE}A new version of Mac OS is available${RESET}"
+      echo -e "${WHITE}A new version of Mac OS is available${RESET}"
       echo -e "${CYAN_B}Would you like to update to the latest version of MacOS? (y/N)${RESET}"
       read -t $PROMPT_TIMEOUT -n 1 -r ans_macosupdate
       if [[ $ans_macosupdate =~ ^[Yy]$ ]] || [[ $AUTO_YES = true ]]; then
-        echo -e "${PURPLE}Updating MacOS${RESET}"
+        echo -e "${WHITE}Updating MacOS${RESET}"
         softwareupdate -i -a
       fi
     else
@@ -343,7 +343,7 @@ function install_packages () {
   echo -e "\n${CYAN_B}Would you like to install / update system packages? (y/N)${RESET}"
   read -t $PROMPT_TIMEOUT -n 1 -r ans_syspackages
   if [[ ! $ans_syspackages =~ ^[Yy]$ ]] && [[ $AUTO_YES != true ]] ; then
-    echo -e "\n${PURPLE}Skipping package installs${RESET}"
+    echo -e "\n${WHITE}Skipping package installs${RESET}"
     return
   fi
   if [ "$SYSTEM_TYPE" = "Darwin" ]; then
@@ -377,9 +377,9 @@ function install_packages () {
   zsh_bin=$(grep /zsh$ /etc/shells | tail -1)
 
   if [ "$zsh_bin" != "" ]; then
-    echo -e "${PURPLE}ZSH installed${RESET}"
+    echo -e "${WHITE}ZSH installed${RESET}"
   else
-    echo -e "${PURPLE}Installing ZSH${RESET}"
+    echo -e "${WHITE}Installing ZSH${RESET}"
     if [ "$SYSTEM_TYPE" = "Darwin" ]; then
       brew install zsh
     elif [ -f "/etc/arch-release" ]; then
@@ -393,9 +393,9 @@ function install_packages () {
 
   # VIM
   if command_exists vim; then
-    echo -e "${PURPLE}VIM installed${RESET}"
+    echo -e "${WHITE}VIM installed${RESET}"
   else
-    echo -e "${PURPLE}Installing VIM${RESET}"
+    echo -e "${WHITE}Installing VIM${RESET}"
     if [ "$SYSTEM_TYPE" = "Darwin" ]; then
       brew install vim
     elif [ -f "/etc/arch-release" ]; then

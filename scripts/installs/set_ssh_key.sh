@@ -3,7 +3,7 @@
 DOTFILES_DIR="${DOTFILES_DIR:-$(cd "$(dirname "$0")/../.." && pwd)}"
 source "${DOTFILES_DIR}/lib/shared/colors.sh"
 
-echo -e "${PURPLE}Generating an SSH key${RESET}"
+echo -e "${WHITE}Generating an SSH key${RESET}"
 
 read -r -p "Email: " email
 

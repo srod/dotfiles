@@ -133,13 +133,13 @@ if [[ $PARAMS == *"--auto-yes"* ]]; then
 fi
 
 # Print intro message
-echo -e "${PURPLE}Starting Fedora package install & update script"
+echo -e "${WHITE}Starting Fedora package install & update script"
 echo -e "${YELLOW}Before proceeding, ensure your happy with all the packages listed in \e[4m${0##*/}"
 echo -e "${RESET}"
 
 # Check if running as root, and prompt for password if not
 if [ "$EUID" -ne 0 ]; then
-  echo -e "${PURPLE}Elevated permissions are required to adjust system settings."
+  echo -e "${WHITE}Elevated permissions are required to adjust system settings."
   echo -e "${CYAN_B}Please enter your password...${RESET}"
   sudo -v
   if [ $? -eq 1 ]; then
@@ -159,7 +159,7 @@ echo -e "${CYAN_B}Would you like to update package database? (y/N)${RESET}\n"
 read -t $PROMPT_TIMEOUT -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-  echo -e "${PURPLE}Updating database...${RESET}"
+  echo -e "${WHITE}Updating database...${RESET}"
   sudo dnf update
 fi
 
@@ -168,7 +168,7 @@ echo -e "${CYAN_B}Would you like to upgrade currently installed packages? (y/N)$
 read -t $PROMPT_TIMEOUT -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-  echo -e "${PURPLE}Upgrading installed packages...${RESET}"
+  echo -e "${WHITE}Upgrading installed packages...${RESET}"
   sudo dnf upgrade
 fi
 
@@ -177,7 +177,7 @@ echo -e "${CYAN_B}Would you like to clear unused package caches? (y/N)${RESET}\n
 read -t $PROMPT_TIMEOUT -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-  echo -e "${PURPLE}Freeing up disk space...${RESET}"
+  echo -e "${WHITE}Freeing up disk space...${RESET}"
   sudo dnf clean all
 fi
 
@@ -186,14 +186,14 @@ echo -e "${CYAN_B}Would you like to install listed apps? (y/N)${RESET}\n"
 read -t $PROMPT_TIMEOUT -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-  echo -e "${PURPLE}Starting install...${RESET}"
+  echo -e "${WHITE}Starting install...${RESET}"
   for app in "${fedora_apps[@]}"; do
     if hash "${app}" 2> /dev/null; then
       echo -e "${YELLOW}[Skipping]${LIGHT} ${app} is already installed${RESET}"
     elif hash flatpak 2> /dev/null && [[ ! -z $(echo $(flatpak list --columns=ref | grep $app)) ]]; then
       echo -e "${YELLOW}[Skipping]${LIGHT} ${app} is already installed via Flatpak${RESET}"
     else
-      echo -e "${PURPLE}[Installing]${LIGHT} Downloading ${app}...${RESET}"
+      echo -e "${WHITE}[Installing]${LIGHT} Downloading ${app}...${RESET}"
       sudo dnf install ${app} -y
     fi
   done
@@ -221,7 +221,7 @@ if [[ "$IS_SERVER" != true ]]; then
   if hash "code" 2> /dev/null; then
     echo -e "${YELLOW}[Skipping]${LIGHT} Visual Studio Code is already installed${RESET}"
   else
-    echo -e "${PURPLE}Visual Studio Code${RESET}"
+    echo -e "${WHITE}Visual Studio Code${RESET}"
     sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
     sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
     sudo dnf check-update
@@ -232,7 +232,7 @@ if [[ "$IS_SERVER" != true ]]; then
   if hash "insync" 2> /dev/null; then
     echo -e "${YELLOW}[Skipping]${LIGHT} Insync is already installed${RESET}"
   else
-    echo -e "${PURPLE}Installing Insync${RESET}"
+    echo -e "${WHITE}Installing Insync${RESET}"
     sudo rpm --import https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key
     sudo sh -c 'echo -e "[insync]\nname=insync repo\nbaseurl=http://yum.insync.io/fedora/\$releasever/\ngpgkey=https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key" > /etc/yum.repos.d/insync.repo'
     sudo dnf install -y insync
@@ -251,9 +251,9 @@ sudo firewall-cmd --set-default-zone=home
 sudo firewall-cmd --remove-service=ssh --permanent --zone=home
 sudo firewall-cmd --reload
 
-echo -e "${PURPLE}Freeing up disk space...${RESET}"
+echo -e "${WHITE}Freeing up disk space...${RESET}"
 sudo dnf clean all
 
-echo -e "${PURPLE}Finished installing / updating Fedora packages.${RESET}"
+echo -e "${WHITE}Finished installing / updating Fedora packages.${RESET}"
 
 # EOF

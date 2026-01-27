@@ -31,7 +31,7 @@ source "${DOTFILES_DIR}/lib/shared/colors.sh"
 
 # Semantic aliases (used throughout this file)
 PRIMARY_COLOR="$CYAN_B"
-ACCENT_COLOR="$PURPLE"
+ACCENT_COLOR="$WHITE"
 INFO_COLOR="$PLAIN_B"
 SUCCESS_COLOR="$GREEN"
 WARN_1="$RED_B"

@@ -125,13 +125,13 @@ else
 fi
 
 # Print intro message
-echo -e "${PURPLE}Starting Debian/ Ubuntu package install & update script"
+echo -e "${WHITE}Starting Debian/ Ubuntu package install & update script"
 echo -e "${YELLOW}Before proceeding, ensure your happy with all the packages listed in \e[4m${0##*/}"
 echo -e "${RESET}"
 
 # Check if running as root, and prompt for password if not
 if [ "$EUID" -ne 0 ]; then
-  echo -e "${PURPLE}Elevated permissions are required to adjust system settings."
+  echo -e "${WHITE}Elevated permissions are required to adjust system settings."
   echo -e "${CYAN_B}Please enter your password...${RESET}"
   sudo -v
   if [ $? -eq 1 ]; then
@@ -152,7 +152,7 @@ echo -e "${CYAN_B}Would you like to update package database? (y/N)${RESET}\n"
 read -t $PROMPT_TIMEOUT -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-  echo -e "${PURPLE}Updating database...${RESET}"
+  echo -e "${WHITE}Updating database...${RESET}"
   sudo apt update
 fi
 
@@ -161,7 +161,7 @@ echo -e "${CYAN_B}Would you like to upgrade currently installed packages? (y/N)$
 read -t $PROMPT_TIMEOUT -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-  echo -e "${PURPLE}Upgrading installed packages...${RESET}"
+  echo -e "${WHITE}Upgrading installed packages...${RESET}"
   sudo apt upgrade
 fi
 
@@ -170,7 +170,7 @@ echo -e "${CYAN_B}Would you like to clear unused package caches? (y/N)${RESET}\n
 read -t $PROMPT_TIMEOUT -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-  echo -e "${PURPLE}Freeing up disk space...${RESET}"
+  echo -e "${WHITE}Freeing up disk space...${RESET}"
   sudo apt autoclean
 fi
 
@@ -180,23 +180,23 @@ read -t $PROMPT_TIMEOUT -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   if [[ "$IS_SERVER" != true ]]; then
-    echo -e "${PURPLE}Enabling contrib and non-free repositories...${RESET}"
+    echo -e "${WHITE}Enabling contrib and non-free repositories...${RESET}"
     sudo apt-add-repository contrib
     sudo apt-add-repository non-free
     sudo apt update
 
-    echo -e "${PURPLE}Pre-accepting ttf-mscorefonts-installer EULA...${RESET}"
+    echo -e "${WHITE}Pre-accepting ttf-mscorefonts-installer EULA...${RESET}"
     echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
   fi
 
-  echo -e "${PURPLE}Starting install...${RESET}"
+  echo -e "${WHITE}Starting install...${RESET}"
   for app in "${debian_apps[@]}"; do
     if hash "${app}" 2> /dev/null; then
       echo -e "${YELLOW}[Skipping]${LIGHT} ${app} is already installed${RESET}"
     elif hash flatpak 2> /dev/null && [[ ! -z $(echo $(flatpak list --columns=ref | grep $app)) ]]; then
       echo -e "${YELLOW}[Skipping]${LIGHT} ${app} is already installed via Flatpak${RESET}"
     else
-      echo -e "${PURPLE}[Installing]${LIGHT} Downloading ${app}...${RESET}"
+      echo -e "${WHITE}[Installing]${LIGHT} Downloading ${app}...${RESET}"
       sudo apt install ${app} --assume-yes
     fi
   done
@@ -222,7 +222,7 @@ if [[ "$IS_SERVER" != true ]]; then
   if hash "code" 2> /dev/null; then
     echo -e "${YELLOW}[Skipping]${LIGHT} Visual Studio Code is already installed${RESET}"
   else
-    echo -e "${PURPLE}Visual Studio Code${RESET}"
+    echo -e "${WHITE}Visual Studio Code${RESET}"
     wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
     sudo install -o root -g root -m 644 microsoft.gpg /usr/share/keyrings/microsoft.gpg
     rm -f microsoft.gpg
@@ -232,9 +232,9 @@ if [[ "$IS_SERVER" != true ]]; then
   fi
 fi
 
-echo -e "${PURPLE}Freeing up disk space...${RESET}"
+echo -e "${WHITE}Freeing up disk space...${RESET}"
 sudo apt autoclean
 
-echo -e "${PURPLE}Finished installing / updating Debian packages.${RESET}"
+echo -e "${WHITE}Finished installing / updating Debian packages.${RESET}"
 
 # EOF

@@ -16,7 +16,7 @@ reinstall_modules () {
     # Check file exists, remove it and print message
     check-and-remove() {
       if [ -d "$project_dir/$1" ]; then
-        echo -e "\e[35mRemoving $1...\e[0m"
+        echo -e "\e[37mRemoving $1...\e[0m"
         rm -rf "$project_dir/$1"
       fi
     }
@@ -26,15 +26,15 @@ reinstall_modules () {
     check-and-remove 'package-lock.json'
     # Reinstall with PNPM (or yarn or NPM)
     if hash 'pnpm' 2> /dev/null; then
-      echo -e "\e[35mReinstalling with pnpm...\e[0m"
+      echo -e "\e[37mReinstalling with pnpm...\e[0m"
       pnpm install
     elif hash 'yarn' 2> /dev/null; then
-      echo -e "\e[35mReinstalling with yarn...\e[0m"
+      echo -e "\e[37mReinstalling with yarn...\e[0m"
       yarn
-      echo -e "\e[35mCleaning Up...\e[0m"
+      echo -e "\e[37mCleaning Up...\e[0m"
       yarn autoclean
     elif hash 'npm' 2> /dev/null; then
-      echo -e "\e[35mReinstalling with NPM...\e[0m"
+      echo -e "\e[37mReinstalling with NPM...\e[0m"
       npm install
     else
       echo -e "🚫\033[0;91m Unable to proceed, pnpm/ yarn/ npm not installed\e[0m"

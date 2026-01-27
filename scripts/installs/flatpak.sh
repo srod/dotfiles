@@ -135,19 +135,19 @@ fi
 function install_flatpak () {
   # Arch, Manjaro
   if hash "pacman" 2> /dev/null; then
-    echo -e "${PURPLE}Installing Flatpak via Pacman${RESET}"
+    echo -e "${WHITE}Installing Flatpak via Pacman${RESET}"
     sudo pacman -S flatpak
   # Debian, Ubuntu, PopOS, Raspian
   elif hash "apt" 2> /dev/null; then
-    echo -e "${PURPLE}Installing Flatpak via apt get${RESET}"
+    echo -e "${WHITE}Installing Flatpak via apt get${RESET}"
     sudo apt install flatpak
   # Alpine
   elif hash "apk" 2> /dev/null; then
-    echo -e "${PURPLE}Installing Flatpak via apk add${RESET}"
+    echo -e "${WHITE}Installing Flatpak via apk add${RESET}"
     sudo apk add flatpak
   # Red Hat, CentOS
   elif hash "yum" 2> /dev/null; then
-    echo -e "${PURPLE}Installing Flatpak via Yum${RESET}"
+    echo -e "${WHITE}Installing Flatpak via Yum${RESET}"
     sudo yum install flatpak
   fi
 }
@@ -192,7 +192,7 @@ function install_app () {
 
 function print_usage () {
   echo -e "${CYAN_B}Flatpak Linux Desktop App Installation and Update script${RESET}"
-  echo -e "${PURPLE}The following tasks will be completed:\n"\
+  echo -e "${WHITE}The following tasks will be completed:\n"\
   "- Check Flatpak is installed correctly / prompt to install if not\n"\
   "- Add the flathub repo, if not already present\n"\
   "- Upgrade Flatpak, and update all exiting installed apps\n"\
@@ -217,7 +217,7 @@ echo -e "${CYAN_B}Starting Flatpak App Installation Script${RESET}"
 
 # Check that Flatpak is present, prompt to install or exit if not
 if ! hash flatpak 2> /dev/null; then
-  echo -e "${PURPLE}Flatpak isn't yet installed on your system${RESET}"
+  echo -e "${WHITE}Flatpak isn't yet installed on your system${RESET}"
   echo -e "${CYAN_B}Would you like to install Flatpak now?${RESET}\n"
   read -t $PROMPT_TIMEOUT -n 1 -r
   echo
@@ -230,17 +230,17 @@ if ! hash flatpak 2> /dev/null; then
 fi
 
 # Add FlatHub as upstream repo, if not already present
-echo -e "${PURPLE}Adding Flathub repo${RESET}"
+echo -e "${WHITE}Adding Flathub repo${RESET}"
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 # Update currently installed apps
-echo -e "${PURPLE}Updating installed apps${RESET}"
+echo -e "${WHITE}Updating installed apps${RESET}"
 flatpak update --assumeyes --noninteractive
 
 # Install each app listed above (if not already installed)
-echo -e "${PURPLE}Installing apps defined in manifest${RESET}"
+echo -e "${WHITE}Installing apps defined in manifest${RESET}"
 for app in "${flatpak_apps[@]}"; do
   install_app "$app"
 done
 
-echo -e "${PURPLE}Finished processing Flatpak apps${RESET}"
+echo -e "${WHITE}Finished processing Flatpak apps${RESET}"

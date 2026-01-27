@@ -26,7 +26,7 @@
 source "${DOTFILES}/lib/shared/colors.sh"
 source "${DOTFILES}/lib/shared/utils.sh"
 
-# Alias for semantic naming (WHITE_B used instead of PURPLE_B)
+# Alias for semantic naming (WHITE_B used instead of WHITE_B)
 WHITE_B='\033[1;37m'
 
 # Helper func, to check if a file or directory exists
@@ -55,7 +55,7 @@ function fuds_check_space () {
   diskMsg=$(df -H | awk '$NF=="/"{
   printf("You'\''re using %sB out of %sB total\n", $3, $2) }')
   diskMsg2=$(df -H | awk '$NF=="/"{ printf("There'\''s %sB of free space remaining\n", $4) }')
-  echo -e "$WHITE_B$diskMsg$PURPLE\n$diskMsg2$RESET"
+  echo -e "$WHITE_B$diskMsg$WHITE\n$diskMsg2$RESET"
 }
 
 function fuds_clean_pacman () {
@@ -120,8 +120,8 @@ function fuds_show_help () {
   fuds_print_title
 
   echo -e "${WHITE_B}Free up disk space on *nix based systems\n"
-  echo -e "Usage:${PURPLE} free-up-disk-space [OPTION]\n"
-  echo -e "${WHITE_B}Options:${PURPLE}"
+  echo -e "Usage:${WHITE} free-up-disk-space [OPTION]\n"
+  echo -e "${WHITE_B}Options:${WHITE}"
   echo "  -h, --help    Show this help message"
   echo "  -r, --run     Run all tasks"
   echo "  -p, --pacman  Clean pacman cache and remove orphaned packages"
@@ -134,13 +134,13 @@ function fuds_show_help () {
   echo "  -d, --dups    Find and delete duplicated files"
   echo "  -b, --broken  Remove broken symlinks and empty files + folders"
   echo ""
-  echo -e "${WHITE_B}Examples:${PURPLE}"
+  echo -e "${WHITE_B}Examples:${WHITE}"
   echo "  free-up-disk-space"
   echo "  free-up-disk-space -p -f -a -s -j -t -c -d -b"
   echo "  free-up-disk-space --apt --snap --auto-yes"
   echo ""
   echo -e "${WHITE_B}Note:"
-  echo -e "  ${PURPLE}Some methods are not available for all operating systems"
+  echo -e "  ${WHITE}Some methods are not available for all operating systems"
   echo -e "  By default, it will automatically detect which options are available"
   echo -e "  You will be prompted before any changes are made (unless --auto-yes is used)${RESET}"
 }

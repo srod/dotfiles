@@ -101,7 +101,7 @@ else
 fi
 
 # Print intro message
-echo -e "\n${PURPLE}Starting Arch package install / update script"
+echo -e "\n${WHITE}Starting Arch package install / update script"
 echo -e "${LIGHT}The following script is for Arch / Arch-based headless systems, and will"
 echo -e "update database, upgrade packages, clear cache then install all listed CLI apps."
 echo -e "${YELLOW}Before proceeding, ensure your happy with all the packages listed in \e[4m${0##*/}"
@@ -109,7 +109,7 @@ echo -e "${RESET}"
 
 # Check if running as root, and prompt for password if not
 if [ "$EUID" -ne 0 ]; then
-  echo -e "${PURPLE}Elevated permissions are required to adjust system settings."
+  echo -e "${WHITE}Elevated permissions are required to adjust system settings."
   echo -e "${CYAN_B}Please enter your password...${RESET}"
   sudo -v
   if [ $? -eq 1 ]; then
@@ -129,7 +129,7 @@ echo -e "${CYAN_B}Would you like to update package database? (y/N)${RESET}\n"
 read -t $PROMPT_TIMEOUT -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-  echo -e "${PURPLE}Updating database...${RESET}"
+  echo -e "${WHITE}Updating database...${RESET}"
   sudo pacman -Syy --noconfirm
 fi
 
@@ -138,7 +138,7 @@ echo -e "${CYAN_B}Would you like to upgrade currently installed packages? (y/N)$
 read -t $PROMPT_TIMEOUT -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-  echo -e "${PURPLE}Upgrading installed packages...${RESET}"
+  echo -e "${WHITE}Upgrading installed packages...${RESET}"
   sudo pacman -Syu --noconfirm
 fi
 
@@ -147,7 +147,7 @@ echo -e "${CYAN_B}Would you like to clear unused package caches? (y/N)${RESET}\n
 read -t $PROMPT_TIMEOUT -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-  echo -e "${PURPLE}Freeing up disk space...${RESET}"
+  echo -e "${WHITE}Freeing up disk space...${RESET}"
   sudo pacman -Sc --noconfirm
   paccache -r
 fi
@@ -157,7 +157,7 @@ echo -e "${CYAN_B}Would you like to install listed apps? (y/N)${RESET}\n"
 read -t $PROMPT_TIMEOUT -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-  echo -e "${PURPLE}Starting install...${RESET}"
+  echo -e "${WHITE}Starting install...${RESET}"
   for app in "${pacman_apps[@]}"; do
     if hash "${app}" 2> /dev/null; then
       echo -e "${YELLOW}[Skipping]${LIGHT} ${app} is already installed${RESET}"
@@ -166,7 +166,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     elif hash flatpak 2> /dev/null && [[ ! -z $(echo $(flatpak list --columns=ref | grep $app)) ]]; then
       echo -e "${YELLOW}[Skipping]${LIGHT} ${app} is already installed via Flatpak${RESET}"
     else
-      echo -e "${PURPLE}[Installing]${LIGHT} Downloading ${app}...${RESET}"
+      echo -e "${WHITE}[Installing]${LIGHT} Downloading ${app}...${RESET}"
       sudo pacman -S ${app} --needed --noconfirm
     fi
   done
@@ -175,6 +175,6 @@ fi
 # Meslo Nerd Font (needed for Powerlevel10k)
 install_meslo_font
 
-echo -e "${PURPLE}Finished installing / updating Arch packages.${RESET}"
+echo -e "${WHITE}Finished installing / updating Arch packages.${RESET}"
 
 # EOF

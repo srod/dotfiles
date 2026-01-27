@@ -20,7 +20,7 @@ core_packages=(
 )
 
 # Color variables
-PURPLE='\033[0;37m'
+WHITE='\033[0;37m'
 YELLOW='\033[0;93m'
 LIGHT='\x1b[2m'
 RESET='\033[0m'
@@ -30,7 +30,7 @@ PARAMS="$*"
 
 # Shows help menu / introduction
 function print_usage () {
-  echo -e "${PURPLE}Prerequisite Dependency Installation Script${LIGHT}\n"\
+  echo -e "${WHITE}Prerequisite Dependency Installation Script${LIGHT}\n"\
   "There's a few packages that are needed in order to continue with setting up dotfiles.\n"\
   "This script will detect distro and use appropriate package manager to install apps.\n"\
   "Elavated permissions may be required. Ensure you've read the script before proceeding."\
@@ -38,23 +38,23 @@ function print_usage () {
 }
 
 function install_debian () {
-  echo -e "${PURPLE}Installing ${1} via apt-get${RESET}"
+  echo -e "${WHITE}Installing ${1} via apt-get${RESET}"
   sudo apt install $1
 }
 function install_fedora () {
-  echo -e "${PURPLE}Installing ${1} via dnf${RESET}"
+  echo -e "${WHITE}Installing ${1} via dnf${RESET}"
   sudo dnf install -y $1
 }
 function install_arch () {
-  echo -e "${PURPLE}Installing ${1} via Pacman${RESET}"
+  echo -e "${WHITE}Installing ${1} via Pacman${RESET}"
   sudo pacman -S $1
 }
 function install_mac () {
-  echo -e "${PURPLE}Installing ${1} via Homebrew${RESET}"
+  echo -e "${WHITE}Installing ${1} via Homebrew${RESET}"
   brew install $1
 }
 function get_homebrew () {
-  echo -e "${PURPLE}Setting up Homebrew${RESET}"
+  echo -e "${WHITE}Setting up Homebrew${RESET}"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   export PATH=/opt/homebrew/bin:$PATH
 }
@@ -82,7 +82,7 @@ if [[ $PARAMS == *"--help"* ]]; then exit; fi
 
 # Ask user if they'd like to proceed
 if [[ ! $PARAMS == *"--auto-yes"* ]] ; then
-  echo -e "${PURPLE}Are you happy to continue? (y/N)${RESET}"
+  echo -e "${WHITE}Are you happy to continue? (y/N)${RESET}"
   read -t 15 -n 1 -r
   echo
   if [[ ! $REPLY =~ ^[Yy]$ ]]; then
@@ -101,5 +101,5 @@ for app in "${core_packages[@]}"; do
 done
 
 # All done
-echo -e "\n${PURPLE}Jobs complete, exiting${RESET}"
+echo -e "\n${WHITE}Jobs complete, exiting${RESET}"
 exit 0
