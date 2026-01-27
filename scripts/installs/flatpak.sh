@@ -113,14 +113,9 @@ flatpak_apps=(
   # Missing: Trewsorit, EteSync, Veracrypt, Ledger
 )
 
-# Color Variables
-CYAN_B='\033[1;94m'
-YELLOW='\033[0;93m'
-RED_B='\033[1;31m'
-RESET='\033[0m'
-GREEN='\033[0;32m'
-PURPLE='\033[0;37m'
-LIGHT='\x1b[2m'
+# Color Variables (from shared lib)
+DOTFILES_DIR="${DOTFILES_DIR:-$(cd "$(dirname "$0")/../.." && pwd)}"
+source "${DOTFILES_DIR}/lib/shared/colors.sh"
 
 # Options
 PROMPT_TIMEOUT=86400 # No practical timeout; --auto-yes overrides to 1s
