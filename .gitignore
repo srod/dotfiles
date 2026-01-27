@@ -80,3 +80,4 @@ Sessionx.vim
 .netrwhist
 tags
 [._]*.un~
+.sisyphus/
