@@ -32,14 +32,14 @@ DOTBOT_DIR="lib/dotbot"
 DOTBOT_BIN="bin/dotbot"
 
 # Color Variables
-CYAN_B='\033[1;96m'
+CYAN_B='\033[1;94m'
 YELLOW_B='\033[1;93m'
 RED_B='\033[1;31m'
 GREEN_B='\033[1;32m'
 PLAIN_B='\033[1;37m'
 RESET='\033[0m'
 GREEN='\033[0;32m'
-PURPLE='\033[0;36m'
+PURPLE='\033[0;37m'
 
 # Clear the screen
 if [[ ! $PARAMS == *"--no-clear"* ]] && [[ ! $PARAMS == *"--help"* ]] ; then
@@ -94,8 +94,8 @@ make_intro () {
   "  ${C3}- Refresh current terminal session\n"\
   "  ${C3}- Print summary of applied changes and time taken\n"\
   "  ${C3}- Exit with appropriate status code\n\n"\
-  "${PURPLE}You will be prompted at each stage, before any changes are made.${RESET}\n"\
-  "${PURPLE}For more info, see GitHub: \033[4;36mhttps://github.com/${REPO_NAME}${RESET}"
+   "${PURPLE}You will be prompted at each stage, before any changes are made.${RESET}\n"\
+   "${PURPLE}For more info, see GitHub: \033[4;94mhttps://github.com/${REPO_NAME}${RESET}"
 }
 
 # Cleanup tasks, run when the script exits

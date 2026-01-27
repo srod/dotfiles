@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Colors and re-used string components
-pre_general='\033[1;96m'
+pre_general='\033[1;94m'
 pre_success='  \033[1;92m✔'
 pre_failure='  \033[1;91m✗'
 post_string='\x1b[0m'

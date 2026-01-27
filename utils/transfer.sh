@@ -7,8 +7,8 @@
 
 # Once upload is complete, checks response is correct and prints to console
 output_secret_link() {
-  echo -e "\033[1;96m\nTransfer Complete 📤\033[0m"
-  echo -e "\033[4;36m${1}\033[0m"
+   echo -e "\033[1;94m\nTransfer Complete 📤\033[0m"
+   echo -e "\033[4;94m${1}\033[0m"
 }
 
 # Uploads file to file share service
@@ -53,9 +53,9 @@ transfer () {
 
 # Shows usage instructions
 transfer_help () {
-  welcome_msg="\033[1;33mHelper script for transfering files via transfer.sh\n"
-  welcome_msg="$welcome_msg\033[0;33mInvoke script with file(s) or a directory to upload\n"
-  welcome_msg="$welcome_msg\033[1;33mE.g.\033[0;93m\n   $ transfer hello.txt\n"
+   welcome_msg="\033[1;94mHelper script for transfering files via transfer.sh\n"
+   welcome_msg="$welcome_msg\033[0;37mInvoke script with file(s) or a directory to upload\n"
+   welcome_msg="$welcome_msg\033[1;94mE.g.\033[0;93m\n   $ transfer hello.txt\n"
   welcome_msg="$welcome_msg   $ transfer file1.txt file2.txt file3.txt\n   $ transfer my-folder/\n"
   echo -e $welcome_msg
 }

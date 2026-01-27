@@ -23,15 +23,15 @@
 ######################################################################
 
 # Color Variables
-CYAN_B='\033[1;96m'
+CYAN_B='\033[1;94m'
 YELLOW_B='\033[1;93m'
 RED_B='\033[1;31m'
 GREEN_B='\033[1;32m'
 PLAIN_B='\033[1;37m'
 RESET='\033[0m'
 GREEN='\033[0;32m'
-PURPLE='\033[0;35m'
-PURPLE_B='\033[1;35m'
+PURPLE='\033[0;37m'
+PURPLE_B='\033[1;37m'
 
 # Herlper func, to check if a command exists
 function fuds_command_exists () {

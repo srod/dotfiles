@@ -5,7 +5,7 @@
 # https://github.com/devmatteini/dotfiles/blob/b7ed3facec837421b10bc772fdc54de006d2b4a6/scripts/wzp
 
 # Colors and re-used string components
-pre_general='\033[1;96m'
+pre_general='\033[1;94m'
 pre_success='  \033[1;92m✔'
 pre_failure='  \033[1;91m✗'
 post_string='\x1b[0m'

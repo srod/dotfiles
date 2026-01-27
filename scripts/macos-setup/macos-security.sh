@@ -26,8 +26,8 @@ start_time=$(date +%s)
 params="$params $*"
 
 # Color variables
-PRIMARY_COLOR='\033[1;33m'
-ACCENT_COLOR='\033[0;36m'
+PRIMARY_COLOR='\033[1;94m'
+ACCENT_COLOR='\033[0;94m'
 INFO_COLOR='\033[0;37m'
 SUCCESS_COLOR='\033[0;32m'
 WARN_1='\033[1;31m'

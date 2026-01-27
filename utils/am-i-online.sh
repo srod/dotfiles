@@ -5,7 +5,7 @@
 # Licensed under MIT, (C) Alicia Sykes 2022
 
 # Colors and re-used string components
-pre_general='\033[1;96m'
+pre_general='\033[1;94m'
 pre_success='  \033[1;92m✔'
 pre_failure='  \033[1;91m✗'
 post_string='\x1b[0m'
@@ -56,8 +56,8 @@ function aio_check-interfaces() {
 # Shows help menu
 function aio_help() {
   echo -e "${pre_general}Utility for checking connectivity status${post_string}"
-  echo -e "\e[0;96mUsage:${post_string}"
-  echo -e "  \e[0;96m$ online${post_string}"
+   echo -e "\e[0;94mUsage:${post_string}"
+   echo -e "  \e[0;94m$ online${post_string}"
 }
 
 # Runs everything, prints output

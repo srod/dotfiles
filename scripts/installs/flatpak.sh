@@ -114,12 +114,12 @@ flatpak_apps=(
 )
 
 # Color Variables
-CYAN_B='\033[1;96m'
+CYAN_B='\033[1;94m'
 YELLOW='\033[0;93m'
 RED_B='\033[1;31m'
 RESET='\033[0m'
 GREEN='\033[0;32m'
-PURPLE='\033[0;36m'
+PURPLE='\033[0;37m'
 LIGHT='\x1b[2m'
 
 # Options

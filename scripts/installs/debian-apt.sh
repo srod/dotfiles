@@ -111,9 +111,9 @@ debian_repos=(
 
 
 # Colors
-PURPLE='\033[0;36m'
+PURPLE='\033[0;37m'
 YELLOW='\033[0;93m'
-CYAN_B='\033[1;96m'
+CYAN_B='\033[1;94m'
 LIGHT='\x1b[2m'
 RESET='\033[0m'
 

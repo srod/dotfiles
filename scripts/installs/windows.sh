@@ -58,7 +58,7 @@ winget_apps=(
   'thehandbraketeam.handbrake'
 )
 
-CYAN_B='\033[1;96m'
+CYAN_B='\033[1;94m'
 YELLOW_B='\033[1;93m'
 RED_B='\033[1;31m'
 GREEN_B='\033[1;32m'

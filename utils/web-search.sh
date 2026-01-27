@@ -43,7 +43,7 @@ ws_launch_url() {
     links $1
   else
     echo -e "\033[0;33mUnable to launch browser, open manually instead"
-    echo -e "\033[1;96m🌐 URL: \033[0;96m\e[4m$1\e[0m"
+     echo -e "\033[1;94m🌐 URL: \033[0;94m\e[4m$1\e[0m"
     return;
   fi
 }
@@ -117,7 +117,7 @@ web_search() {
     wolframalpha reddit maps grepapp 'help' quit
     )
   PS3='❯ '
-  echo -e "\033[1;95mSelect a Search Option\033[0;35m"
+   echo -e "\033[1;94mSelect a Search Option\033[0;37m"
   select opt in ${choices[@]}; do
     case $opt in
       duckduckgo) ws_duckduckgo $@; return;;
@@ -159,32 +159,32 @@ fi
 
 # Prints usage options
 show_ws_help() {
-  echo -e '\033[1;95mCLI Web Search\e[0m'
-  echo -e '\033[0;95m\x1b[2mA set of functions for searching the web from the command line.\e[0m'
-  echo
-  echo -e '\033[0;95m\e[4mExample Usage:\033[0;35m'
-  echo -e '  (1) View menu, select search engine by index, then enter a search term'
-  echo -e '    $ web-search'
-  echo -e '  (2) Enter a search term, and be prompted for which search engine to use'
-  echo -e '    $ web-search Hello World!'
-  echo -e '  (3) Enter a search engine followed by search term'
-  echo -e '    $ web-search wikipedia Matrix Defense'
-  echo -e '  (4) Enter a search engine, and be prompted for the search term'
-  echo -e '    $ web-search duckduckgo'
-  echo
-  echo -e '\033[0;95m\e[4mShorthand\033[0;35m'
-  echo -e '  You can also use the `ws` alias instead of typing `web-search`'
-  echo
-  echo -e '\033[0;95m\e[4mSupported Search Engines:\033[0;35m'
-  echo -e '  \033[0;35mDuckDuckGo: \x1b[2m$ ws duckduckgo (or $ wsddg)\e[0m'
-  echo -e '  \033[0;35mWikipedia: \x1b[2m$ ws wikipedia or ($ wswiki)\e[0m'
-  echo -e '  \033[0;35mGitHub: \x1b[2m$ ws github or ($ wsgh)\e[0m'
-  echo -e '  \033[0;35mStackOverflow: \x1b[2m$ ws stackoverflow or ($ wsso)\e[0m'
-  echo -e '  \033[0;35mWolframalpha: \x1b[2m$ ws wolframalpha or ($ wswa)\e[0m'
-  echo -e '  \033[0;35mReddit: \x1b[2m$ ws reddit or ($ wsrdt)\e[0m'
-  echo -e '  \033[0;35mMaps: \x1b[2m$ ws maps or ($ wsmap)\e[0m'
-  echo -e '  \033[0;35mGoogle: \x1b[2m$ ws google or ($ wsggl)\e[0m'
-  echo -e '  \033[0;35mGrep.App: \x1b[2m$ ws grepapp or ($ wsgra)\e[0m'
+   echo -e '\033[1;94mCLI Web Search\e[0m'
+   echo -e '\033[0;94m\x1b[2mA set of functions for searching the web from the command line.\e[0m'
+   echo
+   echo -e '\033[0;94m\e[4mExample Usage:\033[0;37m'
+   echo -e '  (1) View menu, select search engine by index, then enter a search term'
+   echo -e '    $ web-search'
+   echo -e '  (2) Enter a search term, and be prompted for which search engine to use'
+   echo -e '    $ web-search Hello World!'
+   echo -e '  (3) Enter a search engine followed by search term'
+   echo -e '    $ web-search wikipedia Matrix Defense'
+   echo -e '  (4) Enter a search engine, and be prompted for the search term'
+   echo -e '    $ web-search duckduckgo'
+   echo
+   echo -e '\033[0;94m\e[4mShorthand\033[0;37m'
+   echo -e '  You can also use the `ws` alias instead of typing `web-search`'
+   echo
+   echo -e '\033[0;94m\e[4mSupported Search Engines:\033[0;37m'
+   echo -e '  \033[0;37mDuckDuckGo: \x1b[2m$ ws duckduckgo (or $ wsddg)\e[0m'
+   echo -e '  \033[0;37mWikipedia: \x1b[2m$ ws wikipedia or ($ wswiki)\e[0m'
+   echo -e '  \033[0;37mGitHub: \x1b[2m$ ws github or ($ wsgh)\e[0m'
+   echo -e '  \033[0;37mStackOverflow: \x1b[2m$ ws stackoverflow or ($ wsso)\e[0m'
+   echo -e '  \033[0;37mWolframalpha: \x1b[2m$ ws wolframalpha or ($ wswa)\e[0m'
+   echo -e '  \033[0;37mReddit: \x1b[2m$ ws reddit or ($ wsrdt)\e[0m'
+   echo -e '  \033[0;37mMaps: \x1b[2m$ ws maps or ($ wsmap)\e[0m'
+   echo -e '  \033[0;37mGoogle: \x1b[2m$ ws google or ($ wsggl)\e[0m'
+   echo -e '  \033[0;37mGrep.App: \x1b[2m$ ws grepapp or ($ wsgra)\e[0m'
   echo -e '\e[0m'
 }
 

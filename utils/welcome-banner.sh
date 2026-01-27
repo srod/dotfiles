@@ -11,8 +11,8 @@
 ######################################################################
 
 # Formatting variables
-COLOR_P='\033[1;36m'
-COLOR_S='\033[0;36m'
+COLOR_P='\033[1;94m'
+COLOR_S='\033[0;37m'
 RESET='\033[0m'
 
 # Print time-based personalized message, using figlet & lolcat if available
@@ -53,7 +53,7 @@ function welcome_sysinfo () {
 # Print today's info: Date, IP, weather, etc
 function welcome_today () {
   timeout=0.5
-  echo -e "\033[1;36mToday\n------"
+   echo -e "\033[1;94mToday\n------"
 
   # Print last login in the format: "Last Login: Day Month Date HH:MM on tty"
   last_login=$(last | grep "^$USER " | head -1 | awk '{print "⏲️  Last Login: "$4" "$5" "$6" "$7" on "$2}')
