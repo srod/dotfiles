@@ -197,14 +197,15 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   done
 fi
 
-if [[ "$IS_SERVER" != true ]]; then
-  # Fonts
-  echo -e "${PURPLE}Installing Meslo font${RESET}"
-  wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
-  unzip Meslo.zip -d ~/.fonts
-  fc-cache -fv
-  rm -f Meslo.zip
+# Meslo Nerd Font (needed for Powerlevel10k)
+echo -e "${PURPLE}Installing Meslo font${RESET}"
+mkdir -p ~/.fonts
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Meslo.zip
+unzip Meslo.zip -d ~/.fonts
+fc-cache -fv
+rm -f Meslo.zip
 
+if [[ "$IS_SERVER" != true ]]; then
   sudo dnf copr enable hyperreal/better_fonts -y
   sudo dnf install fontconfig-font-replacements -y
   sudo dnf install fontconfig-enhanced-defaults -y

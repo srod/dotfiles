@@ -170,6 +170,14 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   done
 fi
 
+# Meslo Nerd Font (needed for Powerlevel10k)
+echo -e "${PURPLE}Installing Meslo font${RESET}"
+mkdir -p ~/.fonts
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Meslo.zip
+unzip Meslo.zip -d ~/.fonts
+fc-cache -fv
+rm -f Meslo.zip
+
 echo -e "${PURPLE}Finished installing / updating Arch packages.${RESET}"
 
 # EOF
