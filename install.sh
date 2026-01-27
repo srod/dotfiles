@@ -422,30 +422,16 @@ function install_packages () {
   fnm install --lts
   fnm default lts-latest
 
-  # Corepack and PNPM
-  if command_exists corepack; then
-    echo -e "\033[1;93mEnabling Corepack...\033[0m"
-    corepack enable
-
-    echo -e "\033[0;33mInstalling PNPM...\033[0m"
-    corepack prepare pnpm@latest --activate
-    export PNPM_HOME=$HOME/.local/share/pnpm
-    export PATH="$PNPM_HOME:$PATH"
-    mkdir -p $HOME/.local/share/pnpm
-
-    echo -e "\033[0;33mInstalling globals...\033[0m"
-    pnpm add -g $(cat ${DOTFILES_DIR}/scripts/installs/npmfile)
-  fi
-
   # Bun
-  if command_exists bun; then
-    echo -e "\033[0;33mBun already installed, skipping...\033[0m"
-  else
+  if ! command_exists bun; then
     echo -e "\033[0;33mInstalling Bun...\033[0m"
     curl -fsSL https://bun.sh/install | bash
-    export BUN_INSTALL="$HOME/.bun"
-    export PATH="$BUN_INSTALL/bin:$PATH"
   fi
+  export BUN_INSTALL="$HOME/.bun"
+  export PATH="$BUN_INSTALL/bin:$PATH"
+
+  echo -e "\033[0;33mInstalling globals via Bun...\033[0m"
+  bun add -g $(cat ${DOTFILES_DIR}/scripts/installs/npmfile)
 
   # Setup SSH key
   ssh_script="${DOTFILES_DIR}/scripts/installs/set_ssh_key.sh"
