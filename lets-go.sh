@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ######################################################################
 # srod/dotfiles - Remote Runnable Dotfile Setup and Update Script #
