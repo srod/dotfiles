@@ -1,7 +1,3 @@
-command_exists () {
-  hash "$1" 2> /dev/null
-}
-
 # If eza installed, use it for ls commands
 if command_exists eza ; then
   alias ls='eza --icons=always --color=always --git'

@@ -31,15 +31,12 @@ SYMLINK_FILE="${SYMLINK_FILE:-symlinks.yaml}"
 DOTBOT_DIR="lib/dotbot"
 DOTBOT_BIN="bin/dotbot"
 
-# Color Variables
-CYAN_B='\033[1;94m'
-YELLOW_B='\033[1;93m'
-RED_B='\033[1;31m'
-GREEN_B='\033[1;32m'
-PLAIN_B='\033[1;37m'
-RESET='\033[0m'
-GREEN='\033[0;32m'
-PURPLE='\033[0;35m'
+# Source shared libraries
+source "${DOTFILES_DIR}/lib/shared/colors.sh"
+source "${DOTFILES_DIR}/lib/shared/utils.sh"
+
+# Export color variables for subshell scripts
+export CYAN_B YELLOW_B RED_B GREEN_B PLAIN_B RESET GREEN PURPLE
 
 # Clear the screen
 if [[ ! $PARAMS == *"--no-clear"* ]] && [[ ! $PARAMS == *"--help"* ]] ; then
@@ -114,11 +111,6 @@ cleanup () {
 
   # dinosaurs are awesome
   echo "🦖"
-}
-
-# Checks if a given package is installed
-command_exists () {
-  hash "$1" 2> /dev/null
 }
 
 # On error, displays death banner, and terminates app with exit code 1
@@ -351,28 +343,28 @@ function install_packages () {
     # Mac OS
     install_macos_packages
     post_install_macos_packages
-  elif [ -f "/etc/arch-release" ]; then
-    # Arch Linux
-    arch_pkg_install_script="${DOTFILES_DIR}/scripts/installs/arch-pacman.sh"
-    chmod +x $arch_pkg_install_script
-    $arch_pkg_install_script $PARAMS
-  elif [ -f "/etc/debian_version" ]; then
-    # Debian / Ubuntu
-    debian_pkg_install_script="${DOTFILES_DIR}/scripts/installs/debian-apt.sh"
-    chmod +x $debian_pkg_install_script
-    $debian_pkg_install_script $PARAMS
-  elif [ -f "/etc/fedora-release" ]; then
-    # Fedora
-    fedora_pkg_install_script="${DOTFILES_DIR}/scripts/installs/fedora-dnf.sh"
-    chmod +x $fedora_pkg_install_script
-    $fedora_pkg_install_script $PARAMS
+   elif [ -f "/etc/arch-release" ]; then
+     # Arch Linux
+     arch_pkg_install_script="${DOTFILES_DIR}/scripts/installs/arch-pacman.sh"
+     chmod +x "$arch_pkg_install_script"
+     "$arch_pkg_install_script" $PARAMS
+   elif [ -f "/etc/debian_version" ]; then
+     # Debian / Ubuntu
+     debian_pkg_install_script="${DOTFILES_DIR}/scripts/installs/debian-apt.sh"
+     chmod +x "$debian_pkg_install_script"
+     "$debian_pkg_install_script" $PARAMS
+   elif [ -f "/etc/fedora-release" ]; then
+     # Fedora
+     fedora_pkg_install_script="${DOTFILES_DIR}/scripts/installs/fedora-dnf.sh"
+     chmod +x "$fedora_pkg_install_script"
+     "$fedora_pkg_install_script" $PARAMS
   fi
-  # If running in Linux desktop mode, prompt to install desktop apps via Flatpak
-  flatpak_script="${DOTFILES_DIR}/scripts/installs/flatpak.sh"
-  if [[ $SYSTEM_TYPE == "Linux" ]] && [[ "$IS_SERVER" != true ]] && [ ! -z $XDG_CURRENT_DESKTOP ] && [ -f $flatpak_script ]; then
-    chmod +x $flatpak_script
-    $flatpak_script $PARAMS
-  fi
+   # If running in Linux desktop mode, prompt to install desktop apps via Flatpak
+   flatpak_script="${DOTFILES_DIR}/scripts/installs/flatpak.sh"
+   if [[ $SYSTEM_TYPE == "Linux" ]] && [[ "$IS_SERVER" != true ]] && [ -n "$XDG_CURRENT_DESKTOP" ] && [ -f "$flatpak_script" ]; then
+     chmod +x "$flatpak_script"
+     "$flatpak_script" $PARAMS
+   fi
 
   # ZSH
   zsh_bin=$(grep /zsh$ /etc/shells | tail -1)
@@ -432,10 +424,10 @@ function install_packages () {
   echo -e "\033[0;33mInstalling globals via Bun...\033[0m"
   bun add -g $(cat ${DOTFILES_DIR}/scripts/installs/npmfile)
 
-  # Setup SSH key
-  ssh_script="${DOTFILES_DIR}/scripts/installs/set_ssh_key.sh"
-  chmod +x $ssh_script
-  $ssh_script $PARAMS
+   # Setup SSH key
+   ssh_script="${DOTFILES_DIR}/scripts/installs/set_ssh_key.sh"
+   chmod +x "$ssh_script"
+   "$ssh_script" $PARAMS
 }
 
 # Updates current session, and outputs summary

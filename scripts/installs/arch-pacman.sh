@@ -14,6 +14,15 @@
 # MIT Licensed (C) Alicia Sykes 2022 <https://aliciasykes.com> #
 ################################################################
 
+# Source shared libraries
+DOTFILES_DIR="${DOTFILES_DIR:-$(cd "$(dirname "$0")/../.." && pwd)}"
+source "${DOTFILES_DIR}/lib/shared/colors.sh"
+source "${DOTFILES_DIR}/lib/shared/utils.sh"
+source "${DOTFILES_DIR}/lib/shared/install-meslo-font.sh"
+
+# Capture parameters for consistent checking
+PARAMS="$*"
+
 # Apps to be installed via Pacman (server + desktop)
 pacman_apps=(
   # Essentials
@@ -77,24 +86,15 @@ pacman_desktop_apps=(
   'xsel'          # Copy paste access to the X clipboard
 )
 
-# Colors
-CYAN_B='\033[1;94m'
-YELLOW_B='\033[1;93m'
-RED_B='\033[1;31m'
-PURPLE='\033[0;37m'
-YELLOW='\033[0;93m'
-LIGHT='\x1b[2m'
-RESET='\033[0m'
-
 PROMPT_TIMEOUT=86400 # No practical timeout; --auto-yes overrides to 0s
 
 # If set to auto-yes - then don't wait for user reply
-if [[ $* == *"--auto-yes"* ]]; then
+if [[ $PARAMS == *"--auto-yes"* ]]; then
   PROMPT_TIMEOUT=0
   REPLY='Y'
 fi
 
-if [[ $* == *"--server"* ]]; then
+if [[ $PARAMS == *"--server"* ]]; then
   IS_SERVER=true
 else
   pacman_apps+=("${pacman_desktop_apps[@]}")
@@ -173,12 +173,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 fi
 
 # Meslo Nerd Font (needed for Powerlevel10k)
-echo -e "${PURPLE}Installing Meslo font${RESET}"
-mkdir -p ~/.fonts
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Meslo.zip
-unzip Meslo.zip -d ~/.fonts
-fc-cache -fv
-rm -f Meslo.zip
+install_meslo_font
 
 echo -e "${PURPLE}Finished installing / updating Arch packages.${RESET}"
 

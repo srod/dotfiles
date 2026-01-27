@@ -11,13 +11,18 @@
 # Licensed under MIT (C) Alicia Sykes 2022 <https://aliciasykes.com>   #
 ########################################################################
 
-# Color variables
-PRIMARY_COLOR='\033[1;94m'
-ACCENT_COLOR='\033[0;94m'
-ERROR_COLOR='\033[1;31m'
-WARN_COLOR='\033[0;33m'
-SUCCESS_COLOR='\033[0;32m'
-RESET='\033[0m'
+# Source shared color definitions
+DOTFILES_DIR="${DOTFILES_DIR:-$(cd "$(dirname "$0")/../.." && pwd)}"
+source "${DOTFILES_DIR}/lib/shared/colors.sh"
+
+# Group D semantic naming (Linux-specific)
+PRIMARY_COLOR="$CYAN_B"
+ACCENT_COLOR="$CYAN_B"
+ERROR_COLOR="$RED_B"
+WARN_COLOR="$YELLOW_B"
+SUCCESS_COLOR="$GREEN"
+
+# Unique to this file
 ITAL='\e[3m'
 PALE='\e[2m'
 UNDAL='\e[4m'
@@ -52,7 +57,7 @@ elif [[ ! $PARAMS == *"--skip-intro"* ]]; then
 fi
 
 # Ask for user confirmation before proceeding (if skip flag isn't passed)
-if [[ ! $PARAMS == *"--yes-to-all"* ]]; then
+if [[ ! $PARAMS == *"--auto-yes"* ]]; then
   echo -e "\n${PRIMARY_COLOR}Would you like to proceed? (y/N)${RESET}"
   read -t 15 -n 1 -r
   if [[ ! $REPLY =~ ^[Yy]$ ]]; then

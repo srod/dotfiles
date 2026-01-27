@@ -14,6 +14,15 @@
 # MIT Licensed (C) Alicia Sykes 2023 <https://aliciasykes.com> #
 ################################################################
 
+# Source shared libraries
+DOTFILES_DIR="${DOTFILES_DIR:-$(cd "$(dirname "$0")/../.." && pwd)}"
+source "${DOTFILES_DIR}/lib/shared/colors.sh"
+source "${DOTFILES_DIR}/lib/shared/utils.sh"
+source "${DOTFILES_DIR}/lib/shared/install-meslo-font.sh"
+
+# Capture parameters for consistent checking
+PARAMS="$*"
+
 # Apps to be installed via apt-get (server + desktop)
 debian_apps=(
   # Essentials
@@ -101,23 +110,15 @@ debian_desktop_apps=(
 # just, procs, ripgrep, sd, tealdeer, tokei, trash-cli,
 # zoxide, clamav, cryptsetup, gnupg, lynis, btop, gping.
 
-
-# Colors
-PURPLE='\033[0;37m'
-YELLOW='\033[0;93m'
-CYAN_B='\033[1;94m'
-LIGHT='\x1b[2m'
-RESET='\033[0m'
-
 PROMPT_TIMEOUT=86400 # No practical timeout; --auto-yes overrides to 0s
 
 # If set to auto-yes - then don't wait for user reply
-if [[ $* == *"--auto-yes"* ]]; then
+if [[ $PARAMS == *"--auto-yes"* ]]; then
   PROMPT_TIMEOUT=0
   REPLY='Y'
 fi
 
-if [[ $* == *"--server"* ]]; then
+if [[ $PARAMS == *"--server"* ]]; then
   IS_SERVER=true
 else
   debian_apps+=("${debian_desktop_apps[@]}")
@@ -202,12 +203,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 fi
 
 # Meslo Nerd Font (needed for Powerlevel10k)
-echo -e "${PURPLE}Installing Meslo font${RESET}"
-mkdir -p ~/.fonts
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Meslo.zip
-unzip Meslo.zip -d ~/.fonts
-fc-cache -fv
-rm -f Meslo.zip
+install_meslo_font
 
 if [[ "$IS_SERVER" != true ]]; then
   # Brave

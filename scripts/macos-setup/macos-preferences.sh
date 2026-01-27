@@ -10,7 +10,7 @@
 # Options:                                                                   #
 #   --silent     - Don't log any status outputs                              #
 #   --skip-intro - Skip the warning and intro section                        #
-#   --yes-to-all - Don't prompt user to agree to changes                     #
+#   --auto-yes   - Don't prompt user to agree to changes                     #
 #                                                                            #
 # Licensed under MIT -  (C) Alicia Sykes 2022 <https://aliciasykes.com>      #
 ##############################################################################
@@ -25,27 +25,26 @@ start_time=$(date +%s)
 # Get params
 params="$params $*"
 
-# Color variables
-PRIMARY_COLOR='\033[1;94m'
-ACCENT_COLOR='\033[0;94m'
-INFO_COLOR='\033[0;37m'
-SUCCESS_COLOR='\033[0;32m'
-WARN_1='\033[1;31m'
+# Source shared libraries
+DOTFILES_DIR="${DOTFILES_DIR:-$(cd "$(dirname "$0")/../.." && pwd)}"
+source "${DOTFILES_DIR}/lib/shared/colors.sh"
+
+# Semantic aliases (used throughout this file)
+PRIMARY_COLOR="$CYAN_B"
+ACCENT_COLOR="$PURPLE"
+INFO_COLOR="$PLAIN_B"
+SUCCESS_COLOR="$GREEN"
+WARN_1="$RED_B"
 WARN_2='\033[0;31m'
-RESET_COLOR='\033[0m'
+RESET_COLOR="$RESET"
 
 # Current and total tasks, used for progress updates
 current_event=0
 total_events=80
 
 # Check system is compatible
-if [ ! "$(uname -s)" = "Darwin" ]; then
-  echo -e "${PRIMARY_COLOR}Incompatible System${RESET_COLOR}"
-  echo -e "${ACCENT_COLOR}This script is specific to Mac OS,\
-  and only intended to be run on Darwin-based systems${RESET_COLOR}"
-  echo -e "${ACCENT_COLOR}Exiting...${RESET_COLOR}"
-  exit 1
-fi
+source "${DOTFILES_DIR}/lib/shared/macos-guard.sh"
+macos_only
 
 # Print info, and prompt for confirmation
 if [[ ! $params == *"--skip-intro"* ]]; then
@@ -70,7 +69,7 @@ if [[ ! $params == *"--skip-intro"* ]]; then
   Ensure you've read it through before continuing${RESET_COLOR}"
 
   # Ask for user confirmation before proceeding (if skip flag isn't passed)
-  if [[ ! $params == *"--yes-to-all"* ]]; then
+  if [[ ! $params == *"--auto-yes"* ]]; then
     echo -e "\n${PRIMARY_COLOR}Would you like to proceed? (y/N)${RESET_COLOR}"
     read -t 15 -n 1 -r
     if [[ ! $REPLY =~ ^[Yy]$ ]]; then

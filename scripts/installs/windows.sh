@@ -58,11 +58,9 @@ winget_apps=(
   'thehandbraketeam.handbrake'
 )
 
-CYAN_B='\033[1;94m'
-YELLOW_B='\033[1;93m'
-RED_B='\033[1;31m'
-GREEN_B='\033[1;32m'
-RESET='\033[0m'
+# Source shared color definitions
+DOTFILES_DIR="${DOTFILES_DIR:-$(cd "$(dirname "$0")/../.." && pwd)}"
+source "${DOTFILES_DIR}/lib/shared/colors.sh"
 
 echo "${CYAN_B}Installing Windows Packages...${RESET}"
 

@@ -11,6 +11,9 @@
 # Licensed under MIT, (C) Alicia Sykes 2022  #
 ##############################################
 
+# Source shared utilities
+source "${DOTFILES:-$HOME/.dotfiles}/lib/shared/utils.sh"
+
 # URL encodes the users search string
 ws_url_encode() {
   local length="${#1}"
@@ -25,9 +28,6 @@ ws_url_encode() {
 
 # Determines which opening method/ browser to use, and opens URL
 ws_launch_url() {
-  command_exists () {
-    hash "$1" 2> /dev/null
-  }
   if [[ $OSTYPE == 'darwin'* ]]; then
     open $1
   elif command_exists xdg-open; then

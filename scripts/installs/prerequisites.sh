@@ -25,6 +25,9 @@ YELLOW='\033[0;93m'
 LIGHT='\x1b[2m'
 RESET='\033[0m'
 
+# Capture parameters for consistent checking
+PARAMS="$*"
+
 # Shows help menu / introduction
 function print_usage () {
   echo -e "${PURPLE}Prerequisite Dependency Installation Script${LIGHT}\n"\
@@ -75,10 +78,10 @@ function multi_system_install () {
 
 # Show usage instructions, help menu
 print_usage
-if [[ $* == *"--help"* ]]; then exit; fi
+if [[ $PARAMS == *"--help"* ]]; then exit; fi
 
 # Ask user if they'd like to proceed
-if [[ ! $* == *"--auto-yes"* ]] ; then
+if [[ ! $PARAMS == *"--auto-yes"* ]] ; then
   echo -e "${PURPLE}Are you happy to continue? (y/N)${RESET}"
   read -t 15 -n 1 -r
   echo
