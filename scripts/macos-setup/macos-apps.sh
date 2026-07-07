@@ -146,8 +146,8 @@ sudo chflags nohidden /Volumes
 log_msg "Allow finder to be fully quitted with ⌘ + Q"
 defaults write com.apple.finder QuitMenuItem -bool true
 
-log_msg "Show the status bar in Finder"
-defaults write com.apple.finder ShowStatusBar -bool true
+log_msg "Hide the status bar in Finder"
+defaults write com.apple.finder ShowStatusBar -bool false
 
 log_msg "Show the path bar in finder"
 defaults write com.apple.finder ShowPathbar -bool true
@@ -294,8 +294,8 @@ defaults write com.apple.Safari WebAutomaticSpellingCorrectionEnabled -bool fals
 log_msg "Disable auto-fill addresses"
 defaults write com.apple.Safari AutoFillFromAddressBook -bool false
 
-log_msg "Disable auto-fill passwords"
-defaults write com.apple.Safari AutoFillPasswords -bool false
+log_msg "Enable auto-fill passwords"
+defaults write com.apple.Safari AutoFillPasswords -bool true
 
 log_msg "Disable auto-fill credit cards"
 defaults write com.apple.Safari AutoFillCreditCardData -bool false
@@ -395,7 +395,7 @@ log_msg "Visualize CPU usage in the Activity Monitor Dock icon"
 defaults write com.apple.ActivityMonitor IconType -int 5
 
 log_msg "Show all processes in Activity Monitor"
-defaults write com.apple.ActivityMonitor ShowCategory -int 0
+defaults write com.apple.ActivityMonitor ShowCategory -int 100
 
 log_msg "Sort results by CPU usage"
 defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
@@ -463,8 +463,8 @@ defaults write com.apple.addressbook ABShowDebugMenu -bool true
 log_msg "Show week numbers (10.8 only)"
 defaults write com.apple.iCal "Show Week Numbers" -bool true
 
-log_msg "Week starts on monday"
-defaults write com.apple.iCal "first day of week" -int 1
+log_msg "Week starts per system region setting"
+defaults write com.apple.iCal "first day of week" -int 0
 
 log_msg "Enable Dashboard dev mode"
 defaults write com.apple.dashboard devmode -bool true
