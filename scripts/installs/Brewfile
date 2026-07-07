@@ -135,7 +135,7 @@ cask 'android-studio'   # IDE for Android development
 # cask 'boop'             # Text transformation tool
 # brew 'gradle'           # Build automation for Java
 cask 'imageoptim'         # Image compression tool
-cask 'iterm2'             # Better terminal emulator
+# cask 'iterm2'             # Better terminal emulator
 # cask 'postman'          # HTTP API testing app
 # cask 'sourcetree'       # Git visual client
 cask 'visual-studio-code' # Code editor
@@ -232,7 +232,7 @@ brew 'ffmpeg'       # Audio/video converter & toolkit
 
 # Personal Applications
 # cask '1password'         # Password manager (proprietary)
-cask 'applite'             # brew app store client
+# cask 'applite'             # brew app store client
 # cask 'karabiner-elements'  # Keyboard customizer
 cask 'keepingyouawake'     # Prevent Mac from sleeping
 # cask 'ledger-live'       # Crypto hardware wallet manager
@@ -240,17 +240,17 @@ cask 'keepingyouawake'     # Prevent Mac from sleeping
 cask 'onyx', args: { require_sha: false } # System maintenance tool
 # cask 'protonmail-bridge' # Decrypt ProtonMail emails
 # cask 'protonvpn'         # Client app for ProtonVPN
-cask 'plex'                # Client for Plex media server
+# cask 'plex'                # Client for Plex media server
 cask 'rectangle'           # Window management
 # cask 'signal'            # Link to encrypted mobile messenger
 # cask 'standard-notes'    # Encrypted synced notes
-cask 'sublime-text'        # Text editor
+# cask 'sublime-text'        # Text editor
 # cask 'tresorit'          # Encrypted file backup (proprietary)
 # cask 'vorta'             # GUI for BorgBackup
 # cask 'virtualbuddy'        # Virtualization tool
 
 # Browsers
-cask 'firefox'
+# cask 'firefox'
 cask 'google-chrome', args: { require_sha: false }
 # cask 'chromium'
 # cask 'orion'
@@ -268,16 +268,16 @@ cask 'font-meslo-lg-nerd-font'
 cask 'font-jetbrains-mono-nerd-font'
 
 # # Mac OS Quick-Look Plugins
-cask 'qlcolorcode'    # QL for code with highlighting
-cask 'qlimagesize'    # QL for size info for images
-cask 'qlmarkdown'     # QL for markdown files
-cask 'qlprettypatch'  # QL for patch / diff files
-cask 'qlstephen'      # QL for dev text files
+# cask 'qlcolorcode'    # QL for code with highlighting
+# cask 'qlimagesize'    # QL for size info for images
+# cask 'qlmarkdown'     # QL for markdown files
+# cask 'qlprettypatch'  # QL for patch / diff files
+# cask 'qlstephen'      # QL for dev text files
 cask 'quicklook-video' # QL for video formats
-cask 'quicklook-csv'  # QL for tables in CSV format
-cask 'quicklook-json', args: { require_sha: false } # QL for JSON, with trees
+# cask 'quicklook-csv'  # QL for tables in CSV format
+# cask 'quicklook-json', args: { require_sha: false } # QL for JSON, with trees
 # cask 'quicklookapk',   args: { require_sha: false } # QL for Android APKs
-cask 'webpquicklook',  args: { require_sha: false } # QL for WebP image files
+# cask 'webpquicklook',  args: { require_sha: false } # QL for WebP image files
 
 # Mac OS Mods and Imrovments
 # cask 'alt-tab'        # Much better alt-tab window switcher
