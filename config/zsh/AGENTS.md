@@ -10,7 +10,7 @@ Modular ZSH config with Antigen plugin manager, Powerlevel10k theme, XDG-complia
 zsh/
 ├── .zshenv         # XDG paths, EDITOR, env vars (sourced FIRST, always)
 ├── .zshrc          # Main orchestrator - sources everything below
-├── .zprofile       # Login shell only (OrbStack, pipx PATH)
+├── .zprofile       # Login shell only (pipx PATH)
 ├── .p10k.zsh       # Powerlevel10k theme config (1718 lines)
 ├── helpers/
 │   ├── setup-antigen.zsh    # Plugin manager init (curl if missing)
