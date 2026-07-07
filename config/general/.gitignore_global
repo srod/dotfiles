@@ -39,3 +39,6 @@ $RECYCLE.BIN/
 # Apps
 .idea
 
+# Claude Code
+.claude/settings.local.json
+

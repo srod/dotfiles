@@ -6,7 +6,11 @@ dotbot/*
 # Auto-generated files
 config/zsh/.zcompcache/*
 config/zsh/*/*.zwc
+config/zsh/.zcompdump
+config/zsh/.zcompdump.zwc
 config/zsh/.zsh_sessions/*
+config/zsh/.zsh_history
+config/zsh/.zprofile
 installs/.Brewfile.lock.json
 
 # Linux
