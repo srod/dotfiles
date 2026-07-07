@@ -150,7 +150,7 @@ log_msg "Set language to English"
 defaults write NSGlobalDomain AppleLanguages -array "en"
 
 log_msg "Set locale to British"
-defaults write NSGlobalDomain AppleLocale -string "en_FR@currency=EUR"
+defaults write NSGlobalDomain AppleLocale -string "en_US@currency=eur;rg=frzzzz"
 
 log_msg "Set time zone to Paris"
 sudo systemsetup -settimezone Europe/Paris
@@ -177,7 +177,7 @@ osascript -e 'tell application "System Events" to tell appearance preferences to
 log_section "File Locations"
 
 log_msg "Set location to save screenshots to"
-defaults write com.apple.screencapture location -string "${HOME}/Downloads/screenshots"
+defaults write com.apple.screencapture location -string "${HOME}/Downloads"
 
 log_msg "Save screenshots in .png format"
 defaults write com.apple.screencapture type -string "png"
@@ -429,10 +429,10 @@ log_msg "Add highlight effect to dock stacks"
 defaults write com.apple.dock mouse-over-hilite-stack -bool true
 
 log_msg "Set item size within dock stacks"
-defaults write com.apple.dock tilesize -int 48
+defaults write com.apple.dock tilesize -int 44
 
-log_msg "Set dock to use genie animation"
-defaults write com.apple.dock mineffect -string "genie"
+log_msg "Set dock to use scale animation"
+defaults write com.apple.dock mineffect -string "scale"
 
 log_msg "Set apps to minimize into their dock icon"
 defaults write com.apple.dock minimize-to-application -bool true
@@ -447,7 +447,7 @@ log_msg "Enable app launching animations"
 defaults write com.apple.dock launchanim -bool true
 
 log_msg "Set opening animation speed"
-defaults write com.apple.dock expose-animation-duration -float 1
+defaults write com.apple.dock expose-animation-duration -float 0.1
 
 log_msg "Disable automatic rearranging of spaces"
 defaults write com.apple.dock mru-spaces -bool false
@@ -456,10 +456,10 @@ log_msg "Set dock to auto-hide by default"
 defaults write com.apple.dock autohide -bool true
 
 log_msg "Set the dock's auto-hide delay to fast"
-defaults write com.apple.dock autohide-delay -float 0.05
+defaults write com.apple.dock autohide-delay -float 0
 
 log_msg "Set the dock show / hide animation time"
-defaults write com.apple.dock autohide-time-modifier -float 0.25
+defaults write com.apple.dock autohide-time-modifier -float 0
 
 log_msg "Show which dock apps are hidden"
 defaults write com.apple.dock showhidden -bool true

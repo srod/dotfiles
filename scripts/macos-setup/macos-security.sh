@@ -172,7 +172,6 @@ sudo defaults write /Library/Preferences/com.apple.alf allowdownloadsignedenable
 log_msg "Enable application firewall"
 /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
 sudo defaults write /Library/Preferences/com.apple.alf globalstate -bool true
-defaults write com.apple.security.firewall EnableFirewall -bool true
 
 # Turn on firewall logging
 log_msg "Turn on firewall logging"
@@ -183,7 +182,6 @@ sudo defaults write /Library/Preferences/com.apple.alf loggingenabled -bool true
 log_msg "Turn on stealth mode"
 /usr/libexec/ApplicationFirewall/socketfilterfw --setstealthmode on
 sudo defaults write /Library/Preferences/com.apple.alf stealthenabled -bool true
-defaults write com.apple.security.firewall EnableStealthMode -bool true
 
 # Will prompt user to allow network access even for signed apps
 log_msg "Prevent signed apps from being automatically whitelisted"
