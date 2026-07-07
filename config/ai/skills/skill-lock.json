@@ -1,15 +1,6 @@
 {
   "version": 3,
   "skills": {
-    "better-icons": {
-      "source": "better-auth/better-icons",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/better-auth/better-icons.git",
-      "skillPath": "skills/SKILL.md",
-      "skillFolderHash": "49c97e1227b9611b44248acd341c7f188582f937",
-      "installedAt": "2026-01-23T13:25:49.425Z",
-      "updatedAt": "2026-04-02T21:08:51.970Z"
-    },
     "skill-creator": {
       "source": "anthropics/skills",
       "sourceType": "github",
@@ -46,15 +37,6 @@
       "installedAt": "2026-02-06T08:59:02.287Z",
       "updatedAt": "2026-06-10T14:31:40.752Z"
     },
-    "wrangler": {
-      "source": "cloudflare/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/cloudflare/skills.git",
-      "skillPath": "skills/wrangler/SKILL.md",
-      "skillFolderHash": "45cc198b2aad3f06e8abf91333f55fbe7579f659",
-      "installedAt": "2026-02-06T17:10:31.405Z",
-      "updatedAt": "2026-04-23T10:11:58.327Z"
-    },
     "github-actions-templates": {
       "source": "wshobson/agents",
       "sourceType": "github",
@@ -72,33 +54,6 @@
       "skillFolderHash": "f371a829c7c34952b79a52f28330410ca7b297dc",
       "installedAt": "2026-02-17T21:03:46.413Z",
       "updatedAt": "2026-06-10T14:31:42.463Z"
-    },
-    "solidjs": {
-      "source": "suryavirkapur/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/suryavirkapur/skills.git",
-      "skillPath": "skills/solidjs/SKILL.md",
-      "skillFolderHash": "ca7e67c55a7074682e0a4be811d109dd3d946cf7",
-      "installedAt": "2026-02-25T09:06:59.505Z",
-      "updatedAt": "2026-02-25T09:06:59.505Z"
-    },
-    "upgrading-expo": {
-      "source": "expo/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/expo/skills.git",
-      "skillPath": "plugins/upgrading-expo/skills/upgrading-expo/SKILL.md",
-      "skillFolderHash": "23cb4cb2d723d4c8d1a7996e37288f28a44f23dc",
-      "installedAt": "2026-02-26T17:29:58.576Z",
-      "updatedAt": "2026-03-12T21:05:56.374Z"
-    },
-    "building-native-ui": {
-      "source": "expo/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/expo/skills.git",
-      "skillPath": "plugins/expo-app-design/skills/building-native-ui/SKILL.md",
-      "skillFolderHash": "0078663cbdc42e388d2eb9c291dda1a0774eee29",
-      "installedAt": "2026-02-26T17:30:22.501Z",
-      "updatedAt": "2026-02-26T17:30:22.501Z"
     },
     "uncodixfy": {
       "source": "cyxzdev/Uncodixfy",
