@@ -321,6 +321,12 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 15
 log_msg "Set super fast key repeat rate"
 defaults write NSGlobalDomain KeyRepeat -int 3
 
+log_msg "Set keyboard input source to French (AZERTY)"
+defaults write com.apple.HIToolbox AppleEnabledInputSources -array \
+  '{ "InputSourceKind" = "Keyboard Layout"; "KeyboardLayout ID" = 1; "KeyboardLayout Name" = "French"; }' \
+  '{ "Bundle ID" = "com.apple.CharacterPaletteIM"; "InputSourceKind" = "Non Keyboard Input Method"; }'
+# Input-source change takes effect after next login
+
 log_msg "Fix UTF-8 bug in QuickLook"
 echo "0x08000100:0" > ~/.CFUserTextEncoding
 
