@@ -108,6 +108,7 @@
 [pull]
   default = current
   rebase = true
+	ff = only
 
 [credential]
   helper = osxkeychain
@@ -129,6 +130,7 @@
   log = true
   tool = vimdiff
   conflictStyle = zdiff3
+	ff = false
 
 [diff]
   # Detect copies as well as renames
@@ -166,3 +168,9 @@
 [delta]
   navigate = true
 
+[credential "https://github.com"]
+	helper = 
+	helper = !gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !gh auth git-credential
