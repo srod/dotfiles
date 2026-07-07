@@ -16,7 +16,7 @@
 
 # Disable specific steps - same options as the command line flag
 # disable = ["system", "emacs"]
-disable = ["containers", "android_studio", "gem"]
+disable = ["containers", "android_studio", "gem", "pnpm"]
 
 # Ignore failures for these steps
 # ignore_failures = ["powershell"]

@@ -34,7 +34,7 @@ tap 'homebrew/bundle'
 brew 'git'          # Version control
 # brew 'neovim'       # Text editor
 # brew 'ranger'       # Directory browser
-# brew 'tmux'         # Term multiplexer
+brew 'tmux'           # Term multiplexer
 brew 'vim'            # Text editor
 
 # CLI Basics
