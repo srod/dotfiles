@@ -34,6 +34,7 @@ if [[ -d $utils_dir ]]; then
   #source ${utils_dir}/welcome-banner.sh
   source ${utils_dir}/color-map.sh
   source ${utils_dir}/dot.sh
+  source ${utils_dir}/simkill.sh
   # source ${utils_dir}/wzp.sh
 fi
 
@@ -72,3 +73,13 @@ if [[ -d $zsh_dir ]]; then
   source ${zsh_dir}/lib/expansions.zsh
   source ${zsh_dir}/lib/key-bindings.zsh
 fi
+
+if [ -d "/opt/homebrew/opt/ruby/bin" ]; then
+  export PATH=/opt/homebrew/opt/ruby/bin:$PATH
+  export PATH="$(gem environment gemdir)/bin:$PATH"
+fi
+
+export PATH="$HOME/.local/bin:$PATH"
+
+# Pi
+alias pi='fnm exec --using 22 pi'

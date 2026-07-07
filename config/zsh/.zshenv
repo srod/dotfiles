@@ -44,3 +44,12 @@ export ZLIB="${ZDOTDIR}/lib"
 export LANG='en_US.UTF-8';
 export LC_ALL='en_US.UTF-8';
 export PYTHONIOENCODING='UTF-8';
+
+# Resolve JDK 17 dynamically (any vendor) so upgrades/re-installs don't break it
+export JAVA_HOME="$(/usr/libexec/java_home -v 17 2>/dev/null)"
+
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+export PATH="$CARGO_HOME/bin:$PATH"
