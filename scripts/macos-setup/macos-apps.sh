@@ -534,6 +534,31 @@ defaults write org.m0k.transmission BlocklistAutoUpdate -bool true
 log_msg "Randomize port on launch"
 defaults write org.m0k.transmission RandomPort -bool true
 
+###########
+# Heynote #
+###########
+log_section "Heynote"
+
+# Store the scratchpad in Synology Drive so notes sync across Macs.
+# Only applied if the Synology Drive sync task is already set up.
+heynote_sync="$HOME/Library/CloudStorage/SynologyDrive-onedrive"
+if [ -d "$heynote_sync" ]; then
+	log_msg "Point Heynote buffer at Synology Drive (cross-Mac sync)"
+	heynote_config="$HOME/Library/Application Support/Heynote/config.json"
+	heynote_buffer="$heynote_sync/Heynote"
+	mkdir -p "$heynote_buffer"
+	if [ -f "$heynote_config" ] && command -v jq >/dev/null 2>&1; then
+		heynote_tmp="$(mktemp)"
+		jq --arg p "$heynote_buffer" '.settings.bufferPath = $p' "$heynote_config" > "$heynote_tmp" \
+			&& mv "$heynote_tmp" "$heynote_config"
+	elif [ ! -f "$heynote_config" ]; then
+		mkdir -p "$(dirname "$heynote_config")"
+		printf '{"settings":{"bufferPath":"%s"}}\n' "$heynote_buffer" > "$heynote_config"
+	fi
+else
+	log_msg "Synology Drive not set up — leaving Heynote buffer at default"
+fi
+
 #################################
 # Restart affected applications #
 #################################
