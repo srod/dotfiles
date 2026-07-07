@@ -39,7 +39,7 @@ brew 'vim'            # Text editor
 
 # CLI Basics
 # brew 'aria2'        # Resuming download util (better wget)
-# brew 'bat'          # Output highlighting (better cat)
+brew 'bat'          # Output highlighting (better cat)
 # brew 'broot'        # Interactive directory navigation
 brew 'coreutils'      # GNU core utilities (better ls)
 # brew 'ctags'        # Indexing of file info + headers
@@ -49,6 +49,7 @@ brew 'duf'          # Get info on mounted disks (better df)
 brew 'eza'          # Listing files with info (better ls)
 # brew 'exiftool'     # Read, write and modify exif data
 brew 'findutils'      # GNU find, locate, updatedb, and xargs
+brew 'fd'             # Simple, fast alternative to find
 brew 'fzf'          # Fuzzy file finder and filtering
 # brew 'hyperfine'    # Benchmarking for arbitrary commands
 # brew 'jdupes'       # Duplicate file finder
@@ -77,9 +78,11 @@ brew 'wget'
 # brew 'bmon'         # Bandwidth utilization monitor
 # brew 'ctop'         # Container metrics and monitoring
 # brew 'dog'          # DNS lookup client (better dig)
-# brew 'bpytop'       # Resource monitoring (like htop)
+brew 'bpytop'       # Resource monitoring (like htop)
 # brew 'dua-cli'      # Disk usage analyzer and monitor (better du)
-# brew 'glances'      # Resource monitor + web and API
+brew 'glances'      # Resource monitor + web and API
+brew 'htop'           # Interactive process viewer
+brew 'ncdu'           # Disk usage analyzer (better du)
 # brew 'goaccess'     # Web log analyzer and viewer
 # brew 'gping'        # Interactive ping tool, with graph
 # brew 'speedtest'      # Command line speed test utility
@@ -95,15 +98,19 @@ brew 'wget'
 # brew 'mutt'         # Email client
 # brew 'newsboat'     # RSS / ATOM reader
 # brew 'pass'         # Password store
-# brew 'rclone'       # Manage cloud storage
+brew 'rclone'       # Manage cloud storage
 # brew 'task'         # Todo + task management
+brew 'hledger'        # Plain-text double-entry accounting
+brew 'beancount'      # Double-entry bookkeeping (Python)
 
 # CLI Development Suits
 # brew 'httpie'       # HTTP / API testing testing client
 # brew 'lazydocker'   # Full Docker management app
-# brew 'lazygit'      # Full Git management app
+brew 'lazygit'      # Full Git management app
 # brew 'kdash'        # Kubernetes management
 brew 'git-delta'      # Syntax-highlighting pager for git
+brew 'gitmux'         # Git status in the tmux status bar
+brew 'git-lfs'        # Git extension for versioning large files
 
 # CLI External Sercvices
 # cask 'ngrok'        # Reverse proxy for sharing localhost
@@ -124,7 +131,7 @@ brew 'fastfetch'    # Show system data and distro info
 #############################################################
 
 # Development Apps
-# cask 'android-studio'   # IDE for Android development
+cask 'android-studio'   # IDE for Android development
 # cask 'boop'             # Text transformation tool
 # brew 'gradle'           # Build automation for Java
 cask 'imageoptim'         # Image compression tool
@@ -132,16 +139,19 @@ cask 'iterm2'             # Better terminal emulator
 # cask 'postman'          # HTTP API testing app
 # cask 'sourcetree'       # Git visual client
 cask 'visual-studio-code' # Code editor
+cask 'codex'              # OpenAI Codex CLI
+cask 'copilot-cli'        # GitHub Copilot CLI
 
 # Development Langs, Compilers, Package Managers and SDKs
 # brew 'gcc'            # GNU C++ compilers
-# brew 'go'             # Compiler for Go Lang
+brew 'go'             # Compiler for Go Lang
 # brew 'java'           # Java runtime
 # brew 'lua'            # Lua interpreter
 # brew 'luarocks'       # Package manager for Lua
 # brew 'node'           # Node.js
 # brew 'nvm'              # Switching node versions
 brew 'fnm'              # Fast Node Manager
+brew 'pipx'            # Install & run Python CLI apps in isolated envs
 brew 'openjdk@17'       # Java development kit
 # brew 'python'         # Python interpreter
 # brew 'rust'           # Rust language
@@ -151,14 +161,27 @@ brew 'openjdk@17'       # Java development kit
 # brew 'ansible'        # Automation
 # brew 'docker'         # Containers
 
+# Mobile Development (Tauri iOS + Android)
+brew 'cocoapods'        # Dependency manager for iOS/macOS
+brew 'fastlane'         # Automate iOS/Android build & release
+brew 'xcodegen'         # Generate Xcode projects from a spec
+brew 'ios-deploy'       # Install & debug iOS apps from the CLI
+brew 'ios-webkit-debug-proxy' # Debug iOS WebViews (Tauri)
+cask 'openmtp'          # Android file transfer for macOS
+
+# Cloud / Infra
+brew 'awscli'           # Amazon Web Services CLI
+brew 'mkcert'           # Locally-trusted dev TLS certificates
+cask 'gcloud-cli'       # Google Cloud SDK
+
 # Development Utils
-# brew 'gh'             # Interact with GitHub PRs, issues, repos
+brew 'gh'             # Interact with GitHub PRs, issues, repos
 # brew 'git-extras'     # Extra git commands for common tasks
 # brew 'scrcpy'         # Display and control Android devices
 brew 'terminal-notifier'# Trigger Mac notifications from terminal
 # brew 'tig'            # Text-mode interface for git
 # brew 'ttygif'         # Generate GIF from terminal commands + output
-# brew 'watchman'       # Watch for changes and reload dev server
+brew 'watchman'       # Watch for changes and reload dev server
 
 # Network and Security Testing
 # brew 'bettercap'      # Network, scanning and monitoring
@@ -179,6 +202,7 @@ cask 'iina'             # Media player
 # cask 'insomnia'         # REST client
 # brew 'lynis'          # Scan system for common security issues
 brew 'openssl'          # Cryptography and SSL/TLS Toolkit
+brew 'age'              # Simple, modern file encryption
 # cask 'pinentry-mac'   # GPG password entry for Mac
 # brew 'rkhunter'       # Search / detect potential root kits
 # cask 'veracrypt'      # File and volume encryption
@@ -198,9 +222,12 @@ brew 'handbrake'    # Video transcoder
 # Media
 # cask 'calibre'      # E-Book reader
 cask 'spotify', args: { require_sha: false } # Proprietary music streaming
+cask 'plexamp'      # Plex music player
+cask 'losslesscut'  # Lossless video trim & cut
 # cask 'transmission' # Torrent client
 # cask 'vlc'          # Media player
 # brew 'pandoc'       # Universal file converter
+brew 'ffmpeg'       # Audio/video converter & toolkit
 # brew 'youtube-dl'   # YouTube video downloader
 
 # Personal Applications
@@ -238,6 +265,7 @@ cask 'font-fira-code'
 cask 'font-hack'
 # cask 'font-inconsolata'
 cask 'font-meslo-lg-nerd-font'
+cask 'font-jetbrains-mono-nerd-font'
 
 # # Mac OS Quick-Look Plugins
 cask 'qlcolorcode'    # QL for code with highlighting
@@ -245,7 +273,7 @@ cask 'qlimagesize'    # QL for size info for images
 cask 'qlmarkdown'     # QL for markdown files
 cask 'qlprettypatch'  # QL for patch / diff files
 cask 'qlstephen'      # QL for dev text files
-cask 'qlvideo'        # QL for video formats
+cask 'quicklook-video' # QL for video formats
 cask 'quicklook-csv'  # QL for tables in CSV format
 cask 'quicklook-json', args: { require_sha: false } # QL for JSON, with trees
 # cask 'quicklookapk',   args: { require_sha: false } # QL for Android APKs
