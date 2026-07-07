@@ -33,6 +33,9 @@
     ${XDG_CONFIG_HOME}/zed/keymap.json: config/zed/keymap.json
     ${XDG_CONFIG_HOME}/zed/snippets: config/zed/snippets
 
+    # AI agents (OpenCode global instructions; skill/plugin manifests are reference-only)
+    ${XDG_CONFIG_HOME}/opencode/AGENTS.md: config/ai/opencode/AGENTS.md
+
     # Bash utils
     ${XDG_CONFIG_HOME}/utils: utils
 

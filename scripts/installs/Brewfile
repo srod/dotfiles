@@ -107,6 +107,7 @@ brew 'beancount'      # Double-entry bookkeeping (Python)
 # brew 'httpie'       # HTTP / API testing testing client
 # brew 'lazydocker'   # Full Docker management app
 brew 'lazygit'      # Full Git management app
+brew 'rtk'          # Token-optimized shell-command proxy (AI tooling)
 # brew 'kdash'        # Kubernetes management
 brew 'git-delta'      # Syntax-highlighting pager for git
 brew 'gitmux'         # Git status in the tmux status bar

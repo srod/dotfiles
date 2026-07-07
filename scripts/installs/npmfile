@@ -1,3 +1,9 @@
 npm
 npm-check-updates
 serve
+@biomejs/biome
+@juliusbrussee/caveman-code
+@shopify/cli
+eas-cli
+js-yaml
+opencode-ai
