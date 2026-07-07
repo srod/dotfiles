@@ -139,6 +139,7 @@ cask 'imageoptim'         # Image compression tool
 # cask 'postman'          # HTTP API testing app
 # cask 'sourcetree'       # Git visual client
 cask 'visual-studio-code' # Code editor
+cask 'zed'                # Fast native code editor (Rust)
 cask 'codex'              # OpenAI Codex CLI
 cask 'copilot-cli'        # GitHub Copilot CLI
 

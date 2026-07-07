@@ -28,6 +28,11 @@
       if: '[ -n "$DISPLAY" ] || [ -n "$WAYLAND_DISPLAY" ] || [ `uname` = Darwin ]'
       path: config/ghostty/config
 
+    # Zed editor (config only; conversations/embeddings/prompts stay local)
+    ${XDG_CONFIG_HOME}/zed/settings.json: config/zed/settings.json
+    ${XDG_CONFIG_HOME}/zed/keymap.json: config/zed/keymap.json
+    ${XDG_CONFIG_HOME}/zed/snippets: config/zed/snippets
+
     # Bash utils
     ${XDG_CONFIG_HOME}/utils: utils
 

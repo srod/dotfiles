@@ -1,0 +1,98 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run the `open default settings` command
+// from the command palette or from `Zed` application menu.
+{
+	"cli_default_open_behavior": "new_window",
+ "project_panel": {
+		"dock": "left"
+	},
+	"outline_panel": {
+		"dock": "left"
+	},
+	"collaboration_panel": {
+		"dock": "left"
+	},
+	"git_panel": {
+		"dock": "left",
+		"sort_by_path": false,
+		"diff_stats": true,
+		"tree_view": false
+	},
+	"disable_ai": true,
+	"buffer_font_family": "JetBrainsMono Nerd Font",
+	"git": {
+		"inline_blame": {
+			"show_commit_summary": false
+		},
+		"hunk_style": "unstaged_hollow"
+	},
+	"telemetry": {
+		"metrics": false
+	},
+	"ui_font_size": 16,
+	"buffer_font_size": 13.0,
+	"theme": "VSCode Dark Modern",
+	"terminal": {
+		"font_family": "JetBrainsMono Nerd Font",
+		"font_size": 13,
+		"dock": "bottom"
+	},
+	"autosave": {
+		"after_delay": {
+			"milliseconds": 1000
+		}
+	},
+	"code_actions_on_format": {
+		"source.fixAll.biome": true,
+		"source.organizeImports.biome": true
+	},
+	"indent_guides": {
+		"coloring": "indent_aware"
+	},
+	"tab_size": 4,
+	// "language_servers": ["!typescript-language-server", "!biome"],
+	// "language_servers": [
+	//   "!biome",
+	//   "..."
+	// ],
+	"languages": {
+		"JSON": {
+			"tab_size": 2
+		},
+		"JSONC": {
+			"tab_size": 2
+		}
+		// "TypeScript": {
+		// 	"language_servers": ["typescript-language-server", "!vtsls", "..."]
+		// }
+	},
+	"formatter": {
+		"language_server": {
+			"name": "biome"
+		}
+	},
+	"lsp": {
+		"vtsls": {
+			"settings": {
+				"typescript": {
+					"preferences": {
+						"importModuleSpecifier": "non-relative"
+					}
+				}
+			}
+		}
+		// "biome": {
+		// 	"binary": {
+		// 		"path": "/Users/rodolphe/.config/nvm/versions/node/v22.11.0/bin/biome",
+		// 		"arguments": ["lsp-proxy"]
+		// 	}
+		// }
+	},
+	"remove_trailing_whitespace_on_save": true,
+	"ensure_final_newline_on_save": true
+}
