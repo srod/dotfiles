@@ -425,8 +425,8 @@ sudo mdutil -E / > /dev/null
 ###############################
 log_section "Dock and Launchpad"
 
-log_msg "Set dock position to left-hand side"
-defaults write com.apple.dock orientation left
+log_msg "Set dock position to bottom"
+defaults write com.apple.dock orientation bottom
 
 log_msg "Remove default apps from the dock"
 defaults write com.apple.dock persistent-apps -array
