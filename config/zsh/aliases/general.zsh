@@ -24,6 +24,9 @@ alias worldinternet='curl https://status.plaintext.sh/t'
 # Re-run last cmd as root
 alias plz="fc -l -1 | cut -d' ' -f2- | xargs sudo"
 
+# Wallet monorepo checks & builds
+alias check-wallet='bash "/Users/rodolphe/Library/CloudStorage/SynologyDrive-onedrive/Serveurs/check-wallet.sh"'
+
 # Hledger alias, with multiple journal files
 alias hl='hledger-ui -f ~/Library/CloudStorage/OneDrive-Personal/hledger/2026.journal \
                      -f ~/Library/CloudStorage/OneDrive-Personal/hledger/2025.journal \

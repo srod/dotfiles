@@ -21,7 +21,7 @@ export DOTFILES=$HOME/.dotfiles
 # Respect XDG directories
 export ADOTDIR="${XDG_CACHE_HOME}/zsh/antigen"
 export _ANTIGEN_INSTALL_DIR="${ADOTDIR}"
-export OPENSSL_DIR="/usr/local/ssl"
+export OPENSSL_DIR="/opt/homebrew/opt/openssl@3"
 export CARGO_HOME="${XDG_DATA_HOME}/cargo"
 export CURL_HOME="${XDG_CONFIG_HOME}/curl"
 export DOCKER_CONFIG="${XDG_CONFIG_HOME}/docker"

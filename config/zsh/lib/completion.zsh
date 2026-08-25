@@ -40,6 +40,9 @@ zstyle ':completion:*:manuals.*'            insert-sections     yes
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' \
     hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
+# Third-party completions (grok CLI installer writes here)
+[[ -d ~/.grok/completions/zsh ]] && fpath=(~/.grok/completions/zsh $fpath)
+
 # Initialize and optimize completion
 autoload -Uz compinit
 

@@ -82,4 +82,10 @@ fi
 export PATH="$HOME/.local/bin:$PATH"
 
 # Pi
-alias pi='fnm exec --using 22 pi'
+# alias pi='fnm exec --using 22 pi'
+
+# OMP
+# alias omp='fnm exec --using 22 omp'
+
+# bun completions
+[ -s "/Users/rodolphe/.bun/_bun" ] && source "/Users/rodolphe/.bun/_bun"
