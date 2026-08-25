@@ -161,7 +161,9 @@ brew 'openjdk@17'       # Java development kit
 
 # DevOps
 # brew 'ansible'        # Automation
-# brew 'docker'         # Containers
+brew 'docker'           # Container CLI (no Desktop; talks to the colima VM)
+brew 'colima'           # Container runtime for macOS -- pulls in lima
+brew 'act'              # Run GitHub Actions locally (Frak PHP plugin gates)
 
 # Mobile Development (Tauri iOS + Android)
 brew 'cocoapods'        # Dependency manager for iOS/macOS
