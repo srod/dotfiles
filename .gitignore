@@ -6,6 +6,7 @@ dotbot/*
 # Auto-generated files
 config/zsh/.zcompcache/*
 config/zsh/*/*.zwc
+config/zsh/*.zwc
 config/zsh/.zcompdump
 config/zsh/.zcompdump.zwc
 config/zsh/.zsh_sessions/*
