@@ -25,6 +25,9 @@ export OPENSSL_DIR="/opt/homebrew/opt/openssl@3"
 export CARGO_HOME="${XDG_DATA_HOME}/cargo"
 export CURL_HOME="${XDG_CONFIG_HOME}/curl"
 export DOCKER_CONFIG="${XDG_CONFIG_HOME}/docker"
+# Colima's docker socket — act does not read docker contexts, so it needs this
+# explicitly. Set by `brew install colima` setup for the Frak PHP plugin gates.
+export DOCKER_HOST="unix://${HOME}/.config/colima/default/docker.sock"
 # export GIT_CONFIG="${XDG_CONFIG_HOME}/git/.gitconfig"
 export KDEHOME="${XDG_CONFIG_HOME}/kde"
 export LESSHISTFILE="-" # Disable less history.
